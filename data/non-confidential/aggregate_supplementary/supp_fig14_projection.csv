@@ -1,0 +1,7 @@
+system,scenario,estimate,ci_lower,ci_upper
+RRPV-only,SSP1-2.6,1.6,0.75,2.64
+RRPV-only,SSP2-4.5,2.5,1.16,4.02
+RRPV-only,SSP5-8.5,3.5,1.58,5.86
+RRPV-BS,SSP1-2.6,2.3,0.86,3.83
+RRPV-BS,SSP2-4.5,3.8,1.52,6.08
+RRPV-BS,SSP5-8.5,5.1,2.23,8.25

@@ -1,0 +1,7 @@
+﻿variable,mean,sd
+Installed PV capacity (kW),9.17,17.64
+Daily PV generation (kWh),30.48,25.48
+Daily electricity consumption (kWh),5.7,3.2
+Daily self-consumed PV electricity (kWh),2.19,1.61
+Daily grid-imported electricity (kWh),3.52,1.82
+Daily grid-exported electricity (kWh),28.29,25.33

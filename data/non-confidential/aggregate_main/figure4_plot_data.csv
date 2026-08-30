@@ -1,0 +1,33 @@
+﻿panel,series,x_order,x_label,estimate,std_error,ci_lower,ci_upper,households,observations,status,source
+a,RRPV-only,1,Total Effect,0.079,0.015,0.049600000000000005,0.1084,6418.0,5331107.0,ready,Supplementary Table 30
+a,RRPV-only,2,Current,0.082,0.012,0.058480000000000004,0.10552,6418.0,5331107.0,ready,Supplementary Table 30
+a,RRPV-only,3,Lag 1,0.001,0.011,-0.02056,0.02256,6418.0,5331107.0,ready,Supplementary Table 30
+a,RRPV-only,4,Lag 2,-0.001,0.01,-0.0206,0.0186,6418.0,5331107.0,ready,Supplementary Table 30
+a,RRPV-only,5,Lag 3,-0.003,0.009,-0.02064,0.01464,6418.0,5331107.0,ready,Supplementary Table 30
+b,RRPV-BS,1,Total Effect,0.114,0.012,0.09048,0.13752,229.0,190274.0,ready,Supplementary Table 30
+b,RRPV-BS,2,Current,0.117,0.014,0.08956,0.14444,229.0,190274.0,ready,Supplementary Table 30
+b,RRPV-BS,3,Lag 1,-0.004,0.017,-0.037320000000000006,0.029320000000000002,229.0,190274.0,ready,Supplementary Table 30
+b,RRPV-BS,4,Lag 2,0.002,0.011,-0.01956,0.023559999999999998,229.0,190274.0,ready,Supplementary Table 30
+b,RRPV-BS,5,Lag 3,-0.001,0.01,-0.0206,0.0186,229.0,190274.0,ready,Supplementary Table 30
+c,RRPV-only,1,baseline,0.079,0.015,0.049600000000000005,0.1084,,,ready,Supplementary Table 31
+c,RRPV-only,2,≤10%,-0.002,0.0184,-0.038064,0.034064,,,ready,Supplementary Table 31
+c,RRPV-only,3,10-20%,0.007,0.0195,-0.031219999999999998,0.045219999999999996,,,ready,Supplementary Table 31
+c,RRPV-only,4,20-30%,0.006,0.0175,-0.028300000000000006,0.0403,,,ready,Supplementary Table 31
+c,RRPV-only,5,30-40%,0.015,0.0098,-0.004208,0.034208,,,ready,Supplementary Table 31
+c,RRPV-only,6,40-50%,0.034,0.0131,0.008324000000000002,0.05967600000000001,,,ready,Supplementary Table 31
+c,RRPV-only,7,50-60%,0.054,0.0125,0.0295,0.0785,,,ready,Supplementary Table 31
+c,RRPV-only,8,60-70%,0.065,0.0138,0.037952,0.092048,,,ready,Supplementary Table 31
+c,RRPV-only,9,70-80%,0.091,0.0166,0.058463999999999995,0.123536,,,ready,Supplementary Table 31
+c,RRPV-only,10,80-90%,0.115,0.0175,0.0807,0.14930000000000002,,,ready,Supplementary Table 31
+c,RRPV-only,11,≥90%,0.133,0.0211,0.091644,0.174356,,,ready,Supplementary Table 31
+d,RRPV-BS,1,baseline,0.114,0.012,0.09048,0.13752,,,ready,Supplementary Table 31
+d,RRPV-BS,2,≤10%,0.022,0.0133,-0.004067999999999999,0.048068,,,ready,Supplementary Table 31
+d,RRPV-BS,3,10-20%,0.032,0.0097,0.012988,0.051012,,,ready,Supplementary Table 31
+d,RRPV-BS,4,20-30%,0.054,0.0114,0.031656000000000004,0.076344,,,ready,Supplementary Table 31
+d,RRPV-BS,5,30-40%,0.061,0.0108,0.039832,0.08216799999999999,,,ready,Supplementary Table 31
+d,RRPV-BS,6,40-50%,0.071,0.0098,0.05179199999999999,0.090208,,,ready,Supplementary Table 31
+d,RRPV-BS,7,50-60%,0.081,0.0083,0.064732,0.09726800000000001,,,ready,Supplementary Table 31
+d,RRPV-BS,8,60-70%,0.095,0.0115,0.07246,0.11754,,,ready,Supplementary Table 31
+d,RRPV-BS,9,70-80%,0.112,0.0144,0.083776,0.14022400000000002,,,ready,Supplementary Table 31
+d,RRPV-BS,10,80-90%,0.121,0.0153,0.091012,0.15098799999999998,,,ready,Supplementary Table 31
+d,RRPV-BS,11,≥90%,0.138,0.0208,0.09723200000000001,0.178768,,,ready,Supplementary Table 31

@@ -1,0 +1,32 @@
+﻿panel,series,x_order,x_label,estimate,std_error,ci_lower,ci_upper,observations,counties,notes,status
+a,subgroup,1,Long-H,0.095,0.017,0.062,0.128,10020,167,,ready
+a,subgroup,2,Long-L,0.042,0.017,0.009,0.075,10080,168,,ready
+a,subgroup,3,Short-H,0.105,0.017,0.072,0.138,10020,167,,ready
+a,subgroup,4,Short-L,0.041,0.016,0.01,0.072,10080,168,,ready
+b,subgroup,1,Long-H,0.084,0.016,0.052,0.116,10020,167,,ready
+b,subgroup,2,Long-L,0.036,0.016,0.005,0.067,10080,168,,ready
+b,subgroup,3,Short-H,0.07,0.019,0.032,0.108,10020,167,,ready
+b,subgroup,4,Short-L,0.049,0.016,0.017,0.081,10080,168,,ready
+c,subgroup,1,High,0.084,0.015,0.054,0.114,10020,167,,ready
+c,subgroup,2,Low,0.053,0.017,0.019,0.087,10080,168,,ready
+d,subgroup,1,High (steeper),0.04,0.015,0.011,0.069,10020,167,,ready
+d,subgroup,2,Low (flatter),0.099,0.015,0.069,0.129,10080,168,,ready
+e,subgroup,1,High,0.092,0.016,0.061,0.123,10020,167,,ready
+e,subgroup,2,Low,0.041,0.015,0.012,0.07,10080,168,,ready
+f,PV-loan event study,1,≤-8,-0.003,0.006,-0.015,0.009,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,2,-7,-0.001,0.007,-0.015,0.013,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,3,-6,0.007,0.008,-0.009,0.023,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,4,-5,-0.004,0.009,-0.021,0.013,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,5,-4,0.002,0.006,-0.009,0.013,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,6,-3,0.005,0.007,-0.008,0.018,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,7,-2,0.007,0.006,-0.004,0.018,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,8,-1,0.0,,0.0,0.0,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,9,0,0.003,0.006,-0.009,0.015,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,10,1,0.002,0.007,-0.011,0.015,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,11,2,-0.001,0.006,-0.012,0.01,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,12,3,0.004,0.007,-0.009,0.017,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,13,4,0.009,0.009,-0.008,0.026,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,14,5,0.014,0.008,-0.002,0.03,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,15,6,0.024,0.009,0.007,0.041,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,16,7,0.027,0.008,0.012,0.042,4800,80,39 treated / 41 never-treated counties,ready
+f,PV-loan event study,17,≥8,0.026,0.008,0.01,0.042,4800,80,39 treated / 41 never-treated counties,ready

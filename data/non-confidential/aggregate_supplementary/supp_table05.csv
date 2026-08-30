@@ -1,0 +1,32 @@
+﻿panel,measure,households,share,share_of_exits_pct,share_of_analytical_households_pct,retained_n,retained_value,exited_n,exited_value,absolute_smd,original_baseline,unweighted_retained,weighted_retained,weighted_absolute_smd
+A,Completed all 11 rounds,2192,73.2,,,,,,,,,,,
+A,Completed 3-10 rounds,644,21.5,,,,,,,,,,,
+A,Completed 1-2 rounds,160,5.3,,,,,,,,,,,
+A,Initial July 2021 cohort,2335,100.0,,,,,,,,,,,
+A,Initial cohort retained through July 2026,2192,93.9,,,,,,,,,,,
+A,Initial cohort permanently exited,143,6.1,,,,,,,,,,,
+A,Households entering after the first round,661,22.1 of all analytical households,,,,,,,,,,,
+A,Later entrants retained through July 2026,635,96.1 of later entrants,,,,,,,,,,,
+A,Later entrants subsequently exited,26,3.9 of later entrants,,,,,,,,,,,
+A,All permanent exits,169,5.6 of all analytical households,,,,,,,,,,,
+B,Permanent relocation,67,,39.6,2.2,,,,,,,,,
+B,Refusal to continue participation,36,,21.3,1.2,,,,,,,,,
+B,Long-term absence,16,,9.5,0.5,,,,,,,,,
+B,Household dissolution or death,34,,20.1,1.1,,,,,,,,,
+B,Unable to re-establish contact,16,,9.5,0.5,,,,,,,,,
+C,Formally identified difficulty household (%),,,,,2192,35.36,143,16.78,0.432,,,,
+C,Household-head age (years),,,,,2192,47.07,143,45.71,0.117,,,,
+C,Household-head education (years),,,,,2192,6.06,143,6.63,0.186,,,,
+C,Monthly household income (RMB),,,,,2192,2332.1,143,2755.17,0.224,,,,
+C,Household size (persons),,,,,2192,2.22,143,2.15,0.071,,,,
+C,Usable roof area (m²),,,,,2192,61.83,143,62.79,0.047,,,,
+C,Homeowner (%),,,,,2192,75.73,143,79.02,0.079,,,,
+C,RRPV adopter at baseline (%),,,,,2192,38.05,143,43.36,0.108,,,,
+D,Formally identified difficulty household (%),,,,,,,,,0.024,34.22,35.36,34.21,0.0001
+D,Household-head age (years),,,,,,,,,0.007,46.98,47.07,46.98,0.0007
+D,Household-head education (years),,,,,,,,,0.01,6.1,6.06,6.1,0.0006
+D,Monthly household income (RMB),,,,,,,,,0.015,2358.01,2332.1,2358.32,0.0002
+D,Household size (persons),,,,,,,,,0.004,2.22,2.22,2.22,0.0001
+D,Usable roof area (m²),,,,,,,,,0.003,61.89,61.83,61.89,0.0002
+D,Homeowner (%),,,,,,,,,0.005,75.93,75.73,75.93,0.0001
+D,RRPV adopter at baseline (%),,,,,,,,,0.007,38.37,38.05,38.39,0.0003

@@ -1,0 +1,10 @@
+﻿variable,mean,sd
+Installed PV capacity (kW),4.6,0.89
+Battery capacity (kWh),4.3,1.47
+Daily PV generation (kWh),16.57,8.7
+Daily electricity consumption (kWh),5.75,3.18
+Daily self-consumed PV electricity (kWh),1.99,1.22
+Daily grid-imported electricity (kWh),0.91,1.5
+Battery-sourced electricity (kWh),2.85,1.39
+Battery charging (kWh),2.77,1.5
+Daily grid-exported electricity (kWh),11.78,8.31

@@ -1,0 +1,5 @@
+﻿system,model,pearson_correlation,rmse,mae,out_of_sample_r2,annual_bias_pct
+RRPV-only,M1: without temperature bins,0.742,0.418,0.303,0.362,-8.7
+RRPV-only,M2: with temperature bins,0.821,0.362,0.261,0.521,-4.6
+RRPV-BS,M1: without temperature bins,0.608,0.571,0.419,0.214,-12.1
+RRPV-BS,M2: with temperature bins,0.694,0.509,0.372,0.375,-7.8

@@ -1,0 +1,7 @@
+﻿panel,region,adoption_status,n,mean,sd,median,p25,p75
+B,Northern Jiangsu,RRPV adopters,437,2966.77,2198.53,2380,1550,3640.0
+B,Northern Jiangsu,Non-adopters,739,2335.32,1676.31,1740,1330,2740.0
+B,Central Jiangsu,RRPV adopters,281,3030.71,2196.51,2380,1510,3700.0
+B,Central Jiangsu,Non-adopters,457,2530.28,1860.23,1970,1390,2910.0
+B,Southern Jiangsu,RRPV adopters,315,3259.3,2395.35,2560,1510,4285.0
+B,Southern Jiangsu,Non-adopters,598,2747.36,1929.39,2105,1370,3457.5

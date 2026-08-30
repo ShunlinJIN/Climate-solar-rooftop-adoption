@@ -1,0 +1,22 @@
+﻿panel,dimension,subgroup_or_contrast,row_type,estimate,std_error,ci_lower,ci_upper,observations,counties
+a,Historical average temperature,Long-H,subgroup,0.095,0.017,0.062,0.128,10020,167
+a,Historical average temperature,Long-L,subgroup,0.042,0.017,0.009,0.075,10080,168
+a,Historical average temperature,Short-H,subgroup,0.105,0.017,0.072,0.138,10020,167
+a,Historical average temperature,Short-L,subgroup,0.041,0.016,0.01,0.072,10080,168
+b,Temperature fluctuation,Long-H,subgroup,0.084,0.016,0.052,0.116,10020,167
+b,Temperature fluctuation,Long-L,subgroup,0.036,0.016,0.005,0.067,10080,168
+b,Temperature fluctuation,Short-H,subgroup,0.07,0.019,0.032,0.108,10020,167
+b,Temperature fluctuation,Short-L,subgroup,0.049,0.016,0.017,0.081,10080,168
+c,Solar radiation,High,subgroup,0.084,0.015,0.054,0.114,10020,167
+c,Solar radiation,Low,subgroup,0.053,0.017,0.019,0.087,10080,168
+d,Land slope,High (steeper),subgroup,0.04,0.015,0.011,0.069,10020,167
+d,Land slope,Low (flatter),subgroup,0.099,0.015,0.069,0.129,10080,168
+e,County income,High,subgroup,0.092,0.016,0.061,0.123,10020,167
+e,County income,Low,subgroup,0.041,0.015,0.012,0.07,10080,168
+a,Historical average temperature,Long-H vs Long-L,contrast,0.053,0.024,,,,
+a,Historical average temperature,Short-H vs Short-L,contrast,0.064,0.023,,,,
+b,Temperature fluctuation,Long-H vs Long-L,contrast,0.048,0.023,,,,
+b,Temperature fluctuation,Short-H vs Short-L,contrast,0.021,0.025,,,,
+c,Solar radiation,High vs Low solar radiation,contrast,0.031,0.023,,,,
+d,Land slope,Flatter vs Steeper land slope,contrast,0.059,0.021,,,,
+e,County income,High vs Low income,contrast,0.051,0.022,,,,

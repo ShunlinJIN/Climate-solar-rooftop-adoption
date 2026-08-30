@@ -1,0 +1,26 @@
+﻿table_number,panel,panel_label,row_order,row_id,row_label,column_order,column_id,column_label,system,row_type,estimate,std_error,stars,display_value,unit
+28,,,1,treat_post,Treat_i × Post_it,1,col1,(1) Baseline,RRPV survey PSM-DID,estimate,0.071,0.012,***,0.071***,log monthly electricity consumption
+28,,,1,treat_post,Treat_i × Post_it,2,col2,(2) + household controls,RRPV survey PSM-DID,estimate,0.08,0.014,***,0.080***,log monthly electricity consumption
+28,,,1,treat_post,Treat_i × Post_it,3,col3,(3) + household and weather controls (preferred),RRPV survey PSM-DID,estimate,0.084,0.014,***,0.084***,log monthly electricity consumption
+28,,,1,treat_post,Treat_i × Post_it,4,col4,(4) Higher pre-adoption household income,RRPV survey PSM-DID,estimate,0.091,0.015,***,0.091***,log monthly electricity consumption
+28,,,1,treat_post,Treat_i × Post_it,5,col5,(5) Lower pre-adoption household income,RRPV survey PSM-DID,estimate,0.008,0.014,,0.008,log monthly electricity consumption
+28,,,10,household_controls,Household controls,1,col1,(1) Baseline,RRPV survey PSM-DID,metadata,,,,,
+28,,,10,household_controls,Household controls,2,col2,(2) + household controls,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,10,household_controls,Household controls,3,col3,(3) + household and weather controls (preferred),RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,10,household_controls,Household controls,4,col4,(4) Higher pre-adoption household income,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,10,household_controls,Household controls,5,col5,(5) Lower pre-adoption household income,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,11,weather_controls,Weather controls,1,col1,(1) Baseline,RRPV survey PSM-DID,metadata,,,,,
+28,,,11,weather_controls,Weather controls,2,col2,(2) + household controls,RRPV survey PSM-DID,metadata,,,,,
+28,,,11,weather_controls,Weather controls,3,col3,(3) + household and weather controls (preferred),RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,11,weather_controls,Weather controls,4,col4,(4) Higher pre-adoption household income,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,11,weather_controls,Weather controls,5,col5,(5) Lower pre-adoption household income,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,12,household-by-year_fe,Household-by-year FE,1,col1,(1) Baseline,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,12,household-by-year_fe,Household-by-year FE,2,col2,(2) + household controls,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,12,household-by-year_fe,Household-by-year FE,3,col3,(3) + household and weather controls (preferred),RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,12,household-by-year_fe,Household-by-year FE,4,col4,(4) Higher pre-adoption household income,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,12,household-by-year_fe,Household-by-year FE,5,col5,(5) Lower pre-adoption household income,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,13,year-by-month_fe,Year-by-month FE,1,col1,(1) Baseline,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,13,year-by-month_fe,Year-by-month FE,2,col2,(2) + household controls,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,13,year-by-month_fe,Year-by-month FE,3,col3,(3) + household and weather controls (preferred),RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,13,year-by-month_fe,Year-by-month FE,4,col4,(4) Higher pre-adoption household income,RRPV survey PSM-DID,metadata,,,,Yes,
+28,,,13,year-by-month_fe,Year-by-month FE,5,col5,(5) Lower pre-adoption household income,RRPV survey PSM-DID,metadata,,,,Yes,

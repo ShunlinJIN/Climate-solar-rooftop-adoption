@@ -1,0 +1,5 @@
+﻿variable,treatment_mean,treatment_sd,control_mean,control_sd,difference,difference_se
+Rural income per capita,9.826,0.453,9.834,0.298,-0.008,0.032
+Electricity consumption per capita,8.242,0.337,8.198,0.628,0.044,0.081
+Number of PV firms per capita,0.00049,0.0002,0.00047,0.0002,2e-05,3e-05
+Number of extreme heat days per year,1.158,0.546,2.75,0.734,-1.592,0.111

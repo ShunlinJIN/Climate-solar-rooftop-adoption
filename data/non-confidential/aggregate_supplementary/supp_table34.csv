@@ -1,0 +1,16 @@
+panel,row_order,outcome,count,conditional_denominator,share_percent,ci_low_percent,ci_high_percent,ci_type
+A,1,Lighting and phone charging,186,194,95.8762886597938,92.0751471232418,97.89588375220448,Wilson 95% CI
+A,2,Electric fan,139,194,71.64948453608247,64.93482383929975,77.52341545023668,Wilson 95% CI
+A,3,Refrigerator,134,194,69.0721649484536,62.25076277916916,75.1529242139939,Wilson 95% CI
+A,4,Air conditioner,33,194,17.010309278350515,12.376331851816005,22.92539875460466,Wilson 95% CI
+A,5,Cooking or hot water,26,194,13.402061855670103,9.312678550458706,18.912678841039224,Wilson 95% CI
+A,6,Water pump or agricultural equipment,11,194,5.670103092783505,3.195255981149291,9.866444521228484,Wilson 95% CI
+B,7,Battery supplied at least some electricity,83,99,83.83838383838383,,,Descriptive conditional share
+B,8,Supported only a limited set of appliances,41,99,41.41414141414141,,,Descriptive conditional share
+B,9,Maintained basic household electricity services,42,99,42.42424242424242,,,Descriptive conditional share
+B,10,Maintained basic services among households receiving battery electricity,42,83,50.602409638554214,,,Descriptive conditional share
+C,11,<1 hour,6,183,3.278688524590164,,,Descriptive conditional share
+C,12,1–3 hours,131,183,71.5846994535519,,,Descriptive conditional share
+C,13,3–6 hours,44,183,24.043715846994534,,,Descriptive conditional share
+C,14,>6 hours,2,183,1.092896174863388,,,Descriptive conditional share
+C,15,At least 3 hours,46,183,25.136612021857925,,,Descriptive conditional share

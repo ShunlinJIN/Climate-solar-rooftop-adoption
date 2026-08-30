@@ -1,0 +1,149 @@
+﻿outcome,outcome_label,event_time_month,estimand,estimate,std_error,conf_low,conf_high,unit,switcher_households,clusters,observations
+electricity_bill_rmb,Actual monthly electricity bill,-12.0,Withheld-lead placebo,1.4420493221794826,2.360806755193154,-3.3072812723294933,6.191379916688458,RMB/month,450.0,48.0,88.0
+electricity_bill_rmb,Actual monthly electricity bill,-11.0,Withheld-lead placebo,1.63334835653042,2.144829649243547,-2.681492343901626,5.948189056962466,RMB/month,450.0,48.0,91.0
+electricity_bill_rmb,Actual monthly electricity bill,-10.0,Withheld-lead placebo,2.4074966232002577,1.0662670741206155,0.2624439517357162,4.552549294664799,RMB/month,450.0,48.0,97.0
+electricity_bill_rmb,Actual monthly electricity bill,-9.0,Withheld-lead placebo,4.626835291995488,1.896539782003754,0.8114893766383187,8.442181207352657,RMB/month,450.0,48.0,97.0
+electricity_bill_rmb,Actual monthly electricity bill,-8.0,Withheld-lead placebo,4.368493573141153,2.208691019740204,-0.0723773600010098,8.809364506283316,RMB/month,450.0,49.0,98.0
+electricity_bill_rmb,Actual monthly electricity bill,-7.0,Withheld-lead placebo,4.687082093814508,2.3625713078864017,-0.0631858951876322,9.437350082816646,RMB/month,450.0,49.0,99.0
+electricity_bill_rmb,Actual monthly electricity bill,-6.0,Withheld-lead placebo,0.6729901105436307,1.9620284579126788,-3.2719325023834736,4.6179127234707344,RMB/month,450.0,49.0,99.0
+electricity_bill_rmb,Actual monthly electricity bill,-5.0,Withheld-lead placebo,-1.549305164259687,1.0454980763802315,-3.637309005749565,0.538698677230192,RMB/month,450.0,66.0,167.0
+electricity_bill_rmb,Actual monthly electricity bill,-4.0,Withheld-lead placebo,-1.6690372179068214,0.8268237845656659,-3.318505536027711,-0.0195688997859315,RMB/month,450.0,70.0,242.0
+electricity_bill_rmb,Actual monthly electricity bill,-3.0,Withheld-lead placebo,-1.766930838442931,0.7129100789150274,-3.188433162165852,-0.3454285147200104,RMB/month,450.0,72.0,303.0
+electricity_bill_rmb,Actual monthly electricity bill,-2.0,Withheld-lead placebo,-0.6325793033061928,0.4583291544904871,-1.546027990917261,0.2808693843048753,RMB/month,450.0,74.0,384.0
+electricity_bill_rmb,Actual monthly electricity bill,-1.0,Reference month,0.0,0.0,0.0,0.0,RMB/month,450.0,,
+electricity_bill_rmb,Actual monthly electricity bill,0.0,Partial connection month,-12.039188782775812,0.7147710571137595,-13.463401203171433,-10.614976362380192,RMB/month,450.0,75.0,450.0
+electricity_bill_rmb,Actual monthly electricity bill,1.0,Event-time effect,-21.70783098629857,1.055265576832806,-23.81049354710513,-19.60516842549201,RMB/month,450.0,75.0,449.0
+electricity_bill_rmb,Actual monthly electricity bill,2.0,Event-time effect,-22.787563508633475,1.0525312060685317,-24.88477771676027,-20.69034930050668,RMB/month,450.0,75.0,448.0
+electricity_bill_rmb,Actual monthly electricity bill,3.0,Event-time effect,-22.062895222838385,0.9452315600821896,-23.94631021931988,-20.17948022635689,RMB/month,450.0,75.0,448.0
+electricity_bill_rmb,Actual monthly electricity bill,4.0,Event-time effect,-22.301819474767807,1.013757524977956,-24.32177543685336,-20.28186351268226,RMB/month,450.0,75.0,445.0
+electricity_bill_rmb,Actual monthly electricity bill,5.0,Event-time effect,-20.87239426715944,0.9937566312597892,-22.852497578569043,-18.89229095574983,RMB/month,450.0,75.0,443.0
+electricity_bill_rmb,Actual monthly electricity bill,6.0,Event-time effect,-18.63785361795612,0.9361895501458136,-20.503252016355525,-16.77245521955672,RMB/month,450.0,75.0,443.0
+electricity_bill_rmb,Actual monthly electricity bill,7.0,Event-time effect,-18.182237891834724,0.8242710399929588,-19.82463379083872,-16.53984199283073,RMB/month,450.0,75.0,442.0
+electricity_bill_rmb,Actual monthly electricity bill,8.0,Event-time effect,-18.406215882680023,0.8831627044939913,-20.165955984705928,-16.646475780654125,RMB/month,450.0,75.0,438.0
+electricity_bill_rmb,Actual monthly electricity bill,9.0,Event-time effect,-18.189907254033034,0.8700277967968431,-19.92347548116718,-16.45633902689889,RMB/month,450.0,75.0,438.0
+electricity_bill_rmb,Actual monthly electricity bill,10.0,Event-time effect,-17.131247994086202,0.7938725012209549,-18.713073482397032,-15.549422505775372,RMB/month,450.0,75.0,436.0
+electricity_bill_rmb,Actual monthly electricity bill,11.0,Event-time effect,-16.34992838651899,0.7381142429078048,-17.820653119925336,-14.879203653112643,RMB/month,450.0,75.0,433.0
+electricity_bill_rmb,Actual monthly electricity bill,12.0,Event-time effect,-17.634322755129034,0.938983738297766,-19.50528869495492,-15.763356815303146,RMB/month,450.0,75.0,433.0
+electricity_bill_rmb,Actual monthly electricity bill,13.0,Event-time effect,-20.8058294179416,1.0897890484957038,-22.97728149764113,-18.634377338242068,RMB/month,450.0,75.0,430.0
+electricity_bill_rmb,Actual monthly electricity bill,14.0,Event-time effect,-23.73385229818904,1.1910579627356803,-26.10708709422148,-21.36061750215661,RMB/month,450.0,75.0,430.0
+electricity_bill_rmb,Actual monthly electricity bill,15.0,Event-time effect,-24.278151174145208,1.115894790980123,-26.50162008121893,-22.05468226707148,RMB/month,450.0,75.0,430.0
+electricity_bill_rmb,Actual monthly electricity bill,16.0,Event-time effect,-24.351966207542983,1.162899313452003,-26.669093670112147,-22.034838744973825,RMB/month,450.0,75.0,428.0
+electricity_bill_rmb,Actual monthly electricity bill,17.0,Event-time effect,-23.32983091216233,1.214673813782683,-25.750121318581623,-20.909540505743028,RMB/month,450.0,75.0,426.0
+electricity_bill_rmb,Actual monthly electricity bill,18.0,Event-time effect,-20.259808004416907,1.029078815617997,-22.310292304505044,-18.20932370432877,RMB/month,450.0,75.0,426.0
+electricity_bill_rmb,Actual monthly electricity bill,19.0,Event-time effect,-18.064184949868547,0.8970058898564746,-19.85150820084105,-16.276861698896045,RMB/month,450.0,75.0,423.0
+electricity_bill_rmb,Actual monthly electricity bill,20.0,Event-time effect,-18.26326006447409,0.9441289011366448,-20.14447796504623,-16.382042163901946,RMB/month,450.0,75.0,419.0
+electricity_bill_rmb,Actual monthly electricity bill,21.0,Event-time effect,-18.004672261481304,0.969576057833222,-19.93659472860006,-16.072749794362547,RMB/month,450.0,75.0,415.0
+electricity_bill_rmb,Actual monthly electricity bill,22.0,Event-time effect,-16.77325544592841,0.8748432085738427,-18.516418590475435,-15.030092301381384,RMB/month,450.0,75.0,406.0
+electricity_bill_rmb,Actual monthly electricity bill,23.0,Event-time effect,-15.648829085247735,0.8566466238514298,-17.355734743271608,-13.941923427223864,RMB/month,450.0,75.0,403.0
+electricity_bill_rmb,Actual monthly electricity bill,24.0,Event-time effect,-16.34759735304547,0.9329486167243024,-18.206538050637526,-14.488656655453411,RMB/month,450.0,75.0,398.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-12.0,Withheld-lead placebo,0.0195799120424942,0.1435603284268472,-0.2693920412273344,0.3085518653123229,percentage points,450.0,47.0,83.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-11.0,Withheld-lead placebo,0.1570308024581849,0.1717816916505058,-0.1885493861521718,0.5026109910685417,percentage points,450.0,48.0,86.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-10.0,Withheld-lead placebo,0.4266687920567236,0.1556251834751528,0.1135913055031306,0.7397462786103166,percentage points,450.0,48.0,93.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-9.0,Withheld-lead placebo,0.4855841197821982,0.189563769494096,0.1042310047555944,0.8669372348088018,percentage points,450.0,48.0,93.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-8.0,Withheld-lead placebo,0.2893100960396844,0.111321099119462,0.0654840248931618,0.513136167186207,percentage points,450.0,49.0,94.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-7.0,Withheld-lead placebo,0.0891591554832007,0.1216222454672468,-0.155378758553552,0.3336970695199535,percentage points,450.0,49.0,96.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-6.0,Withheld-lead placebo,-0.194099580328306,0.0984709739390178,-0.392197628027856,0.003998467371244,percentage points,450.0,48.0,95.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-5.0,Withheld-lead placebo,-0.1950196138139419,0.0771503931290458,-0.3490995885793054,-0.0409396390485784,percentage points,450.0,66.0,159.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-4.0,Withheld-lead placebo,-0.0728680738507469,0.0507471484201694,-0.1741058649213305,0.0283697172198367,percentage points,450.0,70.0,234.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-3.0,Withheld-lead placebo,-0.0789522649039281,0.0493545468814737,-0.1773624363312686,0.0194579065234123,percentage points,450.0,72.0,293.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-2.0,Withheld-lead placebo,-0.0145699873529186,0.0392630429553095,-0.0928211191165404,0.0636811444107031,percentage points,450.0,74.0,373.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,-1.0,Reference month,0.0,0.0,0.0,0.0,percentage points,450.0,,
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,0.0,Partial connection month,-0.6527004865923952,0.0532078937976011,-0.7587195292710832,-0.5466814439137072,percentage points,450.0,75.0,437.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,1.0,Event-time effect,-1.2240538277584827,0.0753798252805562,-1.3742514082891302,-1.0738562472278352,percentage points,450.0,75.0,432.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,2.0,Event-time effect,-1.3474570590100403,0.0786076981297324,-1.504086316589585,-1.1908278014304956,percentage points,450.0,75.0,428.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,3.0,Event-time effect,-1.3668233380100667,0.0779344614095456,-1.5221111421420863,-1.2115355338780471,percentage points,450.0,75.0,430.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,4.0,Event-time effect,-1.421034906324118,0.0805245834104812,-1.5814836412008269,-1.2605861714474094,percentage points,450.0,75.0,426.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,5.0,Event-time effect,-1.3664615366668569,0.0791471195187179,-1.5242015183901223,-1.2087215549435908,percentage points,450.0,74.0,419.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,6.0,Event-time effect,-1.1934193524445331,0.0679491092265809,-1.328841731839885,-1.0579969730491816,percentage points,450.0,74.0,418.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,7.0,Event-time effect,-1.100513261165994,0.0704357060232226,-1.2408914208302997,-0.9601351015016886,percentage points,450.0,74.0,420.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,8.0,Event-time effect,-1.1143605791321352,0.0811112935032635,-1.276015153961348,-0.9527060043029224,percentage points,450.0,74.0,417.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,9.0,Event-time effect,-1.0802071203937509,0.0798759404681858,-1.239399640174594,-0.9210146006129072,percentage points,450.0,74.0,415.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,10.0,Event-time effect,-1.0044774665926632,0.0737397636918007,-1.1514406036942193,-0.8575143294911072,percentage points,450.0,74.0,411.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,11.0,Event-time effect,-0.9625944003731248,0.0717846100266576,-1.1056283581358413,-0.8195604426104082,percentage points,450.0,75.0,411.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,12.0,Event-time effect,-1.0631054956140753,0.0853996403176178,-1.233267993419736,-0.8929429978084146,percentage points,450.0,75.0,412.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,13.0,Event-time effect,-1.235684128253583,0.0923227430591919,-1.4196412093934367,-1.05172704711373,percentage points,450.0,75.0,407.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,14.0,Event-time effect,-1.4302050151584504,0.101105643525045,-1.6316624074903612,-1.2287476228265397,percentage points,450.0,75.0,405.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,15.0,Event-time effect,-1.4714365287525086,0.0968052894955111,-1.6643252786358962,-1.278547778869121,percentage points,450.0,75.0,402.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,16.0,Event-time effect,-1.5434170878534916,0.0956535903426014,-1.7340110270813438,-1.3528231486256397,percentage points,450.0,75.0,400.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,17.0,Event-time effect,-1.4807114515660156,0.1007629608666262,-1.6814860337959825,-1.2799368693360489,percentage points,450.0,75.0,398.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,18.0,Event-time effect,-1.293292836472225,0.0822900476582093,-1.457259335651719,-1.129326337292731,percentage points,450.0,75.0,397.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,19.0,Event-time effect,-1.080628956463619,0.0808910059667094,-1.2418078042212275,-0.91945010870601,percentage points,450.0,75.0,397.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,20.0,Event-time effect,-1.0815814323267787,0.0773622457536639,-1.2357290718758305,-0.927433792777727,percentage points,450.0,75.0,391.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,21.0,Event-time effect,-1.0390401411209165,0.0737347170723612,-1.1859597719924562,-0.8921205102493767,percentage points,450.0,75.0,391.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,22.0,Event-time effect,-0.9928693714517788,0.0757937006351303,-1.1438916166279989,-0.841847126275559,percentage points,450.0,75.0,380.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,23.0,Event-time effect,-0.892868675822335,0.0713582411230938,-1.035053074999708,-0.750684276644962,percentage points,450.0,75.0,376.0
+bill_income_ratio_current_pct,Electricity-bill-to-income ratio,24.0,Event-time effect,-0.9654541900007284,0.0786239185983521,-1.12211576756951,-0.8087926124319467,percentage points,450.0,75.0,372.0
+total_electricity_consumption_kwh,Total household electricity use,-12.0,Withheld-lead placebo,-0.32830155314466,2.762376390673965,-5.885486052434077,5.228882946144758,kWh/month,450.0,48.0,88.0
+total_electricity_consumption_kwh,Total household electricity use,-11.0,Withheld-lead placebo,-0.0712878969302915,2.688855405677316,-5.480567252092632,5.3379914582320485,kWh/month,450.0,48.0,91.0
+total_electricity_consumption_kwh,Total household electricity use,-10.0,Withheld-lead placebo,5.363613238032173,1.761252925531693,1.820429372814992,8.906797103249353,kWh/month,450.0,48.0,97.0
+total_electricity_consumption_kwh,Total household electricity use,-9.0,Withheld-lead placebo,6.27644626570788,2.109115148136638,2.033453874080249,10.51943865733551,kWh/month,450.0,48.0,97.0
+total_electricity_consumption_kwh,Total household electricity use,-8.0,Withheld-lead placebo,4.013515614462642,2.2826409049484693,-0.5760415282015812,8.603072757126863,kWh/month,450.0,49.0,98.0
+total_electricity_consumption_kwh,Total household electricity use,-7.0,Withheld-lead placebo,5.091278610306109,2.3841385813065714,0.2976467117381904,9.884910508874029,kWh/month,450.0,49.0,99.0
+total_electricity_consumption_kwh,Total household electricity use,-6.0,Withheld-lead placebo,0.5645139241164651,2.0363140243885187,-3.529769830756768,4.658797678989698,kWh/month,450.0,49.0,99.0
+total_electricity_consumption_kwh,Total household electricity use,-5.0,Withheld-lead placebo,-1.7098692719750714,1.7442069108013647,-5.193291013615787,1.773552469665644,kWh/month,450.0,66.0,167.0
+total_electricity_consumption_kwh,Total household electricity use,-4.0,Withheld-lead placebo,-2.586606121841534,1.5153325324067768,-5.609611809729273,0.4363995660462052,kWh/month,450.0,70.0,242.0
+total_electricity_consumption_kwh,Total household electricity use,-3.0,Withheld-lead placebo,-2.7444764628403457,1.2883607140754003,-5.313394764063844,-0.1755581616168471,kWh/month,450.0,72.0,303.0
+total_electricity_consumption_kwh,Total household electricity use,-2.0,Withheld-lead placebo,-0.6783150533227205,0.8238613517419285,-2.3202683594761147,0.9636382528306736,kWh/month,450.0,74.0,384.0
+total_electricity_consumption_kwh,Total household electricity use,-1.0,Reference month,0.0,0.0,0.0,0.0,kWh/month,450.0,,
+total_electricity_consumption_kwh,Total household electricity use,0.0,Partial connection month,-2.746882909459604,0.9668193544009326,-4.67331252508621,-0.8204532938329978,kWh/month,450.0,75.0,450.0
+total_electricity_consumption_kwh,Total household electricity use,1.0,Event-time effect,-2.4132339041929622,1.1892206550184965,-4.7828077846848736,-0.0436600237010504,kWh/month,450.0,75.0,449.0
+total_electricity_consumption_kwh,Total household electricity use,2.0,Event-time effect,-0.0664537629217539,1.2907350257702022,-2.6382994425223627,2.505391916678855,kWh/month,450.0,75.0,448.0
+total_electricity_consumption_kwh,Total household electricity use,3.0,Event-time effect,4.1043078955134975,1.3900725303552222,1.3345279173245013,6.874087873702494,kWh/month,450.0,75.0,448.0
+total_electricity_consumption_kwh,Total household electricity use,4.0,Event-time effect,4.532597172339599,1.4825944709367729,1.5784632032833166,7.486731141395881,kWh/month,450.0,75.0,445.0
+total_electricity_consumption_kwh,Total household electricity use,5.0,Event-time effect,4.872961417824865,1.4421218788125718,1.9994708489387705,7.746451986710959,kWh/month,450.0,75.0,443.0
+total_electricity_consumption_kwh,Total household electricity use,6.0,Event-time effect,5.991157184823619,1.1923542825727655,3.615339415132128,8.36697495451511,kWh/month,450.0,75.0,443.0
+total_electricity_consumption_kwh,Total household electricity use,7.0,Event-time effect,7.332610329671851,1.024271031251392,5.291705749049624,9.373514910294077,kWh/month,450.0,75.0,442.0
+total_electricity_consumption_kwh,Total household electricity use,8.0,Event-time effect,7.607044774897925,1.1814692295191118,5.252915946863192,9.96117360293266,kWh/month,450.0,75.0,438.0
+total_electricity_consumption_kwh,Total household electricity use,9.0,Event-time effect,7.801192931050259,1.2367573379269594,5.33690014224661,10.265485719853906,kWh/month,450.0,75.0,438.0
+total_electricity_consumption_kwh,Total household electricity use,10.0,Event-time effect,9.323242293577534,1.194724139969547,6.942702479945581,11.703782107209488,kWh/month,450.0,75.0,436.0
+total_electricity_consumption_kwh,Total household electricity use,11.0,Event-time effect,10.00338425867891,1.1356029881146532,7.740645911603028,12.266122605754791,kWh/month,450.0,75.0,433.0
+total_electricity_consumption_kwh,Total household electricity use,12.0,Event-time effect,8.498387219169611,1.2570045628502788,5.9937509540495375,11.003023484289685,kWh/month,450.0,75.0,433.0
+total_electricity_consumption_kwh,Total household electricity use,13.0,Event-time effect,5.791776974073574,1.5996363491495302,2.604431971920704,8.979121976226445,kWh/month,450.0,75.0,430.0
+total_electricity_consumption_kwh,Total household electricity use,14.0,Event-time effect,6.804216849789917,1.9795701163851724,2.8598372911320817,10.748596408447751,kWh/month,450.0,75.0,430.0
+total_electricity_consumption_kwh,Total household electricity use,15.0,Event-time effect,8.370029800865012,1.9330235864910168,4.518396227571021,12.221663374159004,kWh/month,450.0,75.0,430.0
+total_electricity_consumption_kwh,Total household electricity use,16.0,Event-time effect,8.638708195503659,2.081074713233693,4.49207631266434,12.785340078342978,kWh/month,450.0,75.0,428.0
+total_electricity_consumption_kwh,Total household electricity use,17.0,Event-time effect,7.9296384426692175,2.10685333254473,3.7316415396069473,12.127635345731488,kWh/month,450.0,75.0,426.0
+total_electricity_consumption_kwh,Total household electricity use,18.0,Event-time effect,8.091925989817323,1.7405948728703236,4.623714998134279,11.560136981500367,kWh/month,450.0,75.0,426.0
+total_electricity_consumption_kwh,Total household electricity use,19.0,Event-time effect,7.987097846021783,1.2944463739494056,5.40785714374835,10.566338548295215,kWh/month,450.0,75.0,423.0
+total_electricity_consumption_kwh,Total household electricity use,20.0,Event-time effect,8.54774584575103,1.507836996662138,5.5433150462587335,11.552176645243325,kWh/month,450.0,75.0,419.0
+total_electricity_consumption_kwh,Total household electricity use,21.0,Event-time effect,8.936775131212029,1.5959842935447308,5.756707008698541,12.116843253725516,kWh/month,450.0,75.0,415.0
+total_electricity_consumption_kwh,Total household electricity use,22.0,Event-time effect,9.996881546079836,1.3861584426112847,7.23490055796459,12.758862534195082,kWh/month,450.0,75.0,406.0
+total_electricity_consumption_kwh,Total household electricity use,23.0,Event-time effect,9.847789267777491,1.355450765503026,7.146994661936423,12.54858387361856,kWh/month,450.0,75.0,403.0
+total_electricity_consumption_kwh,Total household electricity use,24.0,Event-time effect,8.203504030039033,1.460367233010448,5.293658799328689,11.113349260749375,kWh/month,450.0,75.0,398.0
+grid_import_kwh,Public-grid purchases,-12.0,Withheld-lead placebo,-0.32830155314466,2.762376390673965,-5.885486052434077,5.228882946144758,kWh/month,450.0,48.0,88.0
+grid_import_kwh,Public-grid purchases,-11.0,Withheld-lead placebo,-0.0712878969302915,2.688855405677316,-5.480567252092632,5.3379914582320485,kWh/month,450.0,48.0,91.0
+grid_import_kwh,Public-grid purchases,-10.0,Withheld-lead placebo,5.363613238032173,1.761252925531693,1.820429372814992,8.906797103249353,kWh/month,450.0,48.0,97.0
+grid_import_kwh,Public-grid purchases,-9.0,Withheld-lead placebo,6.27644626570788,2.109115148136638,2.033453874080249,10.51943865733551,kWh/month,450.0,48.0,97.0
+grid_import_kwh,Public-grid purchases,-8.0,Withheld-lead placebo,4.013515614462642,2.2826409049484693,-0.5760415282015812,8.603072757126863,kWh/month,450.0,49.0,98.0
+grid_import_kwh,Public-grid purchases,-7.0,Withheld-lead placebo,5.091278610306109,2.3841385813065714,0.2976467117381904,9.884910508874029,kWh/month,450.0,49.0,99.0
+grid_import_kwh,Public-grid purchases,-6.0,Withheld-lead placebo,0.5645139241164651,2.0363140243885187,-3.529769830756768,4.658797678989698,kWh/month,450.0,49.0,99.0
+grid_import_kwh,Public-grid purchases,-5.0,Withheld-lead placebo,-1.7098692719750714,1.7442069108013647,-5.193291013615787,1.773552469665644,kWh/month,450.0,66.0,167.0
+grid_import_kwh,Public-grid purchases,-4.0,Withheld-lead placebo,-2.586606121841534,1.5153325324067768,-5.609611809729273,0.4363995660462052,kWh/month,450.0,70.0,242.0
+grid_import_kwh,Public-grid purchases,-3.0,Withheld-lead placebo,-2.7444764628403457,1.2883607140754003,-5.313394764063844,-0.1755581616168471,kWh/month,450.0,72.0,303.0
+grid_import_kwh,Public-grid purchases,-2.0,Withheld-lead placebo,-0.6783150533227205,0.8238613517419285,-2.3202683594761147,0.9636382528306736,kWh/month,450.0,74.0,384.0
+grid_import_kwh,Public-grid purchases,-1.0,Reference month,0.0,0.0,0.0,0.0,kWh/month,450.0,,
+grid_import_kwh,Public-grid purchases,0.0,Partial connection month,-23.624289455734424,1.4194090296436688,-26.452523684751995,-20.79605522671685,kWh/month,450.0,75.0,450.0
+grid_import_kwh,Public-grid purchases,1.0,Event-time effect,-42.869915527418186,2.089766080439932,-47.033865337448525,-38.70596571738785,kWh/month,450.0,75.0,449.0
+grid_import_kwh,Public-grid purchases,2.0,Event-time effect,-44.7163844976413,2.0542629570647417,-48.8095927901318,-40.623176205150806,kWh/month,450.0,75.0,448.0
+grid_import_kwh,Public-grid purchases,3.0,Event-time effect,-43.04527060342901,1.8552014354322168,-46.7418401558498,-39.34870105100822,kWh/month,450.0,75.0,448.0
+grid_import_kwh,Public-grid purchases,4.0,Event-time effect,-43.51151081128172,1.9438219880387968,-47.38466066933809,-39.638360953225344,kWh/month,450.0,75.0,445.0
+grid_import_kwh,Public-grid purchases,5.0,Event-time effect,-41.13769993770396,1.9917384019406248,-45.10632533459281,-37.1690745408151,kWh/month,450.0,75.0,443.0
+grid_import_kwh,Public-grid purchases,6.0,Event-time effect,-36.35511394041873,1.6574892417328848,-39.65773334736597,-33.052494533471496,kWh/month,450.0,75.0,443.0
+grid_import_kwh,Public-grid purchases,7.0,Event-time effect,-33.37353666789213,1.3840952806870108,-36.13140671613567,-30.615666619648604,kWh/month,450.0,75.0,442.0
+grid_import_kwh,Public-grid purchases,8.0,Event-time effect,-33.99845051468254,1.479917496604136,-36.94725049594556,-31.04965053341952,kWh/month,450.0,75.0,438.0
+grid_import_kwh,Public-grid purchases,9.0,Event-time effect,-33.770197606316216,1.4957674103047156,-36.7505792300225,-30.789815982609927,kWh/month,450.0,75.0,438.0
+grid_import_kwh,Public-grid purchases,10.0,Event-time effect,-32.49560622447908,1.432135929131965,-35.34919935428587,-29.64201309467228,kWh/month,450.0,75.0,436.0
+grid_import_kwh,Public-grid purchases,11.0,Event-time effect,-31.561502981953392,1.3738683706059882,-34.29899546703918,-28.824010496867604,kWh/month,450.0,75.0,433.0
+grid_import_kwh,Public-grid purchases,12.0,Event-time effect,-34.020802100044534,1.775708884761103,-37.55897928771026,-30.48262491237881,kWh/month,450.0,75.0,433.0
+grid_import_kwh,Public-grid purchases,13.0,Event-time effect,-40.31733512896726,2.0633348411368053,-44.42861954505458,-36.206050712879936,kWh/month,450.0,75.0,430.0
+grid_import_kwh,Public-grid purchases,14.0,Event-time effect,-46.18645087260161,2.2421102552695777,-50.653953077217466,-41.71894866798576,kWh/month,450.0,75.0,430.0
+grid_import_kwh,Public-grid purchases,15.0,Event-time effect,-46.8188816526482,2.044389674977713,-50.8924170011401,-42.7453463041563,kWh/month,450.0,75.0,430.0
+grid_import_kwh,Public-grid purchases,16.0,Event-time effect,-46.8698638548405,2.125141706973332,-51.10430113940792,-42.63542657027309,kWh/month,450.0,75.0,428.0
+grid_import_kwh,Public-grid purchases,17.0,Event-time effect,-44.319141022106194,2.2694513623423287,-48.841121571770906,-39.79716047244148,kWh/month,450.0,75.0,426.0
+grid_import_kwh,Public-grid purchases,18.0,Event-time effect,-38.35411400474037,1.907450183400752,-42.15479146005722,-34.55343654942353,kWh/month,450.0,75.0,426.0
+grid_import_kwh,Public-grid purchases,19.0,Event-time effect,-32.651015405792826,1.5433022624893216,-35.72611229001394,-29.575918521571715,kWh/month,450.0,75.0,423.0
+grid_import_kwh,Public-grid purchases,20.0,Event-time effect,-33.30178900608795,1.5832128500184317,-36.45640947187904,-30.14716854029686,kWh/month,450.0,75.0,419.0
+grid_import_kwh,Public-grid purchases,21.0,Event-time effect,-33.27613560367699,1.680170968951988,-36.62394933865412,-29.928321868699864,kWh/month,450.0,75.0,415.0
+grid_import_kwh,Public-grid purchases,22.0,Event-time effect,-31.534485629017706,1.581851097914028,-34.68639274451111,-28.38257851352429,kWh/month,450.0,75.0,406.0
+grid_import_kwh,Public-grid purchases,23.0,Event-time effect,-30.1726825393758,1.611625166150522,-33.38391578085891,-26.96144929789269,kWh/month,450.0,75.0,403.0
+grid_import_kwh,Public-grid purchases,24.0,Event-time effect,-31.63598096349784,1.810104979953948,-35.24269386689968,-28.029268060095983,kWh/month,450.0,75.0,398.0

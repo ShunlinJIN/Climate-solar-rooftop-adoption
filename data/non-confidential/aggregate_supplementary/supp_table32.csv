@@ -1,0 +1,63 @@
+﻿table_number,panel,panel_label,row_order,row_id,row_label,column_order,column_id,column_label,system,row_type,estimate,std_error,stars,display_value,unit
+32,A,Final-round descriptive adopter–non-adopter comparison,1,adopters,RRPV adopters,1,bill,Monthly electricity expenditure,RRPV household survey,descriptive,41.02,,,41.02,RMB/month
+32,A,Final-round descriptive adopter–non-adopter comparison,1,adopters,RRPV adopters,2,ratio,Electricity-bill-to-income ratio,RRPV household survey,descriptive,1.68,,,1.68,%
+32,A,Final-round descriptive adopter–non-adopter comparison,2,nonadopters,Non-adopters,1,bill,Monthly electricity expenditure,RRPV household survey,descriptive,58.75,,,58.75,RMB/month
+32,A,Final-round descriptive adopter–non-adopter comparison,2,nonadopters,Non-adopters,2,ratio,Electricity-bill-to-income ratio,RRPV household survey,descriptive,3.11,,,3.11,%
+32,A,Final-round descriptive adopter–non-adopter comparison,3,difference,Adopter minus non-adopter,1,bill,Monthly electricity expenditure,RRPV household survey,descriptive,-17.73,,,-17.73,RMB/month
+32,A,Final-round descriptive adopter–non-adopter comparison,3,difference,Adopter minus non-adopter,2,ratio,Electricity-bill-to-income ratio,RRPV household survey,descriptive,-1.43,,,-1.43 pp,percentage points
+32,A,Final-round descriptive adopter–non-adopter comparison,4,relative,Relative difference,1,bill,Monthly electricity expenditure,RRPV household survey,descriptive,-30.2,,,-30.2%,%
+32,A,Final-round descriptive adopter–non-adopter comparison,4,relative,Relative difference,2,ratio,Electricity-bill-to-income ratio,RRPV household survey,descriptive,-46.0,,,-46.0%,%
+32,A,Final-round descriptive adopter–non-adopter comparison,5,households,Households,1,bill,Monthly electricity expenditure,RRPV household survey,metadata,,,,"1,033 adopters / 1,794 non-adopters",households
+32,A,Final-round descriptive adopter–non-adopter comparison,5,households,Households,2,ratio,Electricity-bill-to-income ratio,RRPV household survey,metadata,,,,"989 adopters / 1,739 non-adopters",households
+32,B,Preferred average effects over complete post-connection months +1 to +12,1,post_effect,Post-adoption effect,1,bill,(1) Recorded bill,RRPV household panel,estimate,-19.546304,0.780563,***,-19.55***,RMB/month
+32,B,Preferred average effects over complete post-connection months +1 to +12,10,estimation_rows,Household-months in estimation sample,1,bill,(1) Recorded bill,RRPV household panel,metadata,,,,"129,882",household-months
+32,B,Preferred average effects over complete post-connection months +1 to +12,11,treated_post,Treated post-adoption observations,1,bill,(1) Recorded bill,RRPV household panel,metadata,,,,"5,296",household-months
+32,B,Preferred average effects over complete post-connection months +1 to +12,12,households,Households,1,bill,(1) Recorded bill,RRPV household panel,metadata,,,,"2,347",households
+32,B,Preferred average effects over complete post-connection months +1 to +12,13,villages,Villages,1,bill,(1) Recorded bill,RRPV household panel,metadata,,,,75,villages
+32,B,Preferred average effects over complete post-connection months +1 to +12,14,household_fe,Household fixed effects,1,bill,(1) Recorded bill,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,15,village_month_fe,Village × calendar-month fixed effects,1,bill,(1) Recorded bill,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,16,imputation,Untreated-outcome imputation,1,bill,(1) Recorded bill,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,17,inference,Inference,1,bill,(1) Recorded bill,RRPV household panel,metadata,,,,Delete-one-village jackknife,
+32,B,Preferred average effects over complete post-connection months +1 to +12,1,post_effect,Post-adoption effect,2,ratio,(2) Bill-to-income ratio,RRPV household panel,estimate,-1.189055,0.065537,***,-1.189***,percentage points
+32,B,Preferred average effects over complete post-connection months +1 to +12,10,estimation_rows,Household-months in estimation sample,2,ratio,(2) Bill-to-income ratio,RRPV household panel,metadata,,,,"129,882",household-months
+32,B,Preferred average effects over complete post-connection months +1 to +12,11,treated_post,Treated post-adoption observations,2,ratio,(2) Bill-to-income ratio,RRPV household panel,metadata,,,,"5,039",household-months
+32,B,Preferred average effects over complete post-connection months +1 to +12,12,households,Households,2,ratio,(2) Bill-to-income ratio,RRPV household panel,metadata,,,,"2,347",households
+32,B,Preferred average effects over complete post-connection months +1 to +12,13,villages,Villages,2,ratio,(2) Bill-to-income ratio,RRPV household panel,metadata,,,,75,villages
+32,B,Preferred average effects over complete post-connection months +1 to +12,14,household_fe,Household fixed effects,2,ratio,(2) Bill-to-income ratio,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,15,village_month_fe,Village × calendar-month fixed effects,2,ratio,(2) Bill-to-income ratio,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,16,imputation,Untreated-outcome imputation,2,ratio,(2) Bill-to-income ratio,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,17,inference,Inference,2,ratio,(2) Bill-to-income ratio,RRPV household panel,metadata,,,,Delete-one-village jackknife,
+32,B,Preferred average effects over complete post-connection months +1 to +12,1,post_effect,Post-adoption effect,3,total_use,(3) Total electricity use,RRPV household panel,estimate,5.593136,0.901328,***,5.59***,kWh/month
+32,B,Preferred average effects over complete post-connection months +1 to +12,10,estimation_rows,Household-months in estimation sample,3,total_use,(3) Total electricity use,RRPV household panel,metadata,,,,"129,882",household-months
+32,B,Preferred average effects over complete post-connection months +1 to +12,11,treated_post,Treated post-adoption observations,3,total_use,(3) Total electricity use,RRPV household panel,metadata,,,,"5,296",household-months
+32,B,Preferred average effects over complete post-connection months +1 to +12,12,households,Households,3,total_use,(3) Total electricity use,RRPV household panel,metadata,,,,"2,347",households
+32,B,Preferred average effects over complete post-connection months +1 to +12,13,villages,Villages,3,total_use,(3) Total electricity use,RRPV household panel,metadata,,,,75,villages
+32,B,Preferred average effects over complete post-connection months +1 to +12,14,household_fe,Household fixed effects,3,total_use,(3) Total electricity use,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,15,village_month_fe,Village × calendar-month fixed effects,3,total_use,(3) Total electricity use,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,16,imputation,Untreated-outcome imputation,3,total_use,(3) Total electricity use,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,17,inference,Inference,3,total_use,(3) Total electricity use,RRPV household panel,metadata,,,,Delete-one-village jackknife,
+32,B,Preferred average effects over complete post-connection months +1 to +12,1,post_effect,Post-adoption effect,4,grid,(4) Public-grid purchases,RRPV household panel,estimate,-37.624008,1.48208,***,-37.62***,kWh/month
+32,B,Preferred average effects over complete post-connection months +1 to +12,10,estimation_rows,Household-months in estimation sample,4,grid,(4) Public-grid purchases,RRPV household panel,metadata,,,,"129,882",household-months
+32,B,Preferred average effects over complete post-connection months +1 to +12,11,treated_post,Treated post-adoption observations,4,grid,(4) Public-grid purchases,RRPV household panel,metadata,,,,"5,296",household-months
+32,B,Preferred average effects over complete post-connection months +1 to +12,12,households,Households,4,grid,(4) Public-grid purchases,RRPV household panel,metadata,,,,"2,347",households
+32,B,Preferred average effects over complete post-connection months +1 to +12,13,villages,Villages,4,grid,(4) Public-grid purchases,RRPV household panel,metadata,,,,75,villages
+32,B,Preferred average effects over complete post-connection months +1 to +12,14,household_fe,Household fixed effects,4,grid,(4) Public-grid purchases,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,15,village_month_fe,Village × calendar-month fixed effects,4,grid,(4) Public-grid purchases,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,16,imputation,Untreated-outcome imputation,4,grid,(4) Public-grid purchases,RRPV household panel,metadata,,,,Yes,
+32,B,Preferred average effects over complete post-connection months +1 to +12,17,inference,Inference,4,grid,(4) Public-grid purchases,RRPV household panel,metadata,,,,Delete-one-village jackknife,
+32,C,Heterogeneity by strictly pre-adoption income,1,lower,Lower-income adopters,1,bill,(1) Recorded bill,RRPV adopters with pre-adoption income,estimate,-25.58,2.19,***,-25.58***,RMB/month
+32,C,Heterogeneity by strictly pre-adoption income,1,lower,Lower-income adopters,2,fixed_ratio,(2) Bill-to-fixed-income ratio,RRPV adopters with pre-adoption income,estimate,-2.038,0.256,***,-2.038***,percentage points
+32,C,Heterogeneity by strictly pre-adoption income,2,higher,Higher-income adopters,1,bill,(1) Recorded bill,RRPV adopters with pre-adoption income,estimate,-25.22,3.32,***,-25.22***,RMB/month
+32,C,Heterogeneity by strictly pre-adoption income,2,higher,Higher-income adopters,2,fixed_ratio,(2) Bill-to-fixed-income ratio,RRPV adopters with pre-adoption income,estimate,-0.774,0.094,***,-0.774***,percentage points
+32,C,Heterogeneity by strictly pre-adoption income,3,contrast,Lower minus higher,1,bill,(1) Recorded bill,RRPV adopters with pre-adoption income,estimate,-0.36,2.01,,-0.36,RMB/month
+32,C,Heterogeneity by strictly pre-adoption income,3,contrast,Lower minus higher,2,fixed_ratio,(2) Bill-to-fixed-income ratio,RRPV adopters with pre-adoption income,estimate,-1.264,0.187,***,-1.264***,percentage points
+32,C,Heterogeneity by strictly pre-adoption income,10,treated_lower,"Treated household-months, lower-income group",1,bill,(1) Recorded bill,RRPV adopters with pre-adoption income,metadata,,,,588,household-months
+32,C,Heterogeneity by strictly pre-adoption income,11,treated_higher,"Treated household-months, higher-income group",1,bill,(1) Recorded bill,RRPV adopters with pre-adoption income,metadata,,,,569,household-months
+32,C,Heterogeneity by strictly pre-adoption income,12,pre_income_hh,Households with pre-adoption income,1,bill,(1) Recorded bill,RRPV adopters with pre-adoption income,metadata,,,,99,households
+32,C,Heterogeneity by strictly pre-adoption income,13,household_fe,Household fixed effects,1,bill,(1) Recorded bill,RRPV adopters with pre-adoption income,metadata,,,,Yes,
+32,C,Heterogeneity by strictly pre-adoption income,14,village_month_fe,Village × calendar-month fixed effects,1,bill,(1) Recorded bill,RRPV adopters with pre-adoption income,metadata,,,,Yes,
+32,C,Heterogeneity by strictly pre-adoption income,10,treated_lower,"Treated household-months, lower-income group",2,fixed_ratio,(2) Bill-to-fixed-income ratio,RRPV adopters with pre-adoption income,metadata,,,,588,household-months
+32,C,Heterogeneity by strictly pre-adoption income,11,treated_higher,"Treated household-months, higher-income group",2,fixed_ratio,(2) Bill-to-fixed-income ratio,RRPV adopters with pre-adoption income,metadata,,,,569,household-months
+32,C,Heterogeneity by strictly pre-adoption income,12,pre_income_hh,Households with pre-adoption income,2,fixed_ratio,(2) Bill-to-fixed-income ratio,RRPV adopters with pre-adoption income,metadata,,,,99,households
+32,C,Heterogeneity by strictly pre-adoption income,13,household_fe,Household fixed effects,2,fixed_ratio,(2) Bill-to-fixed-income ratio,RRPV adopters with pre-adoption income,metadata,,,,Yes,
+32,C,Heterogeneity by strictly pre-adoption income,14,village_month_fe,Village × calendar-month fixed effects,2,fixed_ratio,(2) Bill-to-fixed-income ratio,RRPV adopters with pre-adoption income,metadata,,,,Yes,

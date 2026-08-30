@@ -1,0 +1,9 @@
+﻿parameter,description,value,units
+ISTC,Reference irradiance under STC,1000,W m^-2
+TSTC,Reference cell temperature under STC,25,°C
+γ,Temperature coefficient of module efficiency,0.005,°C^-1
+c1,Baseline term in cell temperature model,4.3,°C
+c2,Effect of air temperature on cell temperature,0.943,-
+c3,Effect of irradiance on cell temperature,0.028,°C W^-1 m^2
+c4,Effect of wind speed on cell temperature,1.528,°C m^-1 s
+δ,Degradation rate,0.015,-

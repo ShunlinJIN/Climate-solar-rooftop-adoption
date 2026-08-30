@@ -1,0 +1,5 @@
+﻿system,sample,linear_trend_p_value
+RRPV-only,All counties,0.66
+RRPV-only,Excluding pilot counties,0.28
+RRPV-BS,All counties,0.81
+RRPV-BS,Excluding pilot counties,0.36

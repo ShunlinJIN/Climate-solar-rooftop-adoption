@@ -454,7 +454,7 @@ ggsave(
   width = 18,
   height = 8,
   units = "in",
-  device = "pdf"
+  device = grDevices::cairo_pdf
 )
 
 message("Supplementary Fig. 7 reproduced from public CSVs.")

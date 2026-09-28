@@ -134,7 +134,7 @@ make_two_line_panel <- function(
       legend.direction = "horizontal",
       legend.justification = "center",
       legend.text = element_text(
-        family = "Arial",
+        family = "sans",
         size = 8.5,
         colour = BLACK
       ),
@@ -144,7 +144,7 @@ make_two_line_panel <- function(
       # Put panel letters outside the plotting region rather than on top of ticks.
       plot.tag.position = "topleft",
       plot.tag = element_text(
-        family = "Arial",
+        family = "sans",
         face = "bold",
         size = 15,
         colour = BLACK,

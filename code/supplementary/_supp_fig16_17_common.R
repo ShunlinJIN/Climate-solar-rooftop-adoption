@@ -36,32 +36,32 @@ theme_reference <- function() {
       axis.ticks = element_line(colour = BLACK, linewidth = 0.45),
       axis.ticks.length = unit(0.13, "cm"),
       axis.text = element_text(
-        family = "Arial",
+        family = "sans",
         face = "plain",
         colour = BLACK,
         size = 9
       ),
       axis.title = element_text(
-        family = "Arial",
+        family = "sans",
         face = "plain",
         colour = BLACK,
         size = 10
       ),
       legend.position = "top",
       legend.title = element_blank(),
-      legend.text = element_text(family = "Arial", size = 9),
+      legend.text = element_text(family = "sans", size = 9),
       legend.key.width = unit(1.5, "cm"),
       legend.background = element_rect(fill = "white", colour = NA),
       panel.grid = element_blank(),
       plot.title = element_text(
-        family = "Arial",
+        family = "sans",
         face = "plain",
         size = 11,
         hjust = 0.5,
         margin = margin(b = 5)
       ),
       plot.tag = element_text(
-        family = "Arial",
+        family = "sans",
         face = "bold",
         size = 15,
         colour = BLACK,

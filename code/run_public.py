@@ -1,338 +1,140 @@
 #!/usr/bin/env python3
+"""Reproduce the manuscript figures and supplementary outputs from source data."""
 from __future__ import annotations
-
+import argparse
+import csv
+import hashlib
+from importlib.metadata import version, PackageNotFoundError
+import json
 import os
-import re
+from pathlib import Path
+import platform
 import shutil
 import subprocess
 import sys
-from pathlib import Path
+import tempfile
+import time
 
-ROOT = Path(__file__).resolve().parents[1]
-CODE = ROOT / "code"
-DATA = ROOT / "data" / "non-confidential"
-OUTPUT = ROOT / "output"
-RUNTIME = ROOT / ".runtime"
+CODE = Path(__file__).resolve().parent
+ROOT = CODE.parent
 
-MAIN_CODE = CODE / "main"
-SUPP_CODE = CODE / "supplementary"
-MAIN_DATA = DATA / "aggregate_main"
-SUPP_DATA = DATA / "aggregate_supplementary"
+def read_manifest(name):
+    with (CODE / name).open(encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle))
 
-MAIN_OUT = OUTPUT / "figures"
-SUPP_OUT = OUTPUT / "figures_appendix"
-TABLE_OUT = OUTPUT / "tables_appendix"
-LOG_OUT = OUTPUT / "log"
-
-
-def require(path: Path, label: str | None = None) -> None:
-    if not path.exists():
-        raise FileNotFoundError(f"Required {label or 'path'} not found: {path}")
-
-
-def reset_dir(path: Path) -> None:
-    if path.exists():
-        shutil.rmtree(path)
-    path.mkdir(parents=True, exist_ok=True)
-
-
-def copy_contents(src: Path, dst: Path) -> None:
-    require(src)
-    dst.mkdir(parents=True, exist_ok=True)
-    for item in src.iterdir():
-        target = dst / item.name
-        if item.is_dir():
-            shutil.copytree(item, target)
-        else:
-            shutil.copy2(item, target)
-
-
-def rscript_executable() -> str:
-    env = os.environ.get("RSCRIPT", "").strip()
-    if env:
-        p = Path(env)
-        if not p.exists():
-            raise FileNotFoundError(
-                f"RSCRIPT environment variable points to a missing file: {p}"
-            )
-        return str(p)
-
-    exe = shutil.which("Rscript")
-    if exe:
-        return exe
-
-    raise RuntimeError("Rscript was not found in the execution environment.")
-
-
-def run_script(path: Path, cwd: Path, rscript: str) -> None:
-    suffix = path.suffix.lower()
-
-    if suffix == ".r":
-        cmd = [rscript, path.name]
-    elif suffix == ".py":
-        cmd = [sys.executable, path.name]
+def find_rscript():
+    configured = os.environ.get("RSCRIPT", "").strip()
+    if configured:
+        result = shutil.which(configured) or (configured if Path(configured).is_file() else None)
     else:
-        raise RuntimeError(f"Unsupported public script type: {path}")
+        result = shutil.which("Rscript")
+    if not result:
+        raise RuntimeError("Rscript was not found. Install R and run code/setup.R. On Windows, set RSCRIPT to the full path to Rscript.exe.")
+    return result
 
-    proc = subprocess.run(
-        cmd,
-        cwd=str(cwd),
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
+
+def software_versions(rscript):
+    python_packages = {}
+    for package in ['numpy', 'pandas', 'matplotlib', 'scipy', 'geopandas',
+                    'shapely', 'pyproj', 'pyogrio']:
+        try:
+            python_packages[package] = version(package)
+        except PackageNotFoundError:
+            python_packages[package] = 'not installed'
+    r_code = (
+        'p <- c("cowplot", "data.table", "dplyr", "ggplot2", "ggprism", '
+        '"gridExtra", "patchwork", "readr", "scales", "tidyr"); '
+        'for (x in p) cat(x, as.character(packageVersion(x)), sep="=", fill=TRUE)'
     )
+    result = subprocess.run([rscript, '--vanilla', '-e', r_code],
+                            text=True, encoding='utf-8', errors='replace',
+                            stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    r_packages = dict(line.strip().split('=', 1) for line in result.stdout.splitlines()
+                      if '=' in line)
+    record = dict(python_packages=python_packages, r_packages=r_packages)
+    if result.returncode:
+        record['r_package_version_warning'] = result.stderr.strip()
+    return record
 
-    if proc.returncode != 0:
-        print(f"\nFAILED: {path.name}", flush=True)
-        if proc.stdout.strip():
-            print(proc.stdout.rstrip(), flush=True)
-        if proc.stderr.strip():
-            print(proc.stderr.rstrip(), file=sys.stderr, flush=True)
-        raise RuntimeError(
-            f"Public reproduction step failed with exit code "
-            f"{proc.returncode}: {path.name}"
-        )
-
-
-def discover_supplementary_scripts(code_dir: Path) -> list[Path]:
-    candidates: list[tuple[int, set[int], Path]] = []
-
-    for p in code_dir.iterdir():
-        if not p.is_file() or p.suffix.lower() not in {".r", ".py"}:
-            continue
-        if p.name == "reproduce_supplementary_tables.py":
-            continue
-
-        m_range = re.match(
-            r"^Supp_Figs_(\d{1,2})_(\d{1,2})(?:_|\.)(.*)\.(R|r|py)$",
-            p.name,
-        )
-        m_single = re.match(
-            r"^Supp_Fig_(\d{1,2})(?:_|\.)(.*)\.(R|r|py)$",
-            p.name,
-        )
-
-        covered: set[int] | None = None
-
-        if m_range:
-            a, b = int(m_range.group(1)), int(m_range.group(2))
-            if 1 <= a <= b <= 27 and b - a <= 10:
-                covered = set(range(a, b + 1))
-        elif m_single:
-            n = int(m_single.group(1))
-            if 1 <= n <= 27:
-                covered = {n}
-
-        if covered:
-            candidates.append((min(covered), covered, p))
-
-    candidates.sort(key=lambda x: (x[0], x[2].name.lower()))
-
-    selected: list[Path] = []
-    covered_all: set[int] = set()
-
-    for _, covered, p in candidates:
-        if covered - covered_all:
-            selected.append(p)
-            covered_all |= covered
-
-    missing = sorted(set(range(1, 28)) - covered_all)
-
-    if missing:
-        raise RuntimeError(
-            "Could not resolve Supplementary Figure scripts for: "
-            + ", ".join(map(str, missing))
-        )
-
-    return selected
-
-
-def table_number_from_runtime_name(path: Path) -> int | None:
-    m = re.match(r"(?i)^supp_table(\d{2})(?:_|\.|$)", path.name)
-    return int(m.group(1)) if m else None
-
-
-def final_table_name(path: Path) -> str:
-    m = re.match(r"(?i)^supp_table(\d{2})(.*)$", path.name)
-    if not m:
-        return path.name
-    return f"Supplementary_Table_{m.group(1)}{m.group(2)}"
-
-
-def copy_files(files: list[Path], dest: Path) -> None:
-    dest.mkdir(parents=True, exist_ok=True)
-    for p in files:
-        shutil.copy2(p, dest / p.name)
-
-
-def mirror_to_results() -> None:
-    results = Path("/results")
-
-    if not results.exists() or not os.access(results, os.W_OK):
-        return
-
-    for child in results.iterdir():
-        if child.is_dir():
-            shutil.rmtree(child)
-        else:
-            child.unlink()
-
-    mapping = {
-        MAIN_OUT: results / "figures",
-        SUPP_OUT: results / "figures_appendix",
-        TABLE_OUT: results / "tables_appendix",
-    }
-
-    for src, dst in mapping.items():
-        if src.exists():
-            shutil.copytree(src, dst)
-
-
-def main() -> None:
-    require(MAIN_CODE, "main-figure code directory")
-    require(SUPP_CODE, "supplementary code directory")
-    require(MAIN_DATA, "main non-confidential data directory")
-    require(SUPP_DATA, "supplementary non-confidential data directory")
-
-    rscript = rscript_executable()
-
-    for p in [MAIN_OUT, SUPP_OUT, TABLE_OUT, LOG_OUT]:
-        reset_dir(p)
-
-    reset_dir(RUNTIME)
-
-    main_runtime = RUNTIME / "main"
-    supp_runtime = RUNTIME / "supplementary"
-
-    for base in [main_runtime, supp_runtime]:
-        (base / "code").mkdir(parents=True, exist_ok=True)
-        (base / "data").mkdir(parents=True, exist_ok=True)
-        (base / "output").mkdir(parents=True, exist_ok=True)
-
-    copy_contents(MAIN_CODE, main_runtime / "code")
-    copy_contents(MAIN_DATA, main_runtime / "data")
-    copy_contents(SUPP_CODE, supp_runtime / "code")
-    copy_contents(SUPP_DATA, supp_runtime / "data")
-
-    main_scripts = [
-        main_runtime / "code" / "Figure_1_plot_only.R",
-        main_runtime / "code" / "Figure_2_plot_only.R",
-        main_runtime / "code" / "Figure_3_plot_only.R",
-        main_runtime / "code" / "Figure_4_plot_only.R",
-        main_runtime / "code" / "Figure_5_plot_only.py",
-        main_runtime / "code" / "Figure_6_plot_only.R",
-    ]
-
-    for p in main_scripts:
-        require(p, "main-figure script")
-
-    for p in main_scripts:
-        run_script(p, main_runtime / "code", rscript)
-
-    print("Main manuscript figures (1-6): SUCCESS", flush=True)
-
-    supp_scripts = discover_supplementary_scripts(supp_runtime / "code")
-
-    for p in supp_scripts:
-        run_script(p, supp_runtime / "code", rscript)
-
-    print("Supplementary figures (1-27): SUCCESS", flush=True)
-
-    table_writer = supp_runtime / "code" / "reproduce_supplementary_tables.py"
-    require(table_writer, "supplementary-table reproduction script")
-    run_script(table_writer, supp_runtime / "code", rscript)
-
-    main_png = sorted((main_runtime / "output").glob("Figure_*.png"))
-    main_pdf = sorted((main_runtime / "output").glob("Figure_*.pdf"))
-    supp_png = sorted((supp_runtime / "output").glob("Supplementary_Fig_*.png"))
-    supp_pdf = sorted((supp_runtime / "output").glob("Supplementary_Fig_*.pdf"))
-
-    copy_files(main_png + main_pdf, MAIN_OUT)
-    copy_files(supp_png + supp_pdf, SUPP_OUT)
-
-    runtime_tables = supp_runtime / "output" / "tables"
-    require(runtime_tables, "supplementary-table output directory")
-
-    runtime_table_csvs = sorted(runtime_tables.glob("supp_table*.csv"))
-
-    table_numbers = {
-        n
-        for p in runtime_table_csvs
-        if (n := table_number_from_runtime_name(p)) is not None
-    }
-
-    missing_tables = sorted(set(range(1, 36)) - table_numbers)
-
-    if missing_tables:
-        raise RuntimeError(
-            "Missing Supplementary Table output sets: "
-            + ", ".join(map(str, missing_tables))
-        )
-
-    if len(table_numbers) != 35:
-        raise RuntimeError(
-            f"Expected 35 Supplementary Table output sets; "
-            f"found {len(table_numbers)}."
-        )
-
-    for src in runtime_table_csvs:
-        shutil.copy2(src, TABLE_OUT / final_table_name(src))
-
-    table_manifest = runtime_tables / "supplementary_tables_manifest.csv"
-    if table_manifest.exists():
-        shutil.copy2(table_manifest, TABLE_OUT / table_manifest.name)
-
-    promoted_table_csvs = sorted(TABLE_OUT.glob("Supplementary_Table_*.csv"))
-
-    promoted_table_numbers: set[int] = set()
-    for p in promoted_table_csvs:
-        m = re.match(r"^Supplementary_Table_(\d{2})", p.name)
-        if m:
-            promoted_table_numbers.add(int(m.group(1)))
-
-    regenerated = (
-        main_png
-        + main_pdf
-        + supp_png
-        + supp_pdf
-        + runtime_table_csvs
-    )
-
-    zero_byte = [p for p in regenerated if p.stat().st_size == 0]
-
-    ok = (
-        len(main_png) == 6
-        and len(main_pdf) == 6
-        and len(supp_png) == 27
-        and len(supp_pdf) == 27
-        and len(promoted_table_numbers) == 35
-        and not zero_byte
-    )
-
-    if not ok:
-        raise RuntimeError("Public reproduction completeness check failed.")
-
-    print("Supplementary tables (1-35): SUCCESS", flush=True)
-
-    shutil.rmtree(RUNTIME)
-    mirror_to_results()
-
-    print("", flush=True)
-    print("Reproduction completed successfully.", flush=True)
-    print("All expected manuscript and Supplementary Information outputs "
-          "were generated.", flush=True)
-
-    if Path("/results").exists():
-        print("Results are available in /results.", flush=True)
-
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-dir", type=Path, default=ROOT / "data/non-confidential")
+    parser.add_argument("--output-dir", type=Path, default=Path("/results") if CODE == Path("/code") else ROOT / "output")
+    args = parser.parse_args()
+    output = args.output_dir.resolve()
+    data = args.data_dir.resolve()
+    if output == data or data in output.parents or output == CODE or CODE in output.parents:
+        raise ValueError("Choose an output directory outside the code and source-data directories.")
+    for name in ["aggregate_main", "aggregate_supplementary"]:
+        if not (data / name).is_dir(): raise FileNotFoundError(data / name)
+    rscript = find_rscript()
+    output.mkdir(parents=True, exist_ok=True)
+    logs = output / "log"; logs.mkdir(exist_ok=True)
+    # Only generated output folders are replaced; other files at the output root are preserved.
+    for name in ["figures", "figures_appendix", "tables_appendix"]:
+        p=output/name
+        if p.exists(): shutil.rmtree(p)
+        p.mkdir()
+    env=os.environ.copy()
+    env.update(MPLBACKEND="Agg", PYTHONUTF8="1", PYTHONDONTWRITEBYTECODE="1")
+    for key in ["OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"]:env[key]="1"
+    started=time.monotonic(); steps=[]
+    manifests={"main":read_manifest("main_figure_manifest.csv"),"supplementary":read_manifest("supplementary_figure_manifest.csv")}
+    with tempfile.TemporaryDirectory(prefix="solar_reproduction_") as temporary:
+        runtime=Path(temporary)
+        for section, manifest in manifests.items():
+            work=runtime/section
+            shutil.copytree(CODE/section, work/"code", ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
+            shutil.copytree(data/("aggregate_main" if section=="main" else "aggregate_supplementary"), work/"data")
+            (work/"output").mkdir()
+            entries=list(manifest)
+            if section=="supplementary":entries.append(dict(figure="tables",script="reproduce_supplementary_tables.py",interpreter="python3"))
+            for entry in entries:
+                script=work/"code"/entry["script"]
+                if not script.is_file():raise FileNotFoundError(script)
+                command=[rscript if script.suffix.lower()==".r" else sys.executable, str(script)]
+                label=("Main Figure " if section=="main" else "Supplementary Figure ")+entry["figure"]
+                if entry["figure"]=="tables":label="Supplementary Tables 1–35"
+                print("Running "+label+"...",flush=True)
+                tick=time.monotonic()
+                process=subprocess.run(command,cwd=script.parent,env=env,text=True,encoding="utf-8",errors="replace",stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+                log=logs/(section+"_"+script.stem+".log")
+                log.write_text(process.stdout,encoding="utf-8")
+                steps.append(dict(output=label,script=entry["script"],seconds=round(time.monotonic()-tick,3),returncode=process.returncode))
+                if process.returncode:
+                    raise RuntimeError(f"{label} failed. See {log}\n{process.stdout[-5000:]}")
+            target=output/("figures" if section=="main" else "figures_appendix")
+            prefix="Figure_" if section=="main" else "Supplementary_Fig_"
+            for suffix in ["png","pdf"]:
+                for p in (work/"output").glob(prefix+"*."+suffix):shutil.copy2(p,target/p.name)
+            if section=="supplementary":
+                for p in (work/"output/tables").iterdir():shutil.copy2(p,output/"tables_appendix"/p.name)
+            print(("Main manuscript figures (1-6)" if section=="main" else "Supplementary figures (1-27)")+": SUCCESS",flush=True)
+    expected=[]
+    for folder,prefix,n in [("figures","Figure_",6),("figures_appendix","Supplementary_Fig_",27)]:
+        for i in range(1,n+1):
+            stem=prefix+(str(i) if n==6 else f"{i:02d}")
+            for suffix in ["png","pdf"]:
+                p=output/folder/(stem+"."+suffix)
+                if not p.exists() or p.stat().st_size==0:raise RuntimeError(f"Missing or empty output: {p}")
+                expected.append(p)
+    table_files=list((output/"tables_appendix").glob("Supplementary_Table_*.csv"))
+    numbers={int(p.name.split("_")[2].split(".")[0]) for p in table_files}
+    if numbers != set(range(1,36)):raise RuntimeError("The generated table sets do not cover Tables 1–35")
+    expected+=table_files
+    print("Supplementary tables (1-35): SUCCESS",flush=True)
+    report=dict(status="success",python=sys.version.split()[0],platform=platform.platform(),
+        software=software_versions(rscript),
+        r=subprocess.check_output([rscript,"--version"],text=True,stderr=subprocess.STDOUT).strip(),
+        elapsed_seconds=round(time.monotonic()-started,3),main_figures=6,supplementary_figures=27,supplementary_tables=35,
+        steps=steps,outputs=[dict(file=str(p.relative_to(output)),bytes=p.stat().st_size,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(expected)])
+    (output/"reproduction_manifest.json").write_text(json.dumps(report,indent=2)+"\n",encoding="utf-8")
+    print("\nReproduction completed successfully.",flush=True)
+    print("All expected manuscript and Supplementary Information outputs were generated.",flush=True)
+    print(f"Results are available in {output}.",flush=True)
 
 if __name__ == "__main__":
-    try:
-        main()
+    try: main()
     except Exception as exc:
-        print("", flush=True)
-        print("REPRODUCTION FAILED", flush=True)
-        print(str(exc), flush=True)
-        raise
+        print(f"REPRODUCTION FAILED: {exc}",file=sys.stderr,flush=True)
+        raise SystemExit(1)

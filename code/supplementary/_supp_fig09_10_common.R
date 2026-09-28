@@ -61,9 +61,9 @@ make_placebo_panel <- function(d,xlab_text,tag_text,ymin=-0.02,ymax=0.04) {
     scale_y_continuous(
       name="Estimated Coefficients",
       breaks=seq(ymin,ymax,by=.01),
-      limits=c(ymin,ymax),
       guide="prism_offset"
     ) +
+    coord_cartesian(ylim=c(ymin,ymax)) +
     xlab(xlab_text) +
     scale_color_manual(name=NULL,values=c("Estimated Coefficients"="springgreen4")) +
     scale_fill_manual(name=NULL,values=c("95% CI"="aquamarine2")) +

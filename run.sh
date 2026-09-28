@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 set -euo pipefail
-python3 code/run_public.py
+PACKAGE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+python3 "$PACKAGE_DIR/code/run_public.py" "$@"

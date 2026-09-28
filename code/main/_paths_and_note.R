@@ -16,12 +16,3 @@ data_dir <- file.path(package_root, "data")
 output_dir <- file.path(package_root, "output")
 if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
 
-data_access_note <- paste(
-  "The household-, installation-, and provider-level microdata used to estimate",
-  "some results in this figure are subject to data-use restrictions and",
-  "cannot be publicly released. This script reproduces the published figure",
-  "from non-identifying aggregate plotting inputs supplied with the package;",
-  "it does not re-estimate restricted-data models."
-)
-message(data_access_note)
-

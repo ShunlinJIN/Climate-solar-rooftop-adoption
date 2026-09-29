@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Supplementary Fig. 3 — FINAL plot-only version
+Supplementary Fig. 3 — plotting from aggregate data
 
 Reads:
     data/supp_fig03_daily_flows.csv
@@ -9,14 +9,14 @@ Writes:
     output/Supplementary_Fig_03.png
     output/Supplementary_Fig_03.pdf
 
-This version follows the historical final R plotting code:
+Plotting conventions:
 - 7-day right-aligned rolling means;
 - light raw daily lines in the background;
 - PV generation: blue;
 - self-consumed PV electricity: orange;
 - grid-imported electricity: green dashed;
 - grid-exported electricity: light orange ribbon;
-- legend order and date ticks aligned with the current SI.
+- legend order and date ticks aligned with the Supplementary Information.
 """
 
 from pathlib import Path
@@ -244,7 +244,7 @@ ax.set_xlim(
     pd.Timestamp("2020-12-31"),
 )
 
-# Jan / Jul ticks, as in the current SI.
+# Jan / Jul ticks, as in the Supplementary Information.
 ax.xaxis.set_major_locator(
     mdates.MonthLocator(
         bymonth=[1, 7],

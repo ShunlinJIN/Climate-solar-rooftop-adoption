@@ -1,5 +1,5 @@
-# Supplementary Figs. 25-26 final redraw.
-# Plot-only reproduction from archived non-identifying plotting inputs.
+# Supplementary Figs. 25-26: hourly loads and electricity-flow composition.
+# Plot-only reproduction from the accompanying non-identifying plotting inputs.
 # No model is re-estimated.
 
 suppressPackageStartupMessages({

@@ -1,5 +1,5 @@
 # Supplementary Fig. 14: Projected near-term temperature-induced growth in RRPV-only and RRPV-BS adoption.
-# Plot-only reproduction from finalized scenario-level projection summaries.
+# Plot-only reproduction from supplied scenario-level projection summaries.
 
 args_all <- commandArgs(trailingOnly=FALSE)
 script_arg <- grep("^--file=", args_all, value=TRUE)

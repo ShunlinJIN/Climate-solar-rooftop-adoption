@@ -1,5 +1,5 @@
 # Supplementary Fig. 13: Utility-scale solar penetration and the extreme-heat response.
-# Plot-only reproduction from finalized marginal-effect curves and observed penetration support.
+# Plot-only reproduction from supplied marginal-effect curves and observed penetration support.
 
 args_all <- commandArgs(trailingOnly=FALSE)
 script_arg <- grep("^--file=", args_all, value=TRUE)

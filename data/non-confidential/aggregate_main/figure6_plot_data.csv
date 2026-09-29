@@ -1,37 +1,37 @@
-panel,group,metric,unit,value,status,source
-a,RRPV-only,Gross return,USD/kWp-year,94,ready,Figure 6 lifecycle-return summary
-a,RRPV-only,Net return,USD/kWp-year,41,ready,Figure 6 lifecycle-return summary
-a,RRPV-BS,Gross return,USD/kWp-year,114,ready,Figure 6 lifecycle-return summary
-a,RRPV-BS,Net return,USD/kWp-year,56,ready,Figure 6 lifecycle-return summary
-b,RRPV-only,Export revenue share,%,88,ready,Figure 6 lifecycle-return summary
-b,RRPV-only,Bill-saving share,%,12,ready,Figure 6 lifecycle-return summary
-b,RRPV-BS,Export revenue share,%,64,ready,Figure 6 lifecycle-return summary
-b,RRPV-BS,Bill-saving share,%,36,ready,Figure 6 lifecycle-return summary
-c,RRPV-only,Self-sufficiency,%,44,ready,Figure 6 lifecycle-return summary
-c,RRPV-only,Economic viability,%,92,ready,Figure 6 lifecycle-return summary
-c,RRPV-BS,Self-sufficiency,%,88,ready,Figure 6 lifecycle-return summary
-c,RRPV-BS,Economic viability,%,91,ready,Figure 6 lifecycle-return summary
-d,Cool,Gross return,USD/kWp-year,80,ready,Figure 6 lifecycle-return summary
-d,Mild,Gross return,USD/kWp-year,93,ready,Figure 6 lifecycle-return summary
-d,Hot,Gross return,USD/kWp-year,104,ready,Figure 6 lifecycle-return summary
-d,Cool,Export component,USD/kWp-year,72.0,ready,Figure 6 lifecycle-return summary
-d,Mild,Export component,USD/kWp-year,82.8,ready,Figure 6 lifecycle-return summary
-d,Hot,Export component,USD/kWp-year,89.4,ready,Figure 6 lifecycle-return summary
-d,Cool,Bill-saving component,USD/kWp-year,8.0,ready,Figure 6 lifecycle-return summary
-d,Mild,Bill-saving component,USD/kWp-year,10.2,ready,Figure 6 lifecycle-return summary
-d,Hot,Bill-saving component,USD/kWp-year,14.6,ready,Figure 6 lifecycle-return summary
-e,Cool,Gross return,USD/kWp-year,96,ready,Figure 6 lifecycle-return summary
-e,Mild,Gross return,USD/kWp-year,108,ready,Figure 6 lifecycle-return summary
-e,Hot,Gross return,USD/kWp-year,124,ready,Figure 6 lifecycle-return summary
-e,Cool,Export component,USD/kWp-year,72.0,ready,Figure 6 lifecycle-return summary
-e,Mild,Export component,USD/kWp-year,74.5,ready,Figure 6 lifecycle-return summary
-e,Hot,Export component,USD/kWp-year,75.6,ready,Figure 6 lifecycle-return summary
-e,Cool,Bill-saving component,USD/kWp-year,24.0,ready,Figure 6 lifecycle-return summary
-e,Mild,Bill-saving component,USD/kWp-year,33.5,ready,Figure 6 lifecycle-return summary
-e,Hot,Bill-saving component,USD/kWp-year,48.4,ready,Figure 6 lifecycle-return summary
-f,Cool,RRPV-only self-sufficiency,%,40,ready,Figure 6 lifecycle-return summary
-f,Mild,RRPV-only self-sufficiency,%,51,ready,Figure 6 lifecycle-return summary
-f,Hot,RRPV-only self-sufficiency,%,31,ready,Figure 6 lifecycle-return summary
-f,Cool,RRPV-BS self-sufficiency,%,82,ready,Figure 6 lifecycle-return summary
-f,Mild,RRPV-BS self-sufficiency,%,85,ready,Figure 6 lifecycle-return summary
-f,Hot,RRPV-BS self-sufficiency,%,95,ready,Figure 6 lifecycle-return summary
+panel,group,metric,unit,value
+a,RRPV-only,Gross return,USD/kWp-year,94
+a,RRPV-only,Net return,USD/kWp-year,41
+a,RRPV-BS,Gross return,USD/kWp-year,114
+a,RRPV-BS,Net return,USD/kWp-year,56
+b,RRPV-only,Export revenue share,%,88
+b,RRPV-only,Bill-saving share,%,12
+b,RRPV-BS,Export revenue share,%,64
+b,RRPV-BS,Bill-saving share,%,36
+c,RRPV-only,Self-sufficiency,%,44
+c,RRPV-only,Economic viability,%,92
+c,RRPV-BS,Self-sufficiency,%,88
+c,RRPV-BS,Economic viability,%,91
+d,Cool,Gross return,USD/kWp-year,80
+d,Mild,Gross return,USD/kWp-year,93
+d,Hot,Gross return,USD/kWp-year,104
+d,Cool,Export component,USD/kWp-year,72.0
+d,Mild,Export component,USD/kWp-year,82.8
+d,Hot,Export component,USD/kWp-year,89.4
+d,Cool,Bill-saving component,USD/kWp-year,8.0
+d,Mild,Bill-saving component,USD/kWp-year,10.2
+d,Hot,Bill-saving component,USD/kWp-year,14.6
+e,Cool,Gross return,USD/kWp-year,96
+e,Mild,Gross return,USD/kWp-year,108
+e,Hot,Gross return,USD/kWp-year,124
+e,Cool,Export component,USD/kWp-year,72.0
+e,Mild,Export component,USD/kWp-year,74.5
+e,Hot,Export component,USD/kWp-year,75.6
+e,Cool,Bill-saving component,USD/kWp-year,24.0
+e,Mild,Bill-saving component,USD/kWp-year,33.5
+e,Hot,Bill-saving component,USD/kWp-year,48.4
+f,Cool,RRPV-only self-sufficiency,%,40
+f,Mild,RRPV-only self-sufficiency,%,51
+f,Hot,RRPV-only self-sufficiency,%,31
+f,Cool,RRPV-BS self-sufficiency,%,82
+f,Mild,RRPV-BS self-sufficiency,%,85
+f,Hot,RRPV-BS self-sufficiency,%,95

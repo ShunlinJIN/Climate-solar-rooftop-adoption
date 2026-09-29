@@ -1,14 +1,8 @@
 # Supplementary Fig. 19
 # Propensity-score distributions before and after matching.
 #
-# FINAL plot-only version:
-# - reads precomputed density-coordinate CSV;
-# - does NOT re-estimate propensity scores;
-# - does NOT run a new KDE;
-# - lightly smooths only the stored curve coordinates to remove
-#   pixel/digitization wiggles;
-# - uses the SI-style title/legend layout;
-# - shows y-axis tick labels on both panels.
+# Plots the supplied density-curve coordinates.
+# See SOURCE_DATA.md for input definitions.
 
 from pathlib import Path
 
@@ -63,15 +57,7 @@ def gaussian_kernel(sigma_points: float):
 
 
 def smooth_stored_curve(frame: pd.DataFrame, sigma_points: float, n_grid: int = 700):
-    """
-    Smooth ONLY the already-stored plotting coordinates.
-
-    This is not a new density estimate. It:
-      1) sorts and de-duplicates the stored x/y coordinates;
-      2) interpolates them to a regular grid;
-      3) removes high-frequency digitization wiggles with a light
-         Gaussian smoother.
-    """
+    """Interpolate stored curve coordinates and apply Gaussian smoothing."""
     q = frame[["propensity_score", "density"]].copy()
 
     q["propensity_score"] = pd.to_numeric(
@@ -165,8 +151,7 @@ fig, axes = plt.subplots(
     sharey=True,
 )
 
-# The dashed control curve needs slightly stronger smoothing because
-# the stored source came from a dashed rasterized line.
+# Line styles and smoothing parameters for each group.
 curve_specs = [
     ("Control (Non-Solar)", "blue", (0, (5, 5)), 8.5),
     ("Treatment (Solar)", "red", "solid", 4.5),

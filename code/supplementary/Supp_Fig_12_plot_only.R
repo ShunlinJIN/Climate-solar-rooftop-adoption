@@ -1,5 +1,5 @@
 # Supplementary Fig. 12: Annual estimates of the extreme-heat response.
-# Plot-only reproduction from finalized aggregate coefficient estimates.
+# Plot-only reproduction from supplied aggregate coefficient estimates.
 
 args_all <- commandArgs(trailingOnly=FALSE)
 script_arg <- grep("^--file=", args_all, value=TRUE)

@@ -21,4 +21,7 @@ unavailable <- names(minimum_versions)[vapply(names(minimum_versions), function(
   )
 }, logical(1))]
 if (length(unavailable)) stop("Required packages are unavailable or too old: ", paste(unavailable, collapse = ", "))
+for (p in names(minimum_versions)) {
+  if (!requireNamespace(p, quietly = TRUE)) stop("Required package cannot be loaded: ", p)
+}
 message("R package setup complete.")

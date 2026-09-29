@@ -1,5 +1,5 @@
 # Supplementary Fig. 11: Out-of-sample validation of monthly rooftop-solar adoption in 2022.
-# Plot-only reproduction from finalized aggregate figure source.
+# Plot-only reproduction from supplied aggregate figure source.
 
 args_all <- commandArgs(trailingOnly=FALSE)
 script_arg <- grep("^--file=", args_all, value=TRUE)

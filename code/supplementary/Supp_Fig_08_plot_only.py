@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Supplementary Fig. 8 — public plot-only reproduction (FINAL x-range fix)
+Supplementary Fig. 8 — plotting from income distributions
 
 Reads only:
     data/supp_fig08_income_density.csv
@@ -10,8 +10,8 @@ Writes only:
     output/Supplementary_Fig_08.png
     output/Supplementary_Fig_08.pdf
 
-This final version locks Panel a to 0–60 (1,000 RMB), consistent with the
-current SI layout. Panel b is unchanged except for minor spacing cleanup.
+Panel a displays the income distribution over 0–60 (1,000 RMB).
+Panel b displays the shares below the stated income benchmarks.
 
 No household-level raw data or identifiers are used.
 """

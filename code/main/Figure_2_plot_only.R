@@ -61,21 +61,21 @@ make_bar <- function(panel_id, xlabel) {
 }
 
 p2a <- make_bar("a","Different historical average temperature")
-p2a <- add_bracket(p2a,1,2,14.0,subset(tests,panel=="a")$published_p_label[1])
-p2a <- add_bracket(p2a,3,4,14.45,subset(tests,panel=="a")$published_p_label[2])
+p2a <- add_bracket(p2a,1,2,14.0,subset(tests,panel=="a")$p_label[1])
+p2a <- add_bracket(p2a,3,4,14.45,subset(tests,panel=="a")$p_label[2])
 
 p2b <- make_bar("b","Different historical temperature fluctuation")
-p2b <- add_bracket(p2b,1,2,14.0,subset(tests,panel=="b")$published_p_label[1])
-p2b <- add_bracket(p2b,3,4,14.0,subset(tests,panel=="b")$published_p_label[2])
+p2b <- add_bracket(p2b,1,2,14.0,subset(tests,panel=="b")$p_label[1])
+p2b <- add_bracket(p2b,3,4,14.0,subset(tests,panel=="b")$p_label[2])
 
 p2c <- make_bar("c","Solar radiation")
-p2c <- add_bracket(p2c,1,2,14.0,subset(tests,panel=="c")$published_p_label[1])
+p2c <- add_bracket(p2c,1,2,14.0,subset(tests,panel=="c")$p_label[1])
 
 p2d <- make_bar("d","Land slope")
-p2d <- add_bracket(p2d,1,2,14.0,subset(tests,panel=="d")$published_p_label[1])
+p2d <- add_bracket(p2d,1,2,14.0,subset(tests,panel=="d")$p_label[1])
 
 p2e <- make_bar("e","Income level")
-p2e <- add_bracket(p2e,1,2,14.0,subset(tests,panel=="e")$published_p_label[1])
+p2e <- add_bracket(p2e,1,2,14.0,subset(tests,panel=="e")$p_label[1])
 
 f <- subset(dat, panel=="f")
 f <- f[order(f$x_order),]

@@ -33,7 +33,7 @@ if (length(script_arg)) {
 } else {
   source_file <- tryCatch(sys.frame(1)$ofile, error = function(e) NULL)
   script_dir <- if (!is.null(source_file)) dirname(normalizePath(source_file, winslash = "/")) else getwd()
-  if (!file.exists(file.path(script_dir, "Figure_4_final_output.R")) && dir.exists(file.path(script_dir, "code"))) script_dir <- file.path(script_dir, "code")
+  if (!file.exists(file.path(script_dir, "Figure_4_plot_only.R")) && dir.exists(file.path(script_dir, "code"))) script_dir <- file.path(script_dir, "code")
 }
 package_root <- normalizePath(file.path(script_dir, ".."), winslash = "/")
 output_dir <- file.path(package_root, "output")

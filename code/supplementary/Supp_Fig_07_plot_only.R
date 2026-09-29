@@ -3,8 +3,8 @@
 #
 # PUBLIC PLOT-ONLY REPRODUCTION
 #
-# This script is intentionally kept as close as possible to the historical
-# final R/ggplot code that generated the SI figure.
+# Draws the search-activity series and temperature-bin estimates from the
+# accompanying aggregate CSV files.
 #
 # Public inputs:
 #   data/supp_fig07_search_temperature.csv
@@ -90,7 +90,7 @@ if (length(missing_a) > 0) {
 }
 
 # Map the public column names back to the exact variable names used by
-# the historical final plotting script.
+# the supplied plotting estimates.
 data$Week <- as.Date(data$week_date)
 data$Baidu.week <- as.numeric(data$baidu_weekly)
 data$Baidu.month <- as.numeric(data$baidu_monthly)
@@ -425,7 +425,7 @@ combined_grob <- arrangeGrob(
 )
 
 #-------------------------------------------------------------------------------
-# 8. Save — same dimensions as historical final script
+# 8. Save — figure dimensions
 #-------------------------------------------------------------------------------
 
 png_file <- file.path(

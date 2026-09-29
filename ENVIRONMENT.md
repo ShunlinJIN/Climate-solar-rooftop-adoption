@@ -6,7 +6,7 @@ The workflow uses Python and R on a standard CPU. No GPU is required.
 
 Use Python 3.10 or newer and R 4.3 or newer. Install Python dependencies with `python -m pip install -r requirements.txt` and R dependencies with `Rscript code/setup.R`. The R setup script installs missing packages and updates packages that are below the required versions. Installation requires internet access; the reproduction workflow uses the included data and does not download inputs.
 
-The complete workflow was tested locally on Ubuntu 24.04.3 LTS (x86_64; Linux kernel 6.18.44) with Python 3.12.14 and R 4.3.3. Both the repository entry point and the Code Ocean run script were tested with the same source data. The output reproduction_manifest.json records the operating system, Python and R versions, package versions, elapsed time and output checksums for each completed run. The complete local runs took 148.756 seconds through the repository entry point and 149.338 seconds through the Code Ocean run script, approximately 2.5 minutes in each case. These timings exclude dependency installation.
+The complete workflow was tested locally on Ubuntu 24.04.3 LTS (x86_64; Linux kernel 6.18.44) with Python 3.12.14 and Python 3.10.21, using R 4.3.3. Both the repository entry point and the Code Ocean run script were tested with the same source data. With Python 3.10.21, the complete local runs took 157.583 seconds through the repository entry point and 157.287 seconds through the Code Ocean run script, approximately 2.6 minutes in each case. These timings exclude dependency installation. Each completed run records the operating system, software versions, elapsed time and output checksums in reproduction_manifest.json.
 
 ## Tested Python packages
 
@@ -21,7 +21,7 @@ The complete workflow was tested locally on Ubuntu 24.04.3 LTS (x86_64; Linux ke
 | pyproj | 3.8.0 | 3.7.1 |
 | pyogrio | 0.13.0 | 0.13.0 |
 
-The complete Python/R workflow was tested with Python 3.12.14. All Python plotting and table-export scripts were also tested with Python 3.10.21 after creating a clean environment from a Python installation without pip. `requirements-tested.txt` records the Python 3.12.14 package versions; `requirements.txt` provides compatible ranges for installation. Each completed workflow records its actual versions in `reproduction_manifest.json`.
+The complete Python/R workflow was tested with both Python versions listed above. The postInstall script was also tested from a Python 3.10.21 installation without pip, including Python dependency checks and loading all required R packages. `requirements-tested.txt` records the Python 3.12.14 package versions; `requirements.txt` provides compatible ranges for installation. Each completed workflow records its actual versions in `reproduction_manifest.json`.
 
 ## Tested R packages
 
@@ -42,7 +42,7 @@ The complete Python/R workflow was tested with Python 3.12.14. All Python plotti
 
 The master script runs each plotting script in an isolated temporary working folder and writes final outputs to the selected output directory. It sets a non-interactive Matplotlib backend and limits numerical-library thread counts. Individual script logs and a machine-readable reproduction manifest accompany the outputs.
 
-In Code Ocean, use the supplied `environment/postInstall` to prepare the environment, and set `code/run` as the run file. The setup creates an isolated Python environment at `/opt/climate-solar-venv`, bootstraps pip there and installs the required Python packages. On Ubuntu R images, missing virtual-environment support is installed automatically with `apt-get`. The run file uses this same Python environment. Inputs are read from `/data/non-confidential/`, and generated files are written to `/results/`.
+In Code Ocean, configure the complete contents of `environment/postInstall` in the Environment editor and set `code/run` as the run file. The setup creates an isolated Python environment at `/opt/climate-solar-venv`, bootstraps pip there and installs the required Python packages. On Ubuntu R images, missing virtual-environment support is installed automatically with `apt-get`. The run file uses this same Python environment. Inputs are read from `/data/non-confidential/`, and generated files are written to `/results/`.
 
 Default fonts are available through R and Matplotlib. Font substitutions across operating systems may slightly change text spacing without changing plotted values.
 

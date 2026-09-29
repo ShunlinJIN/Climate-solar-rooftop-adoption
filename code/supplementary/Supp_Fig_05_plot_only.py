@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Supplementary Fig. 5 — FINAL plot-only version
+Supplementary Fig. 5 — plotting from aggregate data
 
 Reads:
     data/supp_fig05_monthly_flows.csv
@@ -9,13 +9,13 @@ Writes:
     output/Supplementary_Fig_05.png
     output/Supplementary_Fig_05.pdf
 
-This version follows the historical final R plotting code:
-- stack order identical to the final SI;
+Plotting conventions:
+- stack order identical to the Supplementary Information;
 - exact R color mapping;
 - alpha = 0.7;
 - y-axis fixed at 0–40;
-- four-month date ticks aligned with the current SI;
-- legend order identical to the current SI.
+- four-month date ticks aligned with the Supplementary Information;
+- legend order identical to the Supplementary Information.
 """
 
 from pathlib import Path
@@ -85,7 +85,7 @@ if d[
 
 
 # ---------------------------------------------------------------------
-# Stack order = bottom to top in the current SI
+# Stack order = bottom to top in the Supplementary Information
 # ---------------------------------------------------------------------
 series = [
     (
@@ -170,7 +170,7 @@ ax.set_xlim(
     pd.Timestamp("2020-12-31"),
 )
 
-# Explicit four-month ticks to reproduce the current SI:
+# Explicit four-month ticks to reproduce the Supplementary Information:
 # 2018-08, 2018-12, 2019-04, ...
 tick_dates = pd.date_range(
     start="2018-08-01",

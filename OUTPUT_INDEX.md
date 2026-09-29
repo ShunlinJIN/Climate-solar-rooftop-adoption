@@ -12,7 +12,7 @@ Scripts: `code/main/`. Inputs: `data/non-confidential/aggregate_main/`.
 | Figure 2 | `Figure_2_plot_only.R` | `figure2_plot_data.csv`, `figure2_pairwise_tests.csv` |
 | Figure 3 | `Figure_3_plot_only.R` | `figure3_plot_data.csv` |
 | Figure 4 | `Figure_4_plot_only.R` | `figure4_plot_data.csv` |
-| Figure 5 | `Figure_5_plot_only.py` | `figure5_plot_data.csv`, `Figure5_panel_e_source_data_v3.csv`, `Figure5_panel_f_source_data.csv`, `figure5_panel_g.csv` |
+| Figure 5 | `Figure_5_plot_only.py` | `figure5_plot_data.csv`, `figure5_panel_e.csv`, `Figure5_panel_f_source_data.csv`, `figure5_panel_g.csv` |
 | Figure 6 | `Figure_6_plot_only.R` | `figure6_plot_data.csv` |
 
 ## Supplementary Figures

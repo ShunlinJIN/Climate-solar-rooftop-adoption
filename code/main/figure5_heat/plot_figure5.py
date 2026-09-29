@@ -97,7 +97,7 @@ def main():
     existing_path=args.existing_data or args.data_dir/'figure5_plot_data.csv'
     existing=pd.read_csv(existing_path,low_memory=False)
     data=load_final_data(existing_path)
-    e=pd.read_csv(args.results/'Figure5_panel_e_source_data_v3.csv')
+    e=pd.read_csv(args.results/'figure5_panel_e.csv')
     g=pd.read_csv(args.data_dir/'figure5_panel_g.csv')
     e,g=display_currency(e,g,args.rmb_per_usd)
     burden=pd.read_csv(args.results/'Figure5_panel_f_source_data.csv')

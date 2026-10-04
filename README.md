@@ -43,8 +43,8 @@ Local outputs are saved in `output/`:
 
 | Location | Contents |
 | --- | --- |
-| `figures/` | Main figures and accompanying panel exports |
-| `figures_appendix/` | Supplementary Figures and descriptive summary CSVs |
+| `figures/` | Main figures |
+| `figures_appendix/` | Supplementary Figures |
 | `tables_appendix/` | Supplementary Tables and `Supplementary_Table_Notes.md` |
 | `log/` | Individual script logs |
 | `reproduction_manifest.json` | Runtime, software versions and output checksums |

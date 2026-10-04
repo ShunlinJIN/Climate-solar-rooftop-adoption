@@ -95,10 +95,12 @@ def main():
                     raise RuntimeError(f"{label} failed. See {log}\n{process.stdout[-5000:]}")
             target=output/("figures" if section=="main" else "figures_appendix")
             prefix="Figure_" if section=="main" else "Supplementary_Fig_"
-            for suffix in ["png","pdf","svg"]:
-                for p in (work/"output").glob(prefix+"*."+suffix):shutil.copy2(p,target/p.name)
-            for pattern in [prefix + "*_caption.txt", prefix + "*_summary.csv"]:
-                for p in (work/"output").glob(pattern): shutil.copy2(p, target/p.name)
+            for number in range(1, 7 if section == "main" else 28):
+                stem = prefix + (str(number) if section == "main" else f"{number:02d}")
+                for suffix in ["png", "pdf", "svg"]:
+                    p = work / "output" / (stem + "." + suffix)
+                    if p.is_file():
+                        shutil.copy2(p, target / p.name)
             if section=="supplementary":
                 for p in (work/"output/tables").iterdir():shutil.copy2(p,output/"tables_appendix"/p.name)
             print(("Main manuscript figures (1-6)" if section=="main" else "Supplementary figures (1-27)")+": SUCCESS",flush=True)

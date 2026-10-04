@@ -369,13 +369,11 @@ def save_formats(fig, out, name, png_dpi=300):
     atomic_export(name + '.pdf', 'pdf', metadata={"Author": "Shunlin Jin", "CreationDate": None, "ModDate": None})
     with plt.rc_context({"svg.fonttype": "none", "svg.hashsalt": name}):
         atomic_export(name + '.svg', 'svg', metadata={"Creator": "Shunlin Jin", "Date": None})
-    with plt.rc_context({"svg.fonttype": "path", "svg.hashsalt": name}):
-        atomic_export(name + '_Word.svg', 'svg', metadata={"Creator": "Shunlin Jin", "Date": None})
-    print(f'{name}: saved PDF, editable SVG and Word SVG.', flush=True)
+    print(f'{name}: saved PDF and SVG.', flush=True)
 
     attempts = [png_dpi] + [dpi for dpi in (300, 200, 150, 100, 72) if dpi < png_dpi]
     status = dict(png_requested_dpi=png_dpi, png_dpi=None, png_written=False,
-                  png_attempted_dpi=[], vector_files=[name + '.pdf', name + '.svg', name + '_Word.svg'])
+                  png_attempted_dpi=[], vector_files=[name + '.pdf', name + '.svg'])
     for dpi in attempts:
         status['png_attempted_dpi'].append(dpi)
         try:

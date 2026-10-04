@@ -168,20 +168,6 @@ def make_figure(survey, hourly, output_dir, dpi):
     plt.close(fig)
 
 
-def export_summaries(survey, hourly, output_dir):
-    with (output_dir / "Supplementary_Fig_18_survey_summary.csv").open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["activity", "valid_n", "often_or_always_n", "often_or_always_pct"])
-        writer.writeheader()
-        for row in survey:
-            writer.writerow({"activity": row["activity"], "valid_n": row["valid_n"],
-                             "often_or_always_n": sum(row["counts"][3:]),
-                             "often_or_always_pct": row["often_always_pct"]})
-    with (output_dir / "Supplementary_Fig_18_daytime_summary.csv").open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(hourly[0]))
-        writer.writeheader()
-        writer.writerows(hourly)
-
-
 def main():
     root = Path(__file__).resolve().parent.parent
     parser = argparse.ArgumentParser(description=__doc__)
@@ -195,7 +181,6 @@ def main():
     survey = load_survey(args.data_dir)
     hourly = load_hourly(args.data_dir)
     make_figure(survey, hourly, args.output_dir, args.dpi)
-    export_summaries(survey, hourly, args.output_dir)
     for row in survey:
         print(f"{row['activity']}: often/always = {row['often_always_pct']:.1f}% (n = {row['valid_n']})")
     for row in hourly:

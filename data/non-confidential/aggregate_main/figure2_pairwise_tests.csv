@@ -3,6 +3,5 @@ a,Long-H vs Long-L,0.053,0.024,p < 0.05
 a,Short-H vs Short-L,0.064,0.023,p < 0.01
 b,Long-H vs Long-L,0.048,0.023,p < 0.05
 b,Short-H vs Short-L,0.021,0.025,p > 0.1
-c,High vs Low solar radiation,0.031,0.023,p > 0.1
-d,Flatter vs Steeper land slope,0.059,0.021,p < 0.01
-e,High vs Low income,0.051,0.022,p < 0.05
+c,Flatter vs Steeper land slope,0.059,0.021,p < 0.01
+d,High vs Low income,0.051,0.022,p < 0.05

@@ -6,6 +6,7 @@ from pathlib import Path
 import gc
 import os
 import tempfile
+os.environ.setdefault("MPLCONFIGDIR", str(Path(tempfile.gettempdir()) / "solar_matplotlib"))
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -29,7 +30,7 @@ FONT_PANEL=15.0
 def set_style():
     plt.rcParams.update({
         "font.family": "sans-serif",
-        "font.sans-serif": ["Arial", "DejaVu Sans"],
+        "font.sans-serif": ["Arial", "Nimbus Sans", "DejaVu Sans"],
         "font.size": FONT_TICK,
         "axes.titlesize": FONT_TITLE,
         "axes.labelsize": FONT_LABEL,
@@ -202,20 +203,30 @@ def panel_d(ax, income, rmb_per_usd):
     style_axis(ax)
 
 def panel_f(ax, source):
-    """Binary monthly burden outcomes, using the same point/CI style as d."""
-    plot = source.set_index('threshold_pct').loc[[5, 10]]
+    """Monthly 5% incidence effects overall and by pre-adoption income."""
+    labels = ['All households', 'Lower income', 'Higher income']
+    required = {'group', 'threshold_pct', 'estimate', 'conf_low', 'conf_high'}
+    if not required.issubset(source.columns):
+        raise ValueError('Panel f requires the income-group source CSV. Use the accompanying Figure5_panel_f_source_data.csv.')
+    if len(source) != 3 or set(source['group']) != set(labels) or not source.threshold_pct.eq(5).all():
+        raise ValueError('Panel f requires three income-group rows at the 5% threshold.')
+    plot = source.set_index('group').loc[labels]
     est = plot['estimate'].to_numpy(float)
     lo = plot['conf_low'].to_numpy(float)
     hi = plot['conf_high'].to_numpy(float)
+    if not np.isfinite([est, lo, hi]).all() or (lo > est).any() or (hi < est).any():
+        raise ValueError('Panel f has invalid point estimates or confidence intervals.')
     ax.axvline(0, linestyle='--', linewidth=.75, color=GRAY)
-    ax.errorbar(est, [1, 0], xerr=[est-lo, hi-est], fmt='o',
+    ax.errorbar(est, [2, 1, 0], xerr=[est-lo, hi-est], fmt='o',
                 color=TEAL, ecolor=GRAY, markersize=4.0, capsize=2.1, linewidth=.9)
-    ax.set_yticks([1, 0], ['Burden ≥5%', 'Burden ≥10%'])
-    ax.set_ylim(-.55, 1.55)
-    ax.set_xlim(-20, 1)
-    ax.set_xticks([-20, -15, -10, -5, 0])
+    ax.set_yticks([2, 1, 0], labels)
+    ax.set_ylim(-.60, 2.60)
+    lower = min(-30, 5 * np.floor((lo.min() - 1) / 5))
+    upper = max(1, 5 * np.ceil((hi.max() + 1) / 5))
+    ax.set_xlim(lower, upper)
+    ax.set_xticks(np.arange(10 * np.ceil(lower / 10), upper + .1, 10))
     ax.set_xlabel('Effect on probability\n(percentage points)')
-    heading(ax, 'f', 'High electricity-burden\nincidence')
+    heading(ax, 'f', 'Energy-poverty incidence\n(5% threshold)')
     style_axis(ax)
 
 
@@ -355,11 +366,11 @@ def save_formats(fig, out, name, png_dpi=300):
         finally:
             temporary.unlink(missing_ok=True)
 
-    atomic_export(name + '.pdf', 'pdf', metadata={"CreationDate": None, "ModDate": None})
+    atomic_export(name + '.pdf', 'pdf', metadata={"Author": "Shunlin Jin", "CreationDate": None, "ModDate": None})
     with plt.rc_context({"svg.fonttype": "none", "svg.hashsalt": name}):
-        atomic_export(name + '.svg', 'svg', metadata={"Date": None})
+        atomic_export(name + '.svg', 'svg', metadata={"Creator": "Shunlin Jin", "Date": None})
     with plt.rc_context({"svg.fonttype": "path", "svg.hashsalt": name}):
-        atomic_export(name + '_Word.svg', 'svg', metadata={"Date": None})
+        atomic_export(name + '_Word.svg', 'svg', metadata={"Creator": "Shunlin Jin", "Date": None})
     print(f'{name}: saved PDF, editable SVG and Word SVG.', flush=True)
 
     attempts = [png_dpi] + [dpi for dpi in (300, 200, 150, 100, 72) if dpi < png_dpi]
@@ -368,7 +379,7 @@ def save_formats(fig, out, name, png_dpi=300):
     for dpi in attempts:
         status['png_attempted_dpi'].append(dpi)
         try:
-            atomic_export(name + '.png', 'png', dpi=dpi)
+            atomic_export(name + '.png', 'png', dpi=dpi, metadata={"Author": "Shunlin Jin"})
         except MemoryError:
             print(f'{name}: insufficient memory for {dpi} dpi PNG; trying a smaller canvas.', flush=True)
         else:

@@ -1,16 +1,9 @@
 panel,system,grouping,income_group,estimate,std_error,ci_lower,ci_upper,households,counties
-A,RRPV-only,County-income deciles,baseline,0.079,0.015,0.0496,0.1084,6418,
-A,RRPV-only,County-income deciles,≤10%,-0.002,0.008,-0.01768,0.01368,,
-A,RRPV-only,County-income deciles,10-20%,0.007,0.0195,-0.03122,0.04522,,
-A,RRPV-only,County-income deciles,20-30%,0.006,0.0175,-0.0283,0.0403,,
-A,RRPV-only,County-income deciles,30-40%,0.015,0.0098,-0.004208,0.034208,,
-A,RRPV-only,County-income deciles,40-50%,0.034,0.0131,0.008324,0.059676,,
-A,RRPV-only,County-income deciles,50-60%,0.054,0.0125,0.0295,0.0785,,
-A,RRPV-only,County-income deciles,60-70%,0.065,0.0138,0.037952,0.092048,,
-A,RRPV-only,County-income deciles,70-80%,0.091,0.0166,0.058464,0.123536,,
-A,RRPV-only,County-income deciles,80-90%,0.115,0.0175,0.0807,0.1493,,
-A,RRPV-only,County-income deciles,≥90%,0.133,0.0211,0.091644,0.174356,,
-B,RRPV-BS,County-income tertiles,baseline,0.114,0.012,0.09048,0.13752,229,68
+A,RRPV-only,County-income tertiles,Full sample,0.0790,0.0150,0.0494,0.1086,6418,
+A,RRPV-only,County-income tertiles,Low income,0.0170,0.0115,-0.0051,0.0391,,
+A,RRPV-only,County-income tertiles,Middle income,0.0390,0.0121,0.0158,0.0622,,
+A,RRPV-only,County-income tertiles,High income,0.1190,0.0147,0.0909,0.1471,,
+B,RRPV-BS,County-income tertiles,Full sample,0.114,0.012,0.09048,0.13752,229,68
 B,RRPV-BS,County-income tertiles,Low income,0.044,0.0128,0.018912,0.069088,98,23
 B,RRPV-BS,County-income tertiles,Middle income,0.096,0.0112,0.074048,0.117952,44,22
 B,RRPV-BS,County-income tertiles,High income,0.136,0.0202,0.096408,0.175592,87,23

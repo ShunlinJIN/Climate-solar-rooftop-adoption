@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 CODE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PACKAGE_DIR="$(cd "$CODE_DIR/.." && pwd)"
 SOLAR_VENV_DIR="${SOLAR_VENV_DIR:-/opt/climate-solar-venv}"
 if [[ -x "$SOLAR_VENV_DIR/bin/python" ]]; then
   SOLAR_PYTHON="$SOLAR_VENV_DIR/bin/python"
@@ -10,4 +11,13 @@ elif [[ "$CODE_DIR" == /code ]]; then
 else
   SOLAR_PYTHON="${SOLAR_PYTHON:-python3}"
 fi
-exec "$SOLAR_PYTHON" "$CODE_DIR/run_public.py" --data-dir "${SOLAR_DATA_DIR:-/data/non-confidential}" --output-dir "${SOLAR_OUTPUT_DIR:-/results}"
+if [[ "$CODE_DIR" == /code ]]; then
+  SOLAR_DATA_DEFAULT="/data/non-confidential"
+  SOLAR_OUTPUT_DEFAULT="/results"
+else
+  SOLAR_DATA_DEFAULT="$PACKAGE_DIR/data/non-confidential"
+  SOLAR_OUTPUT_DEFAULT="$PACKAGE_DIR/output"
+fi
+exec "$SOLAR_PYTHON" "$CODE_DIR/run_public.py" \
+  --data-dir "${SOLAR_DATA_DIR:-$SOLAR_DATA_DEFAULT}" \
+  --output-dir "${SOLAR_OUTPUT_DIR:-$SOLAR_OUTPUT_DEFAULT}" "$@"

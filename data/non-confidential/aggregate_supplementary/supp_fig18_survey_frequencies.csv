@@ -1,0 +1,21 @@
+activity,response,count,valid_n
+Laundry,Never,81,972
+Laundry,Rarely,182,972
+Laundry,Sometimes,222,972
+Laundry,Often,210,972
+Laundry,Always,277,972
+Charging an electric vehicle or tricycle,Never,55,834
+Charging an electric vehicle or tricycle,Rarely,144,834
+Charging an electric vehicle or tricycle,Sometimes,222,834
+Charging an electric vehicle or tricycle,Often,188,834
+Charging an electric vehicle or tricycle,Always,225,834
+Heating water,Never,15,105
+Heating water,Rarely,17,105
+Heating water,Sometimes,23,105
+Heating water,Often,24,105
+Heating water,Always,26,105
+Water pump or agricultural appliance,Never,14,143
+Water pump or agricultural appliance,Rarely,26,143
+Water pump or agricultural appliance,Sometimes,40,143
+Water pump or agricultural appliance,Often,34,143
+Water pump or agricultural appliance,Always,29,143

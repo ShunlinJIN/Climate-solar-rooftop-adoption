@@ -40,9 +40,20 @@ output_dir <- file.path(package_root, "output")
 dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
 plot_data <- read.csv(file.path(package_root, "data", "figure4_plot_data.csv"), fileEncoding = "UTF-8-BOM", stringsAsFactors = FALSE)
 plot_data <- plot_data[order(plot_data$panel, plot_data$x_order), ]
-stopifnot(identical(as.integer(table(plot_data$panel)), c(5L, 5L, 11L, 4L)))
-stopifnot(max(abs(plot_data$ci_lower - (plot_data$estimate - 1.96 * plot_data$std_error))) < 1e-8)
-stopifnot(max(abs(plot_data$ci_upper - (plot_data$estimate + 1.96 * plot_data$std_error))) < 1e-8)
+stopifnot(identical(as.integer(table(plot_data$panel)), c(5L, 5L, 4L, 4L)))
+# Confidence limits are supplied in the source data and plotted directly.
+# Do not reconstruct them from the rounded standard errors.
+stopifnot(all(is.finite(plot_data$estimate)))
+stopifnot(all(is.finite(plot_data$ci_lower)), all(is.finite(plot_data$ci_upper)))
+stopifnot(all(plot_data$ci_lower <= plot_data$estimate))
+stopifnot(all(plot_data$ci_upper >= plot_data$estimate))
+stopifnot(all(plot_data$std_error >= 0))
+stopifnot(!anyDuplicated(paste(plot_data$panel, plot_data$x_order)))
+pooled_a <- plot_data[plot_data$panel == "a" & plot_data$x_order == 1, ]
+pooled_c <- plot_data[plot_data$panel == "c" & plot_data$x_order == 1, ]
+stopifnot(isTRUE(all.equal(pooled_a[c("estimate", "std_error", "ci_lower", "ci_upper")],
+                          pooled_c[c("estimate", "std_error", "ci_lower", "ci_upper")],
+                          check.attributes = FALSE)))
 stopifnot(abs(plot_data$estimate[plot_data$panel == "a" & plot_data$x_order == 1] - 0.079) < 1e-8)
 for (id in c("a", "b")) {
   z <- plot_data[plot_data$panel == id, ]
@@ -121,10 +132,7 @@ lower_ci_p3 <- plot_data[plot_data$panel == "c", "ci_lower"]
 
 upper_ci_p3 <- plot_data[plot_data$panel == "c", "ci_upper"]
 
-Income_Level_p3 <- c(
-  "baseline", "≤10%", "10-20%", "20-30%", "30-40%",
-  "40-50%", "50-60%", "60-70%", "70-80%", "80-90%", "≥90%"
-)
+Income_Level_p3 <- c("Full sample", "Low income", "Middle income", "High income")
 
 data_p3 <- data.frame(
   Income_Level = factor(Income_Level_p3, levels = Income_Level_p3),
@@ -148,17 +156,17 @@ p3 <- ggplot(data_p3, aes(x = Income_Level, y = coef)) +
   ) +
   annotate(
     "text",
-    x = 2.2,
+    x = 1.4,
     y = 0.079,
-    label = "All samples (0.0790)",
+    label = "Full sample (0.0790)",
     size = text_size_annotation,
     hjust = 0,
     color = "black"
   ) +
   annotate(
     "segment",
-    x = 2.1,
-    xend = 1.3,
+    x = 1.36,
+    xend = 1.10,
     y = 0.079,
     yend = 0.079,
     arrow = arrow(length = unit(0.2, "cm"), type = "closed"),
@@ -173,13 +181,7 @@ p3 <- ggplot(data_p3, aes(x = Income_Level, y = coef)) +
   ) +
   scale_x_discrete(
     name = "Income level (RRPV-only adopter)",
-    labels = c(
-      "baseline",
-      expression(phantom(.) <= 10 * "%"),
-      "10-20%", "20-30%", "30-40%", "40-50%",
-      "50-60%", "60-70%", "70-80%", "80-90%",
-      expression(phantom(.) >= 90 * "%")
-    )
+    labels = Income_Level_p3
   ) +
   scale_color_manual(
     name = "Legend",

@@ -1,15 +1,51 @@
-﻿panel,system,window_or_specification,pv_period_response_kwh,pv_period_se,nonpv_period_response_kwh,nonpv_period_se
-A,RRPV-only,06:00–18:59,0.048,0.002,0.0243,0.0009
-A,RRPV-only,06:00–17:59,0.0437,0.0018,0.0287,0.001
-A,RRPV-only,07:00–17:59,0.0415,0.0017,0.0309,0.0011
-A,RRPV-BS,06:00–18:59,0.0002,0.007,0.0427,0.0055
-A,RRPV-BS,06:00–17:59,0.004,0.0066,0.0389,0.0055
-A,RRPV-BS,07:00–17:59,0.0143,0.0064,0.0286,0.0052
-B,RRPV-only,Household FE,0.0492,0.002,0.0248,0.0009
-B,RRPV-only,Main: household×year FE,0.048,0.002,0.0243,0.0009
-B,RRPV-only,Household seasonal FE,0.0521,0.0019,0.0258,0.0009
-B,RRPV-only,County×year-month FE,0.0538,0.0019,0.0266,0.0009
-B,RRPV-BS,Household FE,0.0023,0.0069,0.0436,0.0054
-B,RRPV-BS,Main: household×year FE,0.0002,0.007,0.0427,0.0055
-B,RRPV-BS,Household seasonal FE,0.0097,0.0065,0.0442,0.005
-B,RRPV-BS,County×year-month FE,0.0113,0.0065,0.0444,0.0051
+panel,measure,group,response,count,denominator,estimate,unit,display_value
+A,Laundry,RRPV-only survey adopters,Never,81,972,8.333333333333334,percent,8.3
+A,Laundry,RRPV-only survey adopters,Rarely,182,972,18.724279835390945,percent,18.7
+A,Laundry,RRPV-only survey adopters,Sometimes,222,972,22.839506172839506,percent,22.8
+A,Laundry,RRPV-only survey adopters,Often,210,972,21.604938271604937,percent,21.6
+A,Laundry,RRPV-only survey adopters,Always,277,972,28.497942386831276,percent,28.5
+A,Laundry,RRPV-only survey adopters,Often or always,487,972,50.10288065843621,percent,50.1
+A,Charging an electric vehicle or tricycle,RRPV-only survey adopters,Never,55,834,6.594724220623501,percent,6.6
+A,Charging an electric vehicle or tricycle,RRPV-only survey adopters,Rarely,144,834,17.26618705035971,percent,17.3
+A,Charging an electric vehicle or tricycle,RRPV-only survey adopters,Sometimes,222,834,26.618705035971225,percent,26.6
+A,Charging an electric vehicle or tricycle,RRPV-only survey adopters,Often,188,834,22.54196642685851,percent,22.5
+A,Charging an electric vehicle or tricycle,RRPV-only survey adopters,Always,225,834,26.97841726618705,percent,27.0
+A,Charging an electric vehicle or tricycle,RRPV-only survey adopters,Often or always,413,834,49.52038369304557,percent,49.5
+A,Heating water,RRPV-only survey adopters,Never,15,105,14.285714285714286,percent,14.3
+A,Heating water,RRPV-only survey adopters,Rarely,17,105,16.19047619047619,percent,16.2
+A,Heating water,RRPV-only survey adopters,Sometimes,23,105,21.904761904761905,percent,21.9
+A,Heating water,RRPV-only survey adopters,Often,24,105,22.857142857142858,percent,22.9
+A,Heating water,RRPV-only survey adopters,Always,26,105,24.761904761904763,percent,24.8
+A,Heating water,RRPV-only survey adopters,Often or always,50,105,47.61904761904762,percent,47.6
+A,Water pump or agricultural appliance,RRPV-only survey adopters,Never,14,143,9.79020979020979,percent,9.8
+A,Water pump or agricultural appliance,RRPV-only survey adopters,Rarely,26,143,18.181818181818183,percent,18.2
+A,Water pump or agricultural appliance,RRPV-only survey adopters,Sometimes,40,143,27.972027972027973,percent,28.0
+A,Water pump or agricultural appliance,RRPV-only survey adopters,Often,34,143,23.776223776223777,percent,23.8
+A,Water pump or agricultural appliance,RRPV-only survey adopters,Always,29,143,20.27972027972028,percent,20.3
+A,Water pump or agricultural appliance,RRPV-only survey adopters,Often or always,63,143,44.05594405594405,percent,44.1
+B,Flexible electricity use on sunny days (Q8.5),RRPV-only survey adopters,Schedule flexible use during sunny daytime hours,350,1020,34.31372549019608,percent,34.3
+B,Flexible electricity use on sunny days (Q8.5),RRPV-only survey adopters,Follow ordinary needs without particular adjustment,201,1020,19.705882352941178,percent,19.7
+B,Flexible electricity use on sunny days (Q8.5),RRPV-only survey adopters,Use less and export more PV electricity,252,1020,24.705882352941178,percent,24.7
+B,Flexible electricity use on sunny days (Q8.5),RRPV-only survey adopters,Depends on the day,217,1020,21.274509803921568,percent,21.3
+B,Flexible electricity use on sunny days (Q8.5),RRPV-only survey adopters,No flexible electricity use,0,1020,0.0,percent,0.0
+C,Daytime consumption,RRPV-only,,,,3.902824797159122,kWh/day,3.903
+C,Daytime consumption,RRPV-BS,,,,3.583873573987687,kWh/day,3.584
+C,Daytime consumption,Only minus BS,,,,0.3189512231714353,kWh/day,0.319
+C,Nighttime consumption,RRPV-only,,,,1.7600172200304418,kWh/day,1.760
+C,Nighttime consumption,RRPV-BS,,,,2.181738325625006,kWh/day,2.182
+C,Nighttime consumption,Only minus BS,,,,-0.421721105594564,kWh/day,-0.422
+C,Total consumption,RRPV-only,,,,5.662842017189564,kWh/day,5.663
+C,Total consumption,RRPV-BS,,,,5.765611899612693,kWh/day,5.766
+C,Total consumption,Only minus BS,,,,-0.10276988242312868,kWh/day,-0.103
+C,Daytime share of consumption,RRPV-only,,,,68.91989543964131,percent,68.92
+C,Daytime share of consumption,RRPV-BS,,,,62.15946609636412,percent,62.16
+C,Daytime share of consumption,Only minus BS,,,,6.760429343277188,percentage points,6.76
+C,Households,RRPV-only,,,,1013,households,1013
+C,Households,RRPV-BS,,,,97,households,97
+C,Households,Only minus BS,,,,,households,
+C,Household-days,RRPV-only,,,,370758,household-days,370758
+C,Household-days,RRPV-BS,,,,35502,household-days,35502
+C,Household-days,Only minus BS,,,,,household-days,
+C,Household-hours,RRPV-only,,,,8898192,household-hours,8898192
+C,Household-hours,RRPV-BS,,,,852048,household-hours,852048
+C,Household-hours,Only minus BS,,,,,household-hours,

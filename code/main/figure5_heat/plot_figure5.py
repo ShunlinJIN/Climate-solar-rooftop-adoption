@@ -1,123 +1,177 @@
 #!/usr/bin/env python3
-"""Render Figure 5 from the accompanying aggregate source data."""
+"""Render Figure 5 from its source estimates and descriptive statistics."""
 from pathlib import Path
-import argparse, json, hashlib, os, gc
+import argparse
+import gc
+import os
+import tempfile
 
-# Also used directly by the public replication package. Set limits BEFORE
-# pandas/NumPy import and OpenBLAS initialization, including inherited values.
-for _thread_key in ('OPENBLAS_NUM_THREADS', 'OPENBLAS_DEFAULT_NUM_THREADS',
-                    'OMP_NUM_THREADS', 'MKL_NUM_THREADS', 'NUMEXPR_NUM_THREADS'):
-    os.environ[_thread_key] = '1'
+os.environ.setdefault("MPLCONFIGDIR", str(Path(tempfile.gettempdir()) / "solar_matplotlib"))
 
-import pandas as pd
+for thread_key in ("OPENBLAS_NUM_THREADS", "OPENBLAS_DEFAULT_NUM_THREADS",
+                   "OMP_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+    os.environ[thread_key] = "1"
+
 import numpy as np
+import pandas as pd
+from matplotlib.ticker import FuncFormatter
 from figure5_helpers import *
 
-def display_currency(e, g, rmb_per_usd):
-    """Preserve native estimates and attach the units actually used for plotting."""
-    e, g = e.copy(), g.copy()
-    money = e.outcome.eq('electricity_expenditure_rmb_day')
-    e['display_divisor'] = np.where(money, rmb_per_usd, 1.)
-    e['display_unit'] = np.where(money, 'US$/day', 'kWh/day')
-    for native, shown in [('estimate', 'display_estimate'),
-                          ('std_error', 'display_std_error'),
-                          ('conf_low', 'display_ci_low'),
-                          ('conf_high', 'display_ci_high')]:
-        e[shown] = e[native] / e.display_divisor
-    money = g.outcome.eq('bill_rmb')
-    g['display_divisor'] = g.display_divisor.astype(float)
-    g.loc[money, 'display_divisor'] = rmb_per_usd
-    for native, shown in [('estimate', 'display_estimate'),
-                          ('std_error', 'display_std_error'),
-                          ('ci_low', 'display_ci_low'),
-                          ('ci_high', 'display_ci_high')]:
-        g[shown] = g[native] / g.display_divisor
-    g['display_unit'] = np.select(
-        [money, g.outcome.eq('bill_income_pp')],
-        ['US$/month', 'percentage points'], default='10 kWh/month')
-    return e, g
 
-def extended_panel_e(fig, ax, source):
-    # One shared numerical axis: kWh/day and converted US$/day, as in Notes.
-    # Match panels d and f: colored points and gray confidence intervals.
-    # Larger points and thicker error bars match the enlarged typography.
-    # Cap dimensions change only visually; confidence-limit endpoints do not.
-    box=ax.get_position(); ax.set_axis_off()
-    panel=fig.add_axes([box.x0, box.y0, box.width, box.height*.73])
-    ax.text(-.17,1.045,'e',transform=ax.transAxes,ha='left',va='bottom',fontsize=FONT_PANEL,fontweight='bold')
-    ax.set_title('Electricity services and\ncosts by heat state',fontsize=FONT_TITLE,pad=8)
-    panel.axvline(0,color=GRAY,ls='--',lw=.75,zorder=1)
-    panel.set_ylim(-.43,1.43)
-    panel.set_yticks([1,0])
-    panel.set_yticklabels(['Non-extreme\ndays','Extreme-heat\ndays'],fontsize=FONT_TICK)
-    panel.tick_params(axis='y',length=0,pad=6)
-    style_axis(panel)
-    groups=[('total_electricity_consumption_kwh','Total use',CORAL,.255),
-            ('grid_import_kwh','Grid purchases',NAVY,.085),
-            ('pv_self_consumption_kwh','Self-consumption',TEAL,-.085),
-            ('electricity_expenditure_rmb_day','Expenditure',ORANGE,-.255)]
-    handles=[]
-    for outcome,label,color,offset in groups:
-        z=source.loc[source.outcome.eq(outcome)].copy()
-        if len(z)!=2 or z.heat_state.nunique()!=2:
-            raise ValueError(f'Expected one estimate per heat state for {outcome}.')
-        y=z.heat_state.map({'Non-extreme days':1.,'Extreme-heat days':0.}).to_numpy()+offset
-        h=panel.errorbar(z.display_estimate,y,
-                       xerr=np.array([z.display_estimate-z.display_ci_low,
-                                      z.display_ci_high-z.display_estimate]),
-                       fmt='o',color=color,markerfacecolor=color,
-                       markeredgecolor=color,markeredgewidth=.6,
-                       ecolor=GRAY,markersize=4.6,capsize=3.5,
-                       elinewidth=1.35,label=label,zorder=4)
-        for cap in h[1]:
-            cap.set_markeredgewidth(1.2)
-        handles.append(h)
-    panel.set_xlim(-4.1,4.1); panel.set_xticks([-4,-2,0,2,4])
-    panel.set_xlabel('Effect',fontsize=FONT_LABEL)
-    panel.tick_params(axis='x',labelsize=FONT_TICK)
-    ax.legend(handles=handles,loc='upper center',bbox_to_anchor=(.50,1.00),
-              frameon=False,ncol=2,fontsize=FONT_SMALL,handlelength=.85,
-              handletextpad=.6,columnspacing=.9,labelspacing=.25,borderaxespad=0)
-    return panel
+PANEL_E_CAPTION = (
+    "Panel e reports the post-adoption change in the slope of daily electricity use "
+    "with respect to temperature above 30°C, estimated using a continuous piecewise-linear "
+    "specification and expressed in kWh per day per °C. Both estimates use the same sample "
+    "and include household fixed effects. The baseline specification includes village-by-date "
+    "fixed effects; the alternative includes village-by-year-month fixed effects. "
+    "Horizontal error bars indicate 95% confidence intervals (Supplementary Note 25)."
+)
 
-CAPTION='Fig. 5 | Alleviation of rural household energy poverty.\nNotes: This figure shows how rooftop solar and battery storage alleviate household energy poverty. Panel a shows monthly changes in recorded electricity expenditure around PV grid connection; panel b shows changes in the electricity-bill-to-income ratio; and panel c shows changes in total household electricity use and public-grid purchases. Panels a–c report event-study estimates. They compare each adopter’s outcomes with a no-connection counterfactual constructed from households that never connect and future adopters observed before connection. Event time is defined by the household’s PV grid-connection month. Month −1 is the reference period. Shaded bands indicate 95% confidence intervals. Panel d reports changes in non-PV income, PV export revenue, total income including PV revenue, and income including PV revenue net of electricity bill. Panel e reports the post-grid-connection effects on daily total electricity use, public-grid purchases, PV self-consumption and electricity expenditure separately for extreme-heat and non-extreme days. Points show coefficient estimates on a single axis. Total electricity use, public-grid purchases and PV self-consumption are expressed in kWh per day, and electricity expenditure in US$ per day. PV self-consumption is total electricity use minus public-grid purchases. Extreme-heat days are defined as days with daily mean temperature above 30°C; non-extreme days are all remaining days under this definition. Panel f reports imputation estimates for monthly indicators of electricity expenditure at or above 5% and 10% of fixed pre-adoption income, averaged over months +1 to +12 after grid connection and expressed in percentage points. Panel g reports 2SLS estimates linking extreme heat, RRPV adoption and household energy poverty, with bars showing coefficient estimates. Electricity expenditure is displayed in US$ per month, the electricity-bill-to-income ratio in percentage points, and total electricity use and public-grid purchases in units of 10 kWh per month; bar labels give coefficients in US$, percentage points and kWh. Panel h reports battery-supply outcomes among the respondents who experienced a recent outage. Panel i reports battery backup duration. Monetary values are converted at RMB 6.8 per US$1. Error bars in panels d–g indicate 95% confidence intervals for estimated effects.\n'
+PANEL_F_CAPTION = (
+    "Panel f reports estimated changes in the monthly probability that electricity expenditure "
+    "is at or above 5% of fixed pre-adoption household income, for all households and by "
+    "pre-adoption per-capita household income. Effects are averaged over months +1 to +12 "
+    "after grid connection and expressed in percentage points. Lower- and higher-income groups "
+    "fall below and at or above RMB 1,220 per capita per month, respectively (Supplementary Note 25)."
+)
+
+CAPTION = (
+    "Fig. 5 | Alleviation of rural household energy poverty.\n"
+    "Notes: This figure shows how rooftop solar and battery storage alleviate household energy poverty. "
+    "Panel a shows monthly changes in recorded electricity expenditure around PV grid connection; "
+    "panel b shows changes in the electricity-bill-to-income ratio; and panel c shows changes in total "
+    "household electricity use and public-grid purchases. Panels a–c report event-study estimates. "
+    "They compare each adopter’s outcomes with a no-connection counterfactual constructed from "
+    "households that never connect and future adopters observed before connection. Event time is "
+    "defined by the household’s PV grid-connection month. Month −1 is the reference period. Shaded "
+    "bands indicate 95% confidence intervals. Panel d reports changes in non-PV income, PV export "
+    "revenue, total income including PV revenue, and income including PV revenue net of electricity bill. "
+    + PANEL_E_CAPTION + " "
+    + PANEL_F_CAPTION + " "
+    "Panel g reports 2SLS estimates linking extreme "
+    "heat, RRPV adoption and household energy poverty, with bars showing coefficient estimates. "
+    "Electricity expenditure is displayed in US$ per month, the electricity-bill-to-income ratio "
+    "in percentage points, and total electricity use and public-grid purchases in units of 10 kWh "
+    "per month; bar labels give coefficients in US$, percentage points and kWh. Panel h reports "
+    "battery-supply outcomes among the respondents who experienced a recent outage. Panel i reports "
+    "battery backup duration. Monetary values are converted at RMB 6.8 per US$1. Error bars in "
+    "panels d–g indicate 95% confidence intervals for estimated effects.\n"
+)
+
+
+def read_slope_data(path):
+    source = pd.read_csv(path)
+    needed = {"household_fixed_effects", "time_fixed_effects", "temperature_range", "estimate",
+              "conf_low", "conf_high", "observations", "households", "adopters", "clusters"}
+    if not needed.issubset(source.columns):
+        raise ValueError(f"Missing slope fields: {sorted(needed - set(source.columns))}")
+    if len(source) != 2 or set(source.time_fixed_effects) != {"village_date", "village_year_month"}:
+        raise ValueError("Panel e requires exactly one estimate for each fixed-effects specification.")
+    if not source.household_fixed_effects.eq("Yes").all() or not source.temperature_range.eq(">30 C").all():
+        raise ValueError("Both estimates must include household fixed effects and refer to temperatures above 30°C.")
+    for name in ("observations", "households", "adopters", "clusters"):
+        if source[name].nunique() != 1:
+            raise ValueError(f"The two specifications must use the same sample: {name} differs.")
+    vals = source[["estimate", "conf_low", "conf_high"]].to_numpy(float)
+    if not np.isfinite(vals).all() or not ((vals[:, 1] <= vals[:, 0]) & (vals[:, 0] <= vals[:, 2])).all():
+        raise ValueError("Invalid point estimates or confidence limits in panel e.")
+    return source
+
+
+def panel_e(ax, source):
+    frame = source.set_index("time_fixed_effects").loc[["village_date", "village_year_month"]]
+    est, lo, hi = [frame[column].to_numpy(float) for column in ("estimate", "conf_low", "conf_high")]
+    ax.axvline(0, color=GRAY, ls="--", lw=0.75, zorder=1)
+    ax.errorbar(est, [1, 0], xerr=[est - lo, hi - est], fmt="o",
+                color=TEAL, markerfacecolor=TEAL, markeredgecolor=TEAL,
+                markeredgewidth=0.9, ecolor=GRAY, markersize=4,
+                capsize=2.1, linewidth=0.9, zorder=3)
+    ax.set_yticks([1, 0], ["Household FE +\nvillage × date FE",
+                          "Household FE +\nvillage × year-month FE"])
+    ax.set_ylim(-0.55, 1.55)
+    ax.set_xlim(-0.025, 0.265)
+    ax.set_xticks([0, 0.05, 0.10, 0.15, 0.20, 0.25])
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: "0" if abs(x) < 1e-10 else f"{x:.2f}"))
+    ax.set_xlabel("Post-adoption slope change\n(kWh/day/°C)")
+    heading(ax, "e", "Electricity-use response\nabove 30°C")
+    style_axis(ax)
+
+
+def iv_display_data(source, rmb_per_usd):
+    source = source.copy()
+    money = source.outcome.eq("bill_rmb")
+    source["display_divisor"] = source.display_divisor.astype(float)
+    source.loc[money, "display_divisor"] = rmb_per_usd
+    for native, shown in [("estimate", "display_estimate"), ("std_error", "display_std_error"),
+                          ("ci_low", "display_ci_low"), ("ci_high", "display_ci_high")]:
+        source[shown] = source[native] / source.display_divisor
+    source["display_unit"] = np.select(
+        [money, source.outcome.eq("bill_income_pp")],
+        ["US$/month", "percentage points"], default="10 kWh/month")
+    return source
+
 
 def main():
-    root=Path(__file__).resolve().parents[1]
-    p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--results',type=Path,default=root/'results')
-    p.add_argument('--output',type=Path,default=root/'results')
-    p.add_argument('--data-dir',type=Path,default=root/'data')
-    p.add_argument('--existing-data',type=Path)
-    p.add_argument('--rmb-per-usd',type=float,default=6.8)
-    p.add_argument('--png-dpi',type=png_dpi_value,default=300,
-                   help='PNG preview DPI (default: 300); automatic reduction on MemoryError. PDF/SVG remain vector.')
-    args=p.parse_args();args.output.mkdir(parents=True,exist_ok=True)
-    if not np.isfinite(args.rmb_per_usd) or args.rmb_per_usd<=0: raise ValueError('Invalid currency conversion.')
-    existing_path=args.existing_data or args.data_dir/'figure5_plot_data.csv'
-    existing=pd.read_csv(existing_path,low_memory=False)
-    data=load_final_data(existing_path)
-    e=pd.read_csv(args.results/'figure5_panel_e.csv')
-    g=pd.read_csv(args.data_dir/'figure5_panel_g.csv')
-    e,g=display_currency(e,g,args.rmb_per_usd)
-    burden=pd.read_csv(args.results/'Figure5_panel_f_source_data.csv')
-    if len(e)!=8 or set(e.heat_state)!={'Non-extreme days','Extreme-heat days'}:raise ValueError('Panel e requires eight verified state-specific estimates.')
+    root = Path(__file__).resolve().parents[2]
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-dir", type=Path, default=root / "data")
+    parser.add_argument("--output", type=Path, default=root)
+    parser.add_argument("--rmb-per-usd", type=float, default=6.8)
+    parser.add_argument("--png-dpi", "--dpi", dest="png_dpi", type=png_dpi_value, default=300)
+    parser.add_argument("--panels-only", action="store_true", help="Render only panel e and the d–f comparison.")
+    args = parser.parse_args()
+    if not np.isfinite(args.rmb_per_usd) or args.rmb_per_usd <= 0:
+        raise ValueError("Currency conversion must be positive and finite.")
+    args.output.mkdir(parents=True, exist_ok=True)
+    data = load_final_data(args.data_dir / "figure5_plot_data.csv")
+    e = read_slope_data(args.data_dir / "figure5_panel_e_slopes.csv")
+    burden = pd.read_csv(args.data_dir / "Figure5_panel_f_source_data.csv")
     set_style()
-    fig,axes=plt.subplots(3,3,figsize=(12.3,11.2))
-    a,b,c,d,ee,f,gg,h,i=axes.ravel()
-    fig.subplots_adjust(left=.175,right=.98,top=.94,bottom=.075,wspace=.75,hspace=.70)
-    event_panel(a,data['monthly_dynamic'],'electricity_bill_rmb','a','Electricity expenditure','Effect (US$/month)',scale=args.rmb_per_usd)
-    event_panel(b,data['monthly_dynamic'],'bill_income_ratio_current_pct','b','Electricity-bill-to-income\nratio','Effect (percentage points)')
-    panel_c(c,data['monthly_dynamic']);panel_d(d,data['income_static'],args.rmb_per_usd)
-    extended_panel_e(fig,ee,e);panel_f(f,burden);iv_panel(gg,g)
-    bar_distribution(h,outage_summary(data['supply']),'h','Battery supply\nduring outages','Respondents (%)',[TEAL,ORANGE,NAVY])
-    bar_distribution(i,duration_distribution(data['duration']),'i','Reported backup\nduration','Respondents (%)',[LIGHT_GRAY,BLUE,DEEP_BLUE,NAVY])
-    full_export=save_formats(fig,args.output,'Figure_5',png_dpi=args.png_dpi)
+    if not args.panels_only:
+        g = iv_display_data(pd.read_csv(args.data_dir / "figure5_panel_g.csv"), args.rmb_per_usd)
+        fig, axes = plt.subplots(3, 3, figsize=(12.3, 11.2))
+        a, b, c, d, ee, f, gg, h, i = axes.ravel()
+        fig.subplots_adjust(left=.175, right=.98, top=.94, bottom=.075, wspace=.75, hspace=.70)
+        event_panel(a, data["monthly_dynamic"], "electricity_bill_rmb", "a", "Electricity expenditure",
+                    "Effect (US$/month)", scale=args.rmb_per_usd)
+        event_panel(b, data["monthly_dynamic"], "bill_income_ratio_current_pct", "b",
+                    "Electricity-bill-to-income\nratio", "Effect (percentage points)")
+        panel_c(c, data["monthly_dynamic"])
+        panel_d(d, data["income_static"], args.rmb_per_usd)
+        panel_e(ee, e)
+        panel_f(f, burden)
+        iv_panel(gg, g)
+        bar_distribution(h, outage_summary(data["supply"]), "h", "Battery supply\nduring outages",
+                         "Respondents (%)", [TEAL, ORANGE, NAVY])
+        bar_distribution(i, duration_distribution(data["duration"]), "i", "Reported backup\nduration",
+                         "Respondents (%)", [LIGHT_GRAY, BLUE, DEEP_BLUE, NAVY])
+        save_formats(fig, args.output, "Figure_5", png_dpi=args.png_dpi)
+        plt.close(fig)
+        del fig, axes, a, b, c, d, ee, f, gg, h, i
+        gc.collect()
+    fig, axes = plt.subplots(1, 3, figsize=(12.3, 3.7))
+    fig.subplots_adjust(left=.155, right=.985, top=.79, bottom=.22, wspace=.78)
+    panel_d(axes[0], data["income_static"], args.rmb_per_usd)
+    panel_e(axes[1], e)
+    panel_f(axes[2], burden)
+    save_formats(fig, args.output, "Figure_5_def_preview", png_dpi=args.png_dpi)
     plt.close(fig)
-    del fig,axes,a,b,c,d,ee,f,gg,h,i
-    gc.collect()
-    caption=CAPTION.replace('RMB 6.8 per US$1',f'RMB {args.rmb_per_usd:g} per US$1')
-    (args.output/'Figure_5_caption.txt').write_text(caption,encoding='utf-8')
-    print(args.output.resolve())
+    fig, ax = plt.subplots(figsize=(5.2, 3.7))
+    fig.subplots_adjust(left=.43, right=.965, top=.79, bottom=.22)
+    panel_e(ax, e)
+    save_formats(fig, args.output, "Figure_5e", png_dpi=args.png_dpi)
+    plt.close(fig)
+    fig, ax = plt.subplots(figsize=(5.2, 3.7))
+    fig.subplots_adjust(left=.32, right=.965, top=.79, bottom=.22)
+    panel_f(ax, burden)
+    save_formats(fig, args.output, "Figure_5f", png_dpi=args.png_dpi)
+    plt.close(fig)
+    caption = CAPTION.replace("RMB 6.8 per US$1", f"RMB {args.rmb_per_usd:g} per US$1")
+    (args.output / "Figure_5_caption.txt").write_text(caption, encoding="utf-8")
+    (args.output / "Figure_5e_caption.txt").write_text(PANEL_E_CAPTION + "\n", encoding="utf-8")
+    (args.output / "Figure_5f_caption.txt").write_text(PANEL_F_CAPTION + "\n", encoding="utf-8")
+    print(f"Figures saved in: {args.output.resolve()}")
 
-if __name__=='__main__':main()
+
+if __name__ == "__main__":
+    main()

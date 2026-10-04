@@ -12,7 +12,7 @@ Scripts: `code/main/`. Inputs: `data/non-confidential/aggregate_main/`.
 | Figure 2 | `Figure_2_plot_only.R` | `figure2_plot_data.csv`, `figure2_pairwise_tests.csv` |
 | Figure 3 | `Figure_3_plot_only.R` | `figure3_plot_data.csv` |
 | Figure 4 | `Figure_4_plot_only.R` | `figure4_plot_data.csv` |
-| Figure 5 | `Figure_5_plot_only.py` | `figure5_plot_data.csv`, `figure5_panel_e.csv`, `Figure5_panel_f_source_data.csv`, `figure5_panel_g.csv` |
+| Figure 5 | `Figure_5_plot_only.py` | `figure5_plot_data.csv`, `figure5_panel_e_slopes.csv`, `Figure5_panel_f_source_data.csv`, `figure5_panel_g.csv` |
 | Figure 6 | `Figure_6_plot_only.R` | `figure6_plot_data.csv` |
 
 ## Supplementary Figures
@@ -27,7 +27,7 @@ Scripts: `code/supplementary/`. Inputs: `data/non-confidential/aggregate_supplem
 | Supplementary Figure 4 | `Supp_Fig_04_plot_only.py` | `supp_fig04_battery_capacity_distribution.csv` |
 | Supplementary Figure 5 | `Supp_Fig_05_plot_only.py` | `supp_fig05_monthly_flows.csv` |
 | Supplementary Figure 6 | `Supp_Fig_06_plot_only.py` | `supp_fig06_survey_rounds.csv`, `supp_fig06_regional_cross_section.csv`, `supp_table03_panelA.csv` |
-| Supplementary Figure 7 | `Supp_Fig_07_plot_only.R` | `supp_fig07_search_temperature.csv`, `supp_fig07_temperature_bin_estimates.csv` |
+| Supplementary Figure 7 | `Supp_Fig_07_plot_only.R` | `supp_fig07_search_temperature.csv`, `supp_fig07_temperature_bin_estimates.csv`, `supp_fig07_policy_estimates.csv` |
 | Supplementary Figure 8 | `Supp_Fig_08_plot_only.py` | `supp_fig08_income_density.csv`, `supp_fig08_income_benchmark_shares.csv` |
 | Supplementary Figure 9 | `Supp_Fig_09_plot_only.R` | `supp_fig09_timing_placebo.csv` |
 | Supplementary Figure 10 | `Supp_Fig_10_plot_only.R` | `supp_fig10_cross_province_placebo.csv` |
@@ -38,7 +38,7 @@ Scripts: `code/supplementary/`. Inputs: `data/non-confidential/aggregate_supplem
 | Supplementary Figure 15 | `Supp_Fig_15_plot_only.py` | `supp_fig15_plot_coordinates.csv` |
 | Supplementary Figure 16 | `Supp_Fig_16_plot_only.R` | `supp_fig16_comparability_density.csv` |
 | Supplementary Figure 17 | `Supp_Fig_17_plot_only.R` | `supp_fig26_hourly_flow_composition.csv` |
-| Supplementary Figure 18 | `Supp_Fig_18_plot_only.R` | `supp_fig18_hourly_coefficients.csv`, `supp_fig18_window_coefficients.csv` |
+| Supplementary Figure 18 | `Supp_Fig_18_plot_only.py` | `supp_fig18_survey_frequencies.csv`, `supp_fig18_hourly_profile_2020.csv` |
 | Supplementary Figure 19 | `Supp_Fig_19_plot_only.py` | `supp_fig19_propensity_density.csv` |
 | Supplementary Figure 20 | `Supp_Fig_20_plot_only.py` | `supp_fig20_complete_event_time.csv` |
 | Supplementary Figure 21 | `Supp_Fig_21_plot_only.py` | `supp_fig21_source.csv` |

@@ -14,6 +14,7 @@ import subprocess
 import sys
 import tempfile
 import time
+from find_rscript import find_rscript
 
 CODE = Path(__file__).resolve().parent
 ROOT = CODE.parent
@@ -21,17 +22,6 @@ ROOT = CODE.parent
 def read_manifest(name):
     with (CODE / name).open(encoding="utf-8-sig", newline="") as handle:
         return list(csv.DictReader(handle))
-
-def find_rscript():
-    configured = os.environ.get("RSCRIPT", "").strip()
-    if configured:
-        result = shutil.which(configured) or (configured if Path(configured).is_file() else None)
-    else:
-        result = shutil.which("Rscript")
-    if not result:
-        raise RuntimeError("Rscript was not found. Install R and run code/setup.R. On Windows, set RSCRIPT to the full path to Rscript.exe.")
-    return result
-
 
 def software_versions(rscript):
     python_packages = {}
@@ -105,8 +95,10 @@ def main():
                     raise RuntimeError(f"{label} failed. See {log}\n{process.stdout[-5000:]}")
             target=output/("figures" if section=="main" else "figures_appendix")
             prefix="Figure_" if section=="main" else "Supplementary_Fig_"
-            for suffix in ["png","pdf"]:
+            for suffix in ["png","pdf","svg"]:
                 for p in (work/"output").glob(prefix+"*."+suffix):shutil.copy2(p,target/p.name)
+            for pattern in [prefix + "*_caption.txt", prefix + "*_summary.csv"]:
+                for p in (work/"output").glob(pattern): shutil.copy2(p, target/p.name)
             if section=="supplementary":
                 for p in (work/"output/tables").iterdir():shutil.copy2(p,output/"tables_appendix"/p.name)
             print(("Main manuscript figures (1-6)" if section=="main" else "Supplementary figures (1-27)")+": SUCCESS",flush=True)
@@ -122,6 +114,9 @@ def main():
     numbers={int(p.name.split("_")[2].split(".")[0]) for p in table_files}
     if numbers != set(range(1,36)):raise RuntimeError("The generated table sets do not cover Tables 1–35")
     expected+=table_files
+    for folder in ['figures','figures_appendix']:
+        expected += [p for p in (output/folder).iterdir() if p.is_file() and p not in expected]
+    expected += [p for p in (output/'tables_appendix').iterdir() if p.is_file() and p not in expected]
     print("Supplementary tables (1-35): SUCCESS",flush=True)
     report=dict(status="success",python=sys.version.split()[0],platform=platform.platform(),
         software=software_versions(rscript),

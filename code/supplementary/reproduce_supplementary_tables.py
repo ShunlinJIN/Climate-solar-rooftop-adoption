@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 OUT = ROOT / "output" / "tables"
 OUT.mkdir(parents=True, exist_ok=True)
-REQUIRED_PANELS = {12: set("ABCD"), 28: set("AB"), 29: set("ABCDE"),
+REQUIRED_PANELS = {12: set("ABCD"), 27: set("ABC"), 28: set("AB"), 29: set("ABCDE"),
                    31: set("AB"), 32: set("ABCDEFGHI"), 33: set("ABCDE"), 34: set("ABC")}
 sources = sorted(DATA.glob("supp_table*.csv"))
 tables = {}

@@ -1,11 +1,11 @@
 # Climate-driven rooftop solar adoption alleviates rural energy poverty
 
-Code and accompanying non-identifying source data for reproducing the figures and tables in the main text and Supplementary Information.
+Code and accompanying non-identifying source data for reproducing the figures and tables in the main text and Supplementary Information. The public workflow recreates the reported outputs; it does not re-estimate the empirical models from restricted household-level or provider records.
 
 **Authors:** Shunlin Jin, Xianling Long, Yana Jin, Weidong Wang, and Shiqiu Zhang  
 **Corresponding authors:** Xianling Long and Yana Jin
 
-The workflow generates **6 main figures, 27 Supplementary Figures and 35 Supplementary Tables**. All figures are exported as PDF and PNG. Figures 1, 2, 4 and 5 and Supplementary Figures 7 and 18 also have SVG exports. Table outputs are CSV files with English titles and notes.
+The workflow generates **6 main figures, 27 Supplementary Figures and 35 Supplementary Tables**. All figures are exported as PDF and PNG. Figures 1, 2, 3, 4 and 5 and Supplementary Figures 7 and 19 also have SVG exports. Table outputs are CSV files with English titles and notes.
 
 ## Local reproduction
 
@@ -69,6 +69,14 @@ The source directory must contain the `aggregate_main/` and `aggregate_supplemen
 | `data/non-confidential/aggregate_supplementary/` | Supplementary figure and table source data |
 
 Table 3 has separate Panel A and Panel B CSV files. Other multipart tables identify their panels within a single CSV. `supplementary_table_notes.json` supplies the exported titles and notes.
+
+Supplementary Table 17 Panel F uses the same reported current-income sample as Tables 13 and 29 (989 adopters; 492 below and 497 at or above RMB 15,960 per person per year, excluding RRPV revenue). `financing_current_income_counts.csv` supplies its aggregate numerators and denominators. The other financing panels retain their own stated samples.
+
+The runner validates current figure/table numbering, Panel F denominators and proportions, and key shared source values before creating outputs. This input-only check can also be run without R:
+
+```bash
+python code/validate_public_inputs.py
+```
 
 See `OUTPUT_INDEX.md` for the output-to-input mapping and `SOURCE_DATA.md` for field definitions and units. Data access arrangements are described in `DATA_AVAILABILITY.md`.
 

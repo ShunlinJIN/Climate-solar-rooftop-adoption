@@ -1,39 +1,22 @@
-panel,panel_label,row_order,outcome,group_1,group_2,group_1_value,group_2_value,group_value_unit,adjusted_difference,ci_lower,ci_upper,p_value_display,difference_unit
-A,Climate-risk perceptions and current RRPV adaptation value,1,Reliability concern is stronger during heat periods,RRPV adopters,Non-adopters,40.2,39,percent,2,-1.5,5.4,0.271,percentage points
-A,Climate-risk perceptions and current RRPV adaptation value,2,Perceives hot days as increasing over the previous five summers,RRPV adopters,Non-adopters,42,46.3,percent,-4.4,-8.2,-0.6,0.025,percentage points
-A,Climate-risk perceptions and current RRPV adaptation value,3,Perceives the current summer as hotter than recent summers,RRPV adopters,Non-adopters,37.1,35.2,percent,2.9,-0.5,6.2,0.092,percentage points
-A,Climate-risk perceptions and current RRPV adaptation value,4,Expects hot days to increase in the coming years,RRPV adopters,Non-adopters,48.9,50.1,percent,-1.2,-5.1,2.7,0.557,percentage points
-A,Climate-risk perceptions and current RRPV adaptation value,5,"Believes RRPV provides at least some help with heat-related bills, electricity use or outage risk",RRPV adopters,Non-adopters,80.9,60.7,percent,20,16.7,23.4,<0.001,percentage points
-A,Climate-risk perceptions and current RRPV adaptation value,6,"Believes RRPV provides large or very large help with heat-related bills, electricity use or outage risk",RRPV adopters,Non-adopters,54.3,29.6,percent,24.9,20.6,29.2,<0.001,percentage points
-B,Questionnaire item 4.2 motive scores,1,Increase income from electricity sales,Lower-current-income adopters,Higher-current-income adopters,9.54,9.23,score points,0.22,0.15,0.3,<0.001,score points
-B,Questionnaire item 4.2 motive scores,2,Reduce ordinary household electricity expenditure,Lower-current-income adopters,Higher-current-income adopters,7.72,7.01,score points,0.4,0.21,0.59,<0.001,score points
-B,Questionnaire item 4.2 motive scores,3,Reduce electricity-bill pressure during summer or extreme heat,Lower-current-income adopters,Higher-current-income adopters,6.82,6.32,score points,0.33,0.09,0.58,0.008,score points
-B,Questionnaire item 4.2 motive scores,4,"Concern about outages, rationing or voltage instability",Lower-current-income adopters,Higher-current-income adopters,2.46,2.5,score points,-0.11,-0.34,0.11,0.327,score points
-B,Questionnaire item 4.2 motive scores,5,"Convenient loan, instalment or advance-payment arrangement",Lower-current-income adopters,Higher-current-income adopters,1.72,1.39,score points,0.21,-0.01,0.44,0.062,score points
-B,Questionnaire item 4.2 motive scores,6,Lower installation price or attractive projected returns,Lower-current-income adopters,Higher-current-income adopters,4.06,4.93,score points,-0.33,-0.54,-0.13,0.002,score points
-B,Questionnaire item 4.2 motive scores,7,Advice from children or relatives,Lower-current-income adopters,Higher-current-income adopters,2.52,2.57,score points,-0.15,-0.4,0.11,0.256,score points
-B,Questionnaire item 4.2 motive scores,8,"Positive experience of neighbours, relatives or colleagues",Lower-current-income adopters,Higher-current-income adopters,2.79,2.96,score points,0.03,-0.18,0.24,0.773,score points
-B,Questionnaire item 4.2 motive scores,9,"Promotion by village, bank or installer",Lower-current-income adopters,Higher-current-income adopters,2.76,2.57,score points,0.24,0.03,0.44,0.027,score points
-B,Questionnaire item 4.2 motive scores,10,Use otherwise idle roof space,Lower-current-income adopters,Higher-current-income adopters,3.8,4.3,score points,-0.16,-0.38,0.07,0.178,score points
-B,Questionnaire item 4.2 motive scores,11,Environmental protection or emissions reduction,Lower-current-income adopters,Higher-current-income adopters,2.79,3.97,score points,-0.27,-0.49,-0.04,0.021,score points
-B,Questionnaire item 4.2 motive scores,12,Increase house or household asset value,Lower-current-income adopters,Higher-current-income adopters,2.44,3.38,score points,-0.61,-0.85,-0.37,<0.001,score points
-B,Questionnaire item 4.2 motive scores,13,National or local policy support,Lower-current-income adopters,Higher-current-income adopters,3.11,2.92,score points,0.11,-0.08,0.31,0.252,score points
-C,Ranked motives and motive coexistence,1,Electricity-sales income ranked first,Lower-current-income adopters,Higher-current-income adopters,80.7,64,percent,10.7,4.1,17.4,0.001,percentage points
-C,Ranked motives and motive coexistence,2,Ordinary bill reduction ranked first,Lower-current-income adopters,Higher-current-income adopters,11.6,8.9,percent,2.6,-1.6,6.9,0.229,percentage points
-C,Ranked motives and motive coexistence,3,Heat-related bill pressure ranked first,Lower-current-income adopters,Higher-current-income adopters,4.5,11.5,percent,-4.8,-8.3,-1.3,0.007,percentage points
-C,Ranked motives and motive coexistence,4,Reliability concern ranked first,Lower-current-income adopters,Higher-current-income adopters,0,0.2,percent,-0.3,-0.8,0.2,0.313,percentage points
-C,Ranked motives and motive coexistence,5,Lower price or attractive projected returns ranked first,Lower-current-income adopters,Higher-current-income adopters,1,6.6,percent,-4.5,-7.6,-1.4,0.004,percentage points
-C,Ranked motives and motive coexistence,6,National or local policy support ranked first,Lower-current-income adopters,Higher-current-income adopters,0.2,0,percent,0.2,-0.2,0.6,0.310,percentage points
-C,Ranked motives and motive coexistence,7,At least one energy-affordability or reliability motive in the top three,Lower-current-income adopters,Higher-current-income adopters,87,65.6,percent,15.1,8.8,21.4,<0.001,percentage points
-C,Ranked motives and motive coexistence,8,At least one heat- or reliability-related motive in the top three,Lower-current-income adopters,Higher-current-income adopters,50.6,30.6,percent,15.3,6.9,23.6,<0.001,percentage points
-C,Ranked motives and motive coexistence,9,Electricity-sales income and a heat- or reliability-related motive both in the top three,Lower-current-income adopters,Higher-current-income adopters,49.6,29.6,percent,15,6.7,23.3,<0.001,percentage points
-C,Ranked motives and motive coexistence,10,Electricity-sales income ranked first and a heat- or reliability-related motive ranked second or third,Lower-current-income adopters,Higher-current-income adopters,39.8,15.1,percent,18.1,11.1,25.1,<0.001,percentage points
-D,Questionnaire item 4.1 pre-installation experiences,1,Summer electricity bill increased noticeably,Lower-current-income adopters,Higher-current-income adopters,32.3,28.4,percent,3.2,-4.1,10.4,0.393,percentage points
-D,Questionnaire item 4.1 pre-installation experiences,2,Electricity use increased during hot weather,Lower-current-income adopters,Higher-current-income adopters,30.5,26.4,percent,5,-1.2,11.3,0.113,percentage points
-D,Questionnaire item 4.1 pre-installation experiences,3,Outage or electricity-rationing episode in the household’s local area,Lower-current-income adopters,Higher-current-income adopters,6.3,7.4,percent,-1.4,-5.1,2.4,0.481,percentage points
-D,Questionnaire item 4.1 pre-installation experiences,4,Neighbour installed RRPV,Lower-current-income adopters,Higher-current-income adopters,14.4,16.7,percent,-3,-8.3,2.2,0.255,percentage points
-D,Questionnaire item 4.1 pre-installation experiences,5,Installer visited the household,Lower-current-income adopters,Higher-current-income adopters,27.8,33.2,percent,-1.7,-8.8,5.3,0.628,percentage points
-D,Questionnaire item 4.1 pre-installation experiences,6,Village or bank promotion,Lower-current-income adopters,Higher-current-income adopters,22.4,21.5,percent,0.7,-6.9,8.3,0.861,percentage points
-D,Questionnaire item 4.1 pre-installation experiences,7,Advice from children or relatives,Lower-current-income adopters,Higher-current-income adopters,14.2,15.7,percent,-4,-9.1,1,0.118,percentage points
-D,Questionnaire item 4.1 pre-installation experiences,8,RRPV price declined,Lower-current-income adopters,Higher-current-income adopters,21.7,22.9,percent,1.1,-5.9,8.2,0.755,percentage points
-D,Questionnaire item 4.1 pre-installation experiences,9,"At least one pre-installation experience involving summer bills, hot-weather electricity use, or an outage or electricity-rationing episode in the household’s local area",Lower-current-income adopters,Higher-current-income adopters,55.5,50.5,percent,5.8,-1.6,13.2,0.125,percentage points
+﻿panel,dimension_id,dimension,subgroup_or_contrast,row_type,estimate,std_error,ci_lower,ci_upper,observations,counties
+A,A,Long-term average temperature,High,subgroup,0.095,0.017,0.062,0.128,10020,167
+A,A,Long-term average temperature,Low,subgroup,0.042,0.017,0.009,0.075,10080,168
+A,A,Long-term average temperature,High - Low,contrast,0.053,0.024,,,,
+A,B,Short-term average temperature,High,subgroup,0.105,0.017,0.072,0.138,10020,167
+A,B,Short-term average temperature,Low,subgroup,0.041,0.016,0.01,0.072,10080,168
+A,B,Short-term average temperature,High - Low,contrast,0.064,0.023,,,,
+A,C,Long-term temperature fluctuation,High,subgroup,0.084,0.016,0.052,0.116,10020,167
+A,C,Long-term temperature fluctuation,Low,subgroup,0.036,0.016,0.005,0.067,10080,168
+A,C,Long-term temperature fluctuation,High - Low,contrast,0.048,0.023,,,,
+A,D,Short-term temperature fluctuation,High,subgroup,0.07,0.019,0.032,0.108,10020,167
+A,D,Short-term temperature fluctuation,Low,subgroup,0.049,0.016,0.017,0.081,10080,168
+A,D,Short-term temperature fluctuation,High - Low,contrast,0.021,0.025,,,,
+B,E,Solar radiation,High,subgroup,0.084,0.015,0.054,0.114,10020,167
+B,E,Solar radiation,Low,subgroup,0.053,0.017,0.019,0.087,10080,168
+B,E,Solar radiation,High - Low,contrast,0.031,0.023,,,,
+B,F,Land slope,Steeper (high slope),subgroup,0.04,0.015,0.011,0.069,10020,167
+B,F,Land slope,Flatter (low slope),subgroup,0.099,0.015,0.069,0.129,10080,168
+B,F,Land slope,Flatter - Steeper,contrast,0.059,0.021,,,,
+B,G,County income,High,subgroup,0.092,0.016,0.061,0.123,10020,167
+B,G,County income,Low,subgroup,0.041,0.015,0.012,0.07,10080,168
+B,G,County income,High - Low,contrast,0.051,0.022,,,,

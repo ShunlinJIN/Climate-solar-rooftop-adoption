@@ -1,18 +1,31 @@
-Panel,Measure,Group 1,Group 1 N,Group 1 value (%),Group 2,Group 2 N,Group 2 value (%),Difference (percentage points)
-A. Overall prevalence,Cash subsidy,All adopters,1033,3.3881897386253628,,,,
-A. Overall prevalence,Installation price discount,All adopters,1033,17.424975798644724,,,,
-A. Overall prevalence,Low- or zero-interest instalment,All adopters,1033,10.454985479186837,,,,
-A. Overall prevalence,"In-kind gift (for example, rice, cooking oil or appliances)",All adopters,1033,11.907066795740562,,,,
-A. Overall prevalence,Free maintenance or extended warranty,All adopters,1033,28.267182962245883,,,,
-A. Overall prevalence,Concentrated promotional campaign,All adopters,1033,36.88286544046467,,,,
-A. Overall prevalence,No promotion reported,All adopters,1033,28.94482090997096,,,,
-A. Overall prevalence,Any promotion or campaign,All adopters,1033,71.05517909002904,,,,
-A. Overall prevalence,Any concurrent non-loan economic incentive,All adopters,1033,48.69312681510164,,,,
-B. Prevalence by institutional-finance use,Cash subsidy,Institutional-finance users,185,5.405405405405405,Non-users,848.0,2.94811320754717,2.4572921978582354
-B. Prevalence by institutional-finance use,Installation price discount,Institutional-finance users,185,15.135135135135137,Non-users,848.0,17.92452830188679,-2.7893931667516547
-B. Prevalence by institutional-finance use,Low- or zero-interest instalment,Institutional-finance users,185,41.08108108108108,Non-users,848.0,3.7735849056603774,37.3074961754207
-B. Prevalence by institutional-finance use,"In-kind gift (for example, rice, cooking oil or appliances)",Institutional-finance users,185,10.81081081081081,Non-users,848.0,12.14622641509434,-1.3354156042835292
-B. Prevalence by institutional-finance use,Free maintenance or extended warranty,Institutional-finance users,185,29.72972972972973,Non-users,848.0,27.94811320754717,1.78161652218256
-B. Prevalence by institutional-finance use,Concentrated promotional campaign,Institutional-finance users,185,35.13513513513514,Non-users,848.0,37.264150943396224,-2.1290158082610877
-B. Prevalence by institutional-finance use,Any concurrent non-loan economic incentive,Institutional-finance users,185,48.10810810810811,Non-users,848.0,48.82075471698113,-0.7126466088730155
-B. Prevalence by institutional-finance use,Any promotion or campaign,Institutional-finance users,185,82.16216216216216,Non-users,848.0,68.63207547169812,13.530086690464046
+panel_label,Measure,Households,Group,Mean annual per-capita income (RMB),SD annual per-capita income (RMB),Median annual per-capita income (RMB),P25 annual per-capita income (RMB),P75 annual per-capita income (RMB),Mean monthly household income in 2023 (RMB),Median monthly household income in 2023 (RMB),Below official national rural mean (%),Below official national rural median (%),Below official Jiangsu rural mean (%),Below national county P40 (%),Share of denominator (%),Pre-adoption income quintile,Share (%),Denominator
+Panel A - balanced 2023 sample,Households observed in 2023H1,2550,,,,,,,,,,,,,,,,
+Panel A - balanced 2023 sample,Households observed in 2023H2,2597,,,,,,,,,,,,,,,,
+Panel A - balanced 2023 sample,Households observed in both 2023 rounds,2536,,,,,,,,,,,,,,,,
+Panel A - balanced 2023 sample,Balanced households with valid income and household size in both rounds,2536,,,,,,,,,,,,,,,,
+Panel A - balanced 2023 sample,RRPV adopters at end of 2023,977,,,,,,,,,,,,,,,,
+Panel A - balanced 2023 sample,Non-adopters at end of 2023,1559,,,,,,,,,,,,,,,,
+Panel A - balanced 2023 sample,Households adopting during 2023,17,,,,,,,,,,,,,,,,
+Panel A - balanced 2023 sample,Stable-status sensitivity sample,2519,,,,,,,,,,,,,,,,
+Panel B - 2023 income summary,,977,RRPV adopters,17917.54942243018,13318.084761557218,14400.0,8820.0,23520.0,2839.334698055271,2180.0,,,,,,,,
+Panel B - 2023 income summary,,1559,Non-adopters,14126.891688811507,10832.70798533359,9348.0,7560.0,17535.0,2305.453495830661,1753.5,,,,,,,,
+Panel B - 2023 income summary,,2536,Full sample,15587.251549121229,11992.30793816334,11415.0,7746.0,19522.5,2511.1324921135647,1918.5,,,,,,,,
+Panel C - external benchmark shares,,977,RRPV adopters,,,,,,,,72.1596724667349,64.58546571136131,86.18219037871033,66.42784032753326,,,,
+Panel C - external benchmark shares,,1559,Non-adopters,,,,,,,,82.61706221937139,77.67799871712636,91.01988454137268,79.02501603592046,,,,
+Panel C - external benchmark shares,,2536,Full sample,,,,,,,,78.58832807570978,72.63406940063092,89.15615141955836,74.17192429022083,,,,
+Panel D - adoption timing coverage,Ever observed as RRPV adopter,1099,,,,,,,,,,,,,100.0,,,
+Panel D - adoption timing coverage,Connected before January 2021,589,,,,,,,,,,,,,53.59417652411283,,,
+Panel D - adoption timing coverage,Connected during January 2021–June 2026,510,,,,,,,,,,,,,46.40582347588717,,,
+Panel D - adoption timing coverage,Connected during January–June 2021,307,,,,,,,,,,,,,60.19607843137255,,,
+Panel D - adoption timing coverage,Connected during July 2021–June 2026,203,,,,,,,,,,,,,39.80392156862745,,,
+Panel D - adoption timing coverage,Directly observed non-adopter-to-adopter transition in consecutive rounds,99,,,,,,,,,,,,,9.008189262966331,,,
+Panel D - adoption timing coverage,Within-panel adopters with a fully untreated pre-adoption income round,99,,,,,,,,,,,,,19.411764705882355,,,
+Panel D - adoption timing coverage,Within-panel adopters with first fully treated post-adoption income round,502,,,,,,,,,,,,,98.4313725490196,,,
+Panel D - adoption timing coverage,Within-panel adopters with a clean pre/post1 income pair,96,,,,,,,,,,,,,18.823529411764707,,,
+Panel D - adoption timing coverage,Within-panel adopters with a clean pre/post2 income pair,95,,,,,,,,,,,,,18.62745098039216,,,
+Panel E - pre-adoption income position,,19,,,,,,,,,,,,,,Q1 (Lowest),19.19191919191919,99.0
+Panel E - pre-adoption income position,,10,,,,,,,,,,,,,,Q2,10.1010101010101,99.0
+Panel E - pre-adoption income position,,17,,,,,,,,,,,,,,Q3,17.17171717171717,99.0
+Panel E - pre-adoption income position,,18,,,,,,,,,,,,,,Q4,18.181818181818183,99.0
+Panel E - pre-adoption income position,,35,,,,,,,,,,,,,,Q5 (Highest),35.35353535353536,99.0
+Panel E - pre-adoption income position,,29,,,,,,,,,,,,,,Bottom 40% (Q1+Q2),29.29292929292929,99.0

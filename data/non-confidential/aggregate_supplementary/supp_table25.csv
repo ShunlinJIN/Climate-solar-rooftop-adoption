@@ -1,73 +1,11 @@
-﻿table_number,panel,panel_label,row_order,row_id,row_label,column_order,column_id,column_label,system,row_type,estimate,std_error,stars,display_value,unit
-25,,,1,total_effect,Total effect,1,col1,(1) Current generation only,RRPV-only,estimate,0.082,0.014,***,0.082***,kWh consumption per kWh PV generation
-25,,,1,total_effect,Total effect,2,col2,(2) Current + lag 1,RRPV-only,estimate,0.091,0.013,***,0.091***,kWh consumption per kWh PV generation
-25,,,1,total_effect,Total effect,3,col3,(3) Current + lags 1–2,RRPV-only,estimate,0.087,0.013,***,0.087***,kWh consumption per kWh PV generation
-25,,,1,total_effect,Total effect,4,col4,(4) Current + lags 1–3,RRPV-only,estimate,0.079,0.015,***,0.079***,kWh consumption per kWh PV generation
-25,,,1,total_effect,Total effect,5,col5,(5) Current generation only,RRPV-BS,estimate,0.118,0.013,***,0.118***,kWh consumption per kWh PV generation
-25,,,1,total_effect,Total effect,6,col6,(6) Current + lag 1,RRPV-BS,estimate,0.114,0.012,***,0.114***,kWh consumption per kWh PV generation
-25,,,1,total_effect,Total effect,7,col7,(7) Current + lags 1–2,RRPV-BS,estimate,0.111,0.013,***,0.111***,kWh consumption per kWh PV generation
-25,,,1,total_effect,Total effect,8,col8,(8) Current + lags 1–3,RRPV-BS,estimate,0.114,0.012,***,0.114***,kWh consumption per kWh PV generation
-25,,,2,current,EG_id,1,col1,(1) Current generation only,RRPV-only,estimate,0.082,0.014,***,0.082***,kWh consumption per kWh PV generation
-25,,,2,current,EG_id,2,col2,(2) Current + lag 1,RRPV-only,estimate,0.093,0.015,***,0.093***,kWh consumption per kWh PV generation
-25,,,2,current,EG_id,3,col3,(3) Current + lags 1–2,RRPV-only,estimate,0.088,0.014,***,0.088***,kWh consumption per kWh PV generation
-25,,,2,current,EG_id,4,col4,(4) Current + lags 1–3,RRPV-only,estimate,0.082,0.012,***,0.082***,kWh consumption per kWh PV generation
-25,,,2,current,EG_id,5,col5,(5) Current generation only,RRPV-BS,estimate,0.118,0.013,***,0.118***,kWh consumption per kWh PV generation
-25,,,2,current,EG_id,6,col6,(6) Current + lag 1,RRPV-BS,estimate,0.116,0.015,***,0.116***,kWh consumption per kWh PV generation
-25,,,2,current,EG_id,7,col7,(7) Current + lags 1–2,RRPV-BS,estimate,0.115,0.013,***,0.115***,kWh consumption per kWh PV generation
-25,,,2,current,EG_id,8,col8,(8) Current + lags 1–3,RRPV-BS,estimate,0.117,0.014,***,0.117***,kWh consumption per kWh PV generation
-25,,,3,lag1,"EG_i,d-1",1,col1,(1) Current generation only,RRPV-only,blank,,,,,
-25,,,3,lag1,"EG_i,d-1",2,col2,(2) Current + lag 1,RRPV-only,estimate,-0.002,0.014,,-0.002,kWh consumption per kWh PV generation
-25,,,3,lag1,"EG_i,d-1",3,col3,(3) Current + lags 1–2,RRPV-only,estimate,-0.003,0.012,,-0.003,kWh consumption per kWh PV generation
-25,,,3,lag1,"EG_i,d-1",4,col4,(4) Current + lags 1–3,RRPV-only,estimate,0.001,0.011,,0.001,kWh consumption per kWh PV generation
-25,,,3,lag1,"EG_i,d-1",5,col5,(5) Current generation only,RRPV-BS,blank,,,,,
-25,,,3,lag1,"EG_i,d-1",6,col6,(6) Current + lag 1,RRPV-BS,estimate,-0.002,0.011,,-0.002,kWh consumption per kWh PV generation
-25,,,3,lag1,"EG_i,d-1",7,col7,(7) Current + lags 1–2,RRPV-BS,estimate,-0.001,0.012,,-0.001,kWh consumption per kWh PV generation
-25,,,3,lag1,"EG_i,d-1",8,col8,(8) Current + lags 1–3,RRPV-BS,estimate,-0.004,0.017,,-0.004,kWh consumption per kWh PV generation
-25,,,4,lag2,"EG_i,d-2",1,col1,(1) Current generation only,RRPV-only,blank,,,,,
-25,,,4,lag2,"EG_i,d-2",2,col2,(2) Current + lag 1,RRPV-only,blank,,,,,
-25,,,4,lag2,"EG_i,d-2",3,col3,(3) Current + lags 1–2,RRPV-only,estimate,0.002,0.01,,0.002,kWh consumption per kWh PV generation
-25,,,4,lag2,"EG_i,d-2",4,col4,(4) Current + lags 1–3,RRPV-only,estimate,-0.001,0.01,,-0.001,kWh consumption per kWh PV generation
-25,,,4,lag2,"EG_i,d-2",5,col5,(5) Current generation only,RRPV-BS,blank,,,,,
-25,,,4,lag2,"EG_i,d-2",6,col6,(6) Current + lag 1,RRPV-BS,blank,,,,,
-25,,,4,lag2,"EG_i,d-2",7,col7,(7) Current + lags 1–2,RRPV-BS,estimate,-0.003,0.01,,-0.003,kWh consumption per kWh PV generation
-25,,,4,lag2,"EG_i,d-2",8,col8,(8) Current + lags 1–3,RRPV-BS,estimate,0.002,0.011,,0.002,kWh consumption per kWh PV generation
-25,,,5,lag3,"EG_i,d-3",1,col1,(1) Current generation only,RRPV-only,blank,,,,,
-25,,,5,lag3,"EG_i,d-3",2,col2,(2) Current + lag 1,RRPV-only,blank,,,,,
-25,,,5,lag3,"EG_i,d-3",3,col3,(3) Current + lags 1–2,RRPV-only,blank,,,,,
-25,,,5,lag3,"EG_i,d-3",4,col4,(4) Current + lags 1–3,RRPV-only,estimate,-0.003,0.009,,-0.003,kWh consumption per kWh PV generation
-25,,,5,lag3,"EG_i,d-3",5,col5,(5) Current generation only,RRPV-BS,blank,,,,,
-25,,,5,lag3,"EG_i,d-3",6,col6,(6) Current + lag 1,RRPV-BS,blank,,,,,
-25,,,5,lag3,"EG_i,d-3",7,col7,(7) Current + lags 1–2,RRPV-BS,blank,,,,,
-25,,,5,lag3,"EG_i,d-3",8,col8,(8) Current + lags 1–3,RRPV-BS,estimate,-0.001,0.01,,-0.001,kWh consumption per kWh PV generation
-25,,,10,observations,Obs.,1,col1,(1) Current generation only,RRPV-only,metadata,,,,"5,331,107",household-days
-25,,,11,control_variables,Control variables,1,col1,(1) Current generation only,RRPV-only,metadata,,,,Yes,
-25,,,12,household-year_fe,Household-Year FE,1,col1,(1) Current generation only,RRPV-only,metadata,,,,Yes,
-25,,,13,year-month_fe,Year-Month FE,1,col1,(1) Current generation only,RRPV-only,metadata,,,,Yes,
-25,,,10,observations,Obs.,2,col2,(2) Current + lag 1,RRPV-only,metadata,,,,"5,331,107",household-days
-25,,,11,control_variables,Control variables,2,col2,(2) Current + lag 1,RRPV-only,metadata,,,,Yes,
-25,,,12,household-year_fe,Household-Year FE,2,col2,(2) Current + lag 1,RRPV-only,metadata,,,,Yes,
-25,,,13,year-month_fe,Year-Month FE,2,col2,(2) Current + lag 1,RRPV-only,metadata,,,,Yes,
-25,,,10,observations,Obs.,3,col3,(3) Current + lags 1–2,RRPV-only,metadata,,,,"5,331,107",household-days
-25,,,11,control_variables,Control variables,3,col3,(3) Current + lags 1–2,RRPV-only,metadata,,,,Yes,
-25,,,12,household-year_fe,Household-Year FE,3,col3,(3) Current + lags 1–2,RRPV-only,metadata,,,,Yes,
-25,,,13,year-month_fe,Year-Month FE,3,col3,(3) Current + lags 1–2,RRPV-only,metadata,,,,Yes,
-25,,,10,observations,Obs.,4,col4,(4) Current + lags 1–3,RRPV-only,metadata,,,,"5,331,107",household-days
-25,,,11,control_variables,Control variables,4,col4,(4) Current + lags 1–3,RRPV-only,metadata,,,,Yes,
-25,,,12,household-year_fe,Household-Year FE,4,col4,(4) Current + lags 1–3,RRPV-only,metadata,,,,Yes,
-25,,,13,year-month_fe,Year-Month FE,4,col4,(4) Current + lags 1–3,RRPV-only,metadata,,,,Yes,
-25,,,10,observations,Obs.,5,col5,(5) Current generation only,RRPV-BS,metadata,,,,"190,274",household-days
-25,,,11,control_variables,Control variables,5,col5,(5) Current generation only,RRPV-BS,metadata,,,,Yes,
-25,,,12,household-year_fe,Household-Year FE,5,col5,(5) Current generation only,RRPV-BS,metadata,,,,Yes,
-25,,,13,year-month_fe,Year-Month FE,5,col5,(5) Current generation only,RRPV-BS,metadata,,,,Yes,
-25,,,10,observations,Obs.,6,col6,(6) Current + lag 1,RRPV-BS,metadata,,,,"190,274",household-days
-25,,,11,control_variables,Control variables,6,col6,(6) Current + lag 1,RRPV-BS,metadata,,,,Yes,
-25,,,12,household-year_fe,Household-Year FE,6,col6,(6) Current + lag 1,RRPV-BS,metadata,,,,Yes,
-25,,,13,year-month_fe,Year-Month FE,6,col6,(6) Current + lag 1,RRPV-BS,metadata,,,,Yes,
-25,,,10,observations,Obs.,7,col7,(7) Current + lags 1–2,RRPV-BS,metadata,,,,"190,274",household-days
-25,,,11,control_variables,Control variables,7,col7,(7) Current + lags 1–2,RRPV-BS,metadata,,,,Yes,
-25,,,12,household-year_fe,Household-Year FE,7,col7,(7) Current + lags 1–2,RRPV-BS,metadata,,,,Yes,
-25,,,13,year-month_fe,Year-Month FE,7,col7,(7) Current + lags 1–2,RRPV-BS,metadata,,,,Yes,
-25,,,10,observations,Obs.,8,col8,(8) Current + lags 1–3,RRPV-BS,metadata,,,,"190,274",household-days
-25,,,11,control_variables,Control variables,8,col8,(8) Current + lags 1–3,RRPV-BS,metadata,,,,Yes,
-25,,,12,household-year_fe,Household-Year FE,8,col8,(8) Current + lags 1–3,RRPV-BS,metadata,,,,Yes,
-25,,,13,year-month_fe,Year-Month FE,8,col8,(8) Current + lags 1–3,RRPV-BS,metadata,,,,Yes,
+system,lag_component,estimate,std_error,ci_lower,ci_upper,households,observations
+RRPV-only,Total Effect,0.079,0.015,0.0494,0.1086,6418.0,5331107.0
+RRPV-only,Current,0.082,0.012,0.05848,0.10552,6418.0,5331107.0
+RRPV-only,Lag 1,0.001,0.011,-0.02056,0.02256,6418.0,5331107.0
+RRPV-only,Lag 2,-0.001,0.01,-0.0206,0.0186,6418.0,5331107.0
+RRPV-only,Lag 3,-0.003,0.009,-0.02064,0.01464,6418.0,5331107.0
+RRPV-BS,Total Effect,0.114,0.012,0.09048,0.13752,229.0,190274.0
+RRPV-BS,Current,0.117,0.014,0.08956,0.14444,229.0,190274.0
+RRPV-BS,Lag 1,-0.004,0.017,-0.03732,0.02932,229.0,190274.0
+RRPV-BS,Lag 2,0.002,0.011,-0.01956,0.02356,229.0,190274.0
+RRPV-BS,Lag 3,-0.001,0.01,-0.0206,0.0186,229.0,190274.0

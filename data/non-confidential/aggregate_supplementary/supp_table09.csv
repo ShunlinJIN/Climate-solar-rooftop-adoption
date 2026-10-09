@@ -1,28 +1,7 @@
-temperature_bin,specification,estimate,std_error,ci_lower,ci_upper,counties,observations,is_reference
-≤-5°C,Current month,0.012,0.018,-0.024,0.048,335,20100,False
--5-0°C,Current month,0.006,0.016,-0.025,0.037,335,20100,False
-0-5°C,Current month,0.002,0.013,-0.024,0.028,335,20100,False
-5-10°C,Current month,-0.001,0.01,-0.02,0.018,335,20100,False
-10-15°C,Current month,-0.003,0.006,-0.015,0.009,335,20100,False
-15-20°C,Current month,0,,,,335,20100,True
-20-25°C,Current month,0.027,0.012,0.004,0.05,335,20100,False
-25-30°C,Current month,0.041,0.016,0.009,0.073,335,20100,False
->30°C,Current month,0.066,0.021,0.025,0.107,335,20100,False
-≤-5°C,Cumulative through lag 1,0.014,0.017,-0.02,0.048,335,20100,False
--5-0°C,Cumulative through lag 1,0.002,0.013,-0.024,0.028,335,20100,False
-0-5°C,Cumulative through lag 1,-0.003,0.01,-0.022,0.016,335,20100,False
-5-10°C,Cumulative through lag 1,0.002,0.006,-0.01,0.014,335,20100,False
-10-15°C,Cumulative through lag 1,0.005,0.005,-0.004,0.014,335,20100,False
-15-20°C,Cumulative through lag 1,0,,,,335,20100,True
-20-25°C,Cumulative through lag 1,0.038,0.01,0.018,0.058,335,20100,False
-25-30°C,Cumulative through lag 1,0.057,0.016,0.026,0.088,335,20100,False
->30°C,Cumulative through lag 1,0.084,0.02,0.045,0.123,335,20100,False
-≤-5°C,Cumulative through lag 2,0.017,0.019,-0.021,0.055,335,20100,False
--5-0°C,Cumulative through lag 2,0.006,0.017,-0.028,0.04,335,20100,False
-0-5°C,Cumulative through lag 2,0.007,0.014,-0.021,0.035,335,20100,False
-5-10°C,Cumulative through lag 2,0.004,0.011,-0.017,0.025,335,20100,False
-10-15°C,Cumulative through lag 2,0.002,0.007,-0.011,0.015,335,20100,False
-15-20°C,Cumulative through lag 2,0,,,,335,20100,True
-20-25°C,Cumulative through lag 2,0.047,0.013,0.021,0.073,335,20100,False
-25-30°C,Cumulative through lag 2,0.064,0.018,0.029,0.099,335,20100,False
->30°C,Cumulative through lag 2,0.101,0.022,0.058,0.144,335,20100,False
+﻿reported_interval,households,share_pct
+Within 7 days,79,7.6
+8–15 days,165,16.0
+16–30 days,451,43.7
+1–3 months,281,27.2
+More than 3 months,57,5.5
+Total,1033,100.0

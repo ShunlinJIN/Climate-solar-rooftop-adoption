@@ -1,22 +1,18 @@
-﻿panel,dimension,subgroup_or_contrast,row_type,estimate,std_error,ci_lower,ci_upper,observations,counties
-a,Historical average temperature,Long-H,subgroup,0.095,0.017,0.062,0.128,10020,167
-a,Historical average temperature,Long-L,subgroup,0.042,0.017,0.009,0.075,10080,168
-a,Historical average temperature,Short-H,subgroup,0.105,0.017,0.072,0.138,10020,167
-a,Historical average temperature,Short-L,subgroup,0.041,0.016,0.01,0.072,10080,168
-b,Temperature fluctuation,Long-H,subgroup,0.084,0.016,0.052,0.116,10020,167
-b,Temperature fluctuation,Long-L,subgroup,0.036,0.016,0.005,0.067,10080,168
-b,Temperature fluctuation,Short-H,subgroup,0.07,0.019,0.032,0.108,10020,167
-b,Temperature fluctuation,Short-L,subgroup,0.049,0.016,0.017,0.081,10080,168
-c,Solar radiation,High,subgroup,0.084,0.015,0.054,0.114,10020,167
-c,Solar radiation,Low,subgroup,0.053,0.017,0.019,0.087,10080,168
-d,Land slope,High (steeper),subgroup,0.04,0.015,0.011,0.069,10020,167
-d,Land slope,Low (flatter),subgroup,0.099,0.015,0.069,0.129,10080,168
-e,County income,High,subgroup,0.092,0.016,0.061,0.123,10020,167
-e,County income,Low,subgroup,0.041,0.015,0.012,0.07,10080,168
-a,Historical average temperature,Long-H vs Long-L,contrast,0.053,0.024,,,,
-a,Historical average temperature,Short-H vs Short-L,contrast,0.064,0.023,,,,
-b,Temperature fluctuation,Long-H vs Long-L,contrast,0.048,0.023,,,,
-b,Temperature fluctuation,Short-H vs Short-L,contrast,0.021,0.025,,,,
-c,Solar radiation,High vs Low solar radiation,contrast,0.031,0.023,,,,
-d,Land slope,Flatter vs Steeper land slope,contrast,0.059,0.021,,,,
-e,County income,High vs Low income,contrast,0.051,0.022,,,,
+Panel,Measure,Group 1,Group 1 N,Group 1 value (%),Group 2,Group 2 N,Group 2 value (%),Difference (percentage points)
+A. Overall prevalence,Cash subsidy,All adopters,1033,3.3881897386253628,,,,
+A. Overall prevalence,Installation price discount,All adopters,1033,17.424975798644724,,,,
+A. Overall prevalence,Low- or zero-interest instalment,All adopters,1033,10.454985479186837,,,,
+A. Overall prevalence,"In-kind gift (for example, rice, cooking oil or appliances)",All adopters,1033,11.907066795740562,,,,
+A. Overall prevalence,Free maintenance or extended warranty,All adopters,1033,28.267182962245883,,,,
+A. Overall prevalence,Concentrated promotional campaign,All adopters,1033,36.88286544046467,,,,
+A. Overall prevalence,No promotion reported,All adopters,1033,28.94482090997096,,,,
+A. Overall prevalence,Any promotion or campaign,All adopters,1033,71.05517909002904,,,,
+A. Overall prevalence,Any concurrent non-loan economic incentive,All adopters,1033,48.69312681510164,,,,
+B. Prevalence by institutional-finance use,Cash subsidy,Institutional-finance users,185,5.405405405405405,Non-users,848.0,2.94811320754717,2.4572921978582354
+B. Prevalence by institutional-finance use,Installation price discount,Institutional-finance users,185,15.135135135135137,Non-users,848.0,17.92452830188679,-2.7893931667516547
+B. Prevalence by institutional-finance use,Low- or zero-interest instalment,Institutional-finance users,185,41.08108108108108,Non-users,848.0,3.7735849056603774,37.3074961754207
+B. Prevalence by institutional-finance use,"In-kind gift (for example, rice, cooking oil or appliances)",Institutional-finance users,185,10.81081081081081,Non-users,848.0,12.14622641509434,-1.3354156042835292
+B. Prevalence by institutional-finance use,Free maintenance or extended warranty,Institutional-finance users,185,29.72972972972973,Non-users,848.0,27.94811320754717,1.78161652218256
+B. Prevalence by institutional-finance use,Concentrated promotional campaign,Institutional-finance users,185,35.13513513513514,Non-users,848.0,37.264150943396224,-2.1290158082610877
+B. Prevalence by institutional-finance use,Any concurrent non-loan economic incentive,Institutional-finance users,185,48.10810810810811,Non-users,848.0,48.82075471698113,-0.7126466088730155
+B. Prevalence by institutional-finance use,Any promotion or campaign,Institutional-finance users,185,82.16216216216216,Non-users,848.0,68.63207547169812,13.530086690464046

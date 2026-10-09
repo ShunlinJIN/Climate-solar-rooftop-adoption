@@ -15,6 +15,7 @@ import sys
 import tempfile
 import time
 from find_rscript import find_rscript
+from validate_public_inputs import validate
 
 CODE = Path(__file__).resolve().parent
 ROOT = CODE.parent
@@ -57,6 +58,8 @@ def main():
         raise ValueError("Choose an output directory outside the code and source-data directories.")
     for name in ["aggregate_main", "aggregate_supplementary"]:
         if not (data / name).is_dir(): raise FileNotFoundError(data / name)
+    input_validation = validate(data)
+    print("Public input validation: SUCCESS", flush=True)
     rscript = find_rscript()
     output.mkdir(parents=True, exist_ok=True)
     logs = output / "log"; logs.mkdir(exist_ok=True)
@@ -120,7 +123,7 @@ def main():
         expected += [p for p in (output/folder).iterdir() if p.is_file() and p not in expected]
     expected += [p for p in (output/'tables_appendix').iterdir() if p.is_file() and p not in expected]
     print("Supplementary tables (1-35): SUCCESS",flush=True)
-    report=dict(status="success",python=sys.version.split()[0],platform=platform.platform(),
+    report=dict(status="success", release="2026-10-09", input_validation=input_validation, python=sys.version.split()[0],platform=platform.platform(),
         software=software_versions(rscript),
         r=subprocess.check_output([rscript,"--version"],text=True,stderr=subprocess.STDOUT).strip(),
         elapsed_seconds=round(time.monotonic()-started,3),main_figures=6,supplementary_figures=27,supplementary_tables=35,

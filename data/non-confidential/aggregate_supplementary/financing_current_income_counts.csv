@@ -1,0 +1,15 @@
+﻿income_group,funding_channel,users,households,use_percent
+Lower,Own funds,492,492,100.0
+Lower,Bank loan or installer finance,108,492,21.951219512195124
+Lower,Loan from relatives or friends,7,492,1.4227642276422765
+Lower,Financial assistance from relatives or friends,21,492,4.2682926829268295
+Lower,Financial contribution from children,201,492,40.853658536585364
+Lower,Government or collective subsidy,12,492,2.4390243902439024
+Lower,Other funding source,7,492,1.4227642276422765
+Higher,Own funds,497,497,100.0
+Higher,Bank loan or installer finance,70,497,14.084507042253522
+Higher,Loan from relatives or friends,18,497,3.6217303822937628
+Higher,Financial assistance from relatives or friends,17,497,3.420523138832998
+Higher,Financial contribution from children,126,497,25.35211267605634
+Higher,Government or collective subsidy,22,497,4.426559356136821
+Higher,Other funding source,16,497,3.2193158953722336

@@ -1,178 +1,28 @@
-﻿table_number,panel,panel_label,row_order,row_id,row_label,column_order,column_id,column_label,system,row_type,estimate,std_error,stars,display_value,unit
-7,A,Alternative specifications and fixed-effect structures,1,below_neg5,# of days below -5°C,1,col1,(1) Maximum-temperature bins,RRPV-only,estimate,0.009,0.015,,0.009,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,1,below_neg5,# of days below -5°C,2,col2,(2) County FE + month FE,RRPV-only,estimate,-0.002,0.014,,-0.002,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,1,below_neg5,# of days below -5°C,3,col3,(3) Province FE + year-by-month FE,RRPV-only,estimate,0.011,0.014,,0.011,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,1,below_neg5,# of days below -5°C,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,estimate,0.008,0.015,,0.008,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,1,below_neg5,# of days below -5°C,5,col5,(5) Reference bin 10–15°C,RRPV-only,estimate,0.012,0.014,,0.012,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,1,below_neg5,# of days below -5°C,6,col6,(6) 3°C temperature bins,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,1,below_neg5,# of days below -5°C,7,col7,(7) City-level SE clustering,RRPV-only,estimate,0.012,0.026,,0.012,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,1,below_neg5,# of days below -5°C,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,estimate,0.004,0.026,,0.004,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,1,below_neg5,# of days below -5°C,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,estimate,-0.007,0.027,,-0.007,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,2,neg5_to_0,# of days -5–0°C,1,col1,(1) Maximum-temperature bins,RRPV-only,estimate,-0.003,0.011,,-0.003,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,2,neg5_to_0,# of days -5–0°C,2,col2,(2) County FE + month FE,RRPV-only,estimate,0.001,0.013,,0.001,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,2,neg5_to_0,# of days -5–0°C,3,col3,(3) Province FE + year-by-month FE,RRPV-only,estimate,0.003,0.014,,0.003,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,2,neg5_to_0,# of days -5–0°C,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,estimate,0.007,0.012,,0.007,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,2,neg5_to_0,# of days -5–0°C,5,col5,(5) Reference bin 10–15°C,RRPV-only,estimate,0.007,0.012,,0.007,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,2,neg5_to_0,# of days -5–0°C,6,col6,(6) 3°C temperature bins,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,2,neg5_to_0,# of days -5–0°C,7,col7,(7) City-level SE clustering,RRPV-only,estimate,0.006,0.019,,0.006,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,2,neg5_to_0,# of days -5–0°C,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,estimate,0.001,0.021,,0.001,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,2,neg5_to_0,# of days -5–0°C,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,estimate,0.008,0.022,,0.008,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,3,25_to_30,# of days 25–30°C,1,col1,(1) Maximum-temperature bins,RRPV-only,estimate,0.055,0.013,***,0.055***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,3,25_to_30,# of days 25–30°C,2,col2,(2) County FE + month FE,RRPV-only,estimate,0.046,0.013,***,0.046***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,3,25_to_30,# of days 25–30°C,3,col3,(3) Province FE + year-by-month FE,RRPV-only,estimate,0.049,0.014,***,0.049***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,3,25_to_30,# of days 25–30°C,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,estimate,0.037,0.013,***,0.037***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,3,25_to_30,# of days 25–30°C,5,col5,(5) Reference bin 10–15°C,RRPV-only,estimate,0.044,0.014,***,0.044***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,3,25_to_30,# of days 25–30°C,6,col6,(6) 3°C temperature bins,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,3,25_to_30,# of days 25–30°C,7,col7,(7) City-level SE clustering,RRPV-only,estimate,0.041,0.022,*,0.041*,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,3,25_to_30,# of days 25–30°C,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,estimate,0.034,0.022,,0.034,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,3,25_to_30,# of days 25–30°C,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,estimate,0.031,0.023,,0.031,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,4,above_30_standard,# of days above 30°C,1,col1,(1) Maximum-temperature bins,RRPV-only,estimate,0.073,0.016,***,0.073***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,4,above_30_standard,# of days above 30°C,2,col2,(2) County FE + month FE,RRPV-only,estimate,0.071,0.019,***,0.071***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,4,above_30_standard,# of days above 30°C,3,col3,(3) Province FE + year-by-month FE,RRPV-only,estimate,0.072,0.017,***,0.072***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,4,above_30_standard,# of days above 30°C,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,estimate,0.054,0.017,***,0.054***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,4,above_30_standard,# of days above 30°C,5,col5,(5) Reference bin 10–15°C,RRPV-only,estimate,0.057,0.016,***,0.057***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,4,above_30_standard,# of days above 30°C,6,col6,(6) 3°C temperature bins,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,4,above_30_standard,# of days above 30°C,7,col7,(7) City-level SE clustering,RRPV-only,estimate,0.066,0.028,**,0.066**,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,4,above_30_standard,# of days above 30°C,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,estimate,0.052,0.028,*,0.052*,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,4,above_30_standard,# of days above 30°C,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,estimate,0.05,0.029,*,0.050*,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,5,below_neg6,# of days below -6°C,1,col1,(1) Maximum-temperature bins,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,5,below_neg6,# of days below -6°C,2,col2,(2) County FE + month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,5,below_neg6,# of days below -6°C,3,col3,(3) Province FE + year-by-month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,5,below_neg6,# of days below -6°C,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,5,below_neg6,# of days below -6°C,5,col5,(5) Reference bin 10–15°C,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,5,below_neg6,# of days below -6°C,6,col6,(6) 3°C temperature bins,RRPV-only,estimate,-0.002,0.015,,-0.002,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,5,below_neg6,# of days below -6°C,7,col7,(7) City-level SE clustering,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,5,below_neg6,# of days below -6°C,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,5,below_neg6,# of days below -6°C,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,6,neg6_to_3,# of days -6–3°C,1,col1,(1) Maximum-temperature bins,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,6,neg6_to_3,# of days -6–3°C,2,col2,(2) County FE + month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,6,neg6_to_3,# of days -6–3°C,3,col3,(3) Province FE + year-by-month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,6,neg6_to_3,# of days -6–3°C,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,6,neg6_to_3,# of days -6–3°C,5,col5,(5) Reference bin 10–15°C,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,6,neg6_to_3,# of days -6–3°C,6,col6,(6) 3°C temperature bins,RRPV-only,estimate,0.003,0.012,,0.003,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,6,neg6_to_3,# of days -6–3°C,7,col7,(7) City-level SE clustering,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,6,neg6_to_3,# of days -6–3°C,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,6,neg6_to_3,# of days -6–3°C,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,7,27_to_30,# of days 27–30°C,1,col1,(1) Maximum-temperature bins,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,7,27_to_30,# of days 27–30°C,2,col2,(2) County FE + month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,7,27_to_30,# of days 27–30°C,3,col3,(3) Province FE + year-by-month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,7,27_to_30,# of days 27–30°C,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,7,27_to_30,# of days 27–30°C,5,col5,(5) Reference bin 10–15°C,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,7,27_to_30,# of days 27–30°C,6,col6,(6) 3°C temperature bins,RRPV-only,estimate,0.048,0.014,***,0.048***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,7,27_to_30,# of days 27–30°C,7,col7,(7) City-level SE clustering,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,7,27_to_30,# of days 27–30°C,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,7,27_to_30,# of days 27–30°C,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,8,above_30_3c,# of days above 30°C,1,col1,(1) Maximum-temperature bins,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,8,above_30_3c,# of days above 30°C,2,col2,(2) County FE + month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,8,above_30_3c,# of days above 30°C,3,col3,(3) Province FE + year-by-month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,8,above_30_3c,# of days above 30°C,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,8,above_30_3c,# of days above 30°C,5,col5,(5) Reference bin 10–15°C,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,8,above_30_3c,# of days above 30°C,6,col6,(6) 3°C temperature bins,RRPV-only,estimate,0.069,0.016,***,0.069***,log points per additional day
-7,A,Alternative specifications and fixed-effect structures,8,above_30_3c,# of days above 30°C,7,col7,(7) City-level SE clustering,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,8,above_30_3c,# of days above 30°C,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,8,above_30_3c,# of days above 30°C,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,blank,,,,,
-7,A,Alternative specifications and fixed-effect structures,19,observations,Obs.,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,"20,100",county-months
-7,A,Alternative specifications and fixed-effect structures,19,observations,Obs.,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,"20,100",county-months
-7,A,Alternative specifications and fixed-effect structures,19,observations,Obs.,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,"20,100",county-months
-7,A,Alternative specifications and fixed-effect structures,19,observations,Obs.,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,"20,100",county-months
-7,A,Alternative specifications and fixed-effect structures,19,observations,Obs.,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,"20,100",county-months
-7,A,Alternative specifications and fixed-effect structures,19,observations,Obs.,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,"20,100",county-months
-7,A,Alternative specifications and fixed-effect structures,19,observations,Obs.,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,"20,100",county-months
-7,A,Alternative specifications and fixed-effect structures,19,observations,Obs.,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,"20,100",county-months
-7,A,Alternative specifications and fixed-effect structures,19,observations,Obs.,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,"20,100",county-months
-7,A,Alternative specifications and fixed-effect structures,20,control_variables,Control variables,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,20,control_variables,Control variables,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,20,control_variables,Control variables,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,20,control_variables,Control variables,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,20,control_variables,Control variables,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,20,control_variables,Control variables,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,20,control_variables,Control variables,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,20,control_variables,Control variables,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,20,control_variables,Control variables,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,21,county_fe,County FE,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,21,county_fe,County FE,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,21,county_fe,County FE,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,21,county_fe,County FE,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,21,county_fe,County FE,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,21,county_fe,County FE,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,21,county_fe,County FE,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,21,county_fe,County FE,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,21,county_fe,County FE,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,22,province_fe,Province FE,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,22,province_fe,Province FE,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,22,province_fe,Province FE,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,22,province_fe,Province FE,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,22,province_fe,Province FE,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,22,province_fe,Province FE,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,22,province_fe,Province FE,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,22,province_fe,Province FE,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,22,province_fe,Province FE,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,23,month_fe,Month FE,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,23,month_fe,Month FE,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,23,month_fe,Month FE,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,23,month_fe,Month FE,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,23,month_fe,Month FE,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,23,month_fe,Month FE,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,23,month_fe,Month FE,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,23,month_fe,Month FE,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,23,month_fe,Month FE,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,24,year-by-month_fe,Year-by-month FE,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,24,year-by-month_fe,Year-by-month FE,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,24,year-by-month_fe,Year-by-month FE,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,24,year-by-month_fe,Year-by-month FE,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,24,year-by-month_fe,Year-by-month FE,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,24,year-by-month_fe,Year-by-month FE,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,24,year-by-month_fe,Year-by-month FE,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,24,year-by-month_fe,Year-by-month FE,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,24,year-by-month_fe,Year-by-month FE,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,25,province-by-year_fe,Province-by-year FE,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,25,province-by-year_fe,Province-by-year FE,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,25,province-by-year_fe,Province-by-year FE,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,25,province-by-year_fe,Province-by-year FE,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,25,province-by-year_fe,Province-by-year FE,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,25,province-by-year_fe,Province-by-year FE,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,25,province-by-year_fe,Province-by-year FE,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,25,province-by-year_fe,Province-by-year FE,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,25,province-by-year_fe,Province-by-year FE,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,26,county_x_calendar-month_fe,County × calendar-month FE,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,26,county_x_calendar-month_fe,County × calendar-month FE,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,26,county_x_calendar-month_fe,County × calendar-month FE,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,26,county_x_calendar-month_fe,County × calendar-month FE,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,26,county_x_calendar-month_fe,County × calendar-month FE,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,26,county_x_calendar-month_fe,County × calendar-month FE,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,26,county_x_calendar-month_fe,County × calendar-month FE,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,26,county_x_calendar-month_fe,County × calendar-month FE,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,26,county_x_calendar-month_fe,County × calendar-month FE,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,27,province_x_year_x_month_fe,Province × year × month FE,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,27,province_x_year_x_month_fe,Province × year × month FE,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,27,province_x_year_x_month_fe,Province × year × month FE,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,27,province_x_year_x_month_fe,Province × year × month FE,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,27,province_x_year_x_month_fe,Province × year × month FE,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,27,province_x_year_x_month_fe,Province × year × month FE,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,27,province_x_year_x_month_fe,Province × year × month FE,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,27,province_x_year_x_month_fe,Province × year × month FE,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,,
-7,A,Alternative specifications and fixed-effect structures,27,province_x_year_x_month_fe,Province × year × month FE,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,Yes,
-7,A,Alternative specifications and fixed-effect structures,28,standard_error_clustering,Standard error clustering,1,col1,(1) Maximum-temperature bins,RRPV-only,metadata,,,,County,
-7,A,Alternative specifications and fixed-effect structures,28,standard_error_clustering,Standard error clustering,2,col2,(2) County FE + month FE,RRPV-only,metadata,,,,County,
-7,A,Alternative specifications and fixed-effect structures,28,standard_error_clustering,Standard error clustering,3,col3,(3) Province FE + year-by-month FE,RRPV-only,metadata,,,,County,
-7,A,Alternative specifications and fixed-effect structures,28,standard_error_clustering,Standard error clustering,4,col4,(4) County FE + year-by-month FE + province-by-year FE,RRPV-only,metadata,,,,County,
-7,A,Alternative specifications and fixed-effect structures,28,standard_error_clustering,Standard error clustering,5,col5,(5) Reference bin 10–15°C,RRPV-only,metadata,,,,County,
-7,A,Alternative specifications and fixed-effect structures,28,standard_error_clustering,Standard error clustering,6,col6,(6) 3°C temperature bins,RRPV-only,metadata,,,,County,
-7,A,Alternative specifications and fixed-effect structures,28,standard_error_clustering,Standard error clustering,7,col7,(7) City-level SE clustering,RRPV-only,metadata,,,,City,
-7,A,Alternative specifications and fixed-effect structures,28,standard_error_clustering,Standard error clustering,8,col8,(8) County × calendar-month FE + year-by-month FE,RRPV-only,metadata,,,,County,
-7,A,Alternative specifications and fixed-effect structures,28,standard_error_clustering,Standard error clustering,9,col9,(9) County × calendar-month FE + province × year × month FE,RRPV-only,metadata,,,,County,
-7,B,Locally defined extreme-heat thresholds,1,local_threshold,# of days above the local historical threshold,1,p80,(1) Local P80,RRPV-only,estimate,0.021,0.007,***,0.021***,log points per additional day
-7,B,Locally defined extreme-heat thresholds,1,local_threshold,# of days above the local historical threshold,2,p90,(2) Local P90,RRPV-only,estimate,0.035,0.011,***,0.035***,log points per additional day
-7,B,Locally defined extreme-heat thresholds,1,local_threshold,# of days above the local historical threshold,3,p95,(3) Local P95,RRPV-only,estimate,0.049,0.021,**,0.049**,log points per additional day
-7,B,Locally defined extreme-heat thresholds,10,control_variables,Control variables,1,p80,(1) Local P80,RRPV-only,metadata,,,,Yes,
-7,B,Locally defined extreme-heat thresholds,10,control_variables,Control variables,2,p90,(2) Local P90,RRPV-only,metadata,,,,Yes,
-7,B,Locally defined extreme-heat thresholds,10,control_variables,Control variables,3,p95,(3) Local P95,RRPV-only,metadata,,,,Yes,
-7,B,Locally defined extreme-heat thresholds,11,county_x_calendar-month_fe,County × calendar-month FE,1,p80,(1) Local P80,RRPV-only,metadata,,,,Yes,
-7,B,Locally defined extreme-heat thresholds,11,county_x_calendar-month_fe,County × calendar-month FE,2,p90,(2) Local P90,RRPV-only,metadata,,,,Yes,
-7,B,Locally defined extreme-heat thresholds,11,county_x_calendar-month_fe,County × calendar-month FE,3,p95,(3) Local P95,RRPV-only,metadata,,,,Yes,
-7,B,Locally defined extreme-heat thresholds,12,year-by-month_fe,Year-by-month FE,1,p80,(1) Local P80,RRPV-only,metadata,,,,Yes,
-7,B,Locally defined extreme-heat thresholds,12,year-by-month_fe,Year-by-month FE,2,p90,(2) Local P90,RRPV-only,metadata,,,,Yes,
-7,B,Locally defined extreme-heat thresholds,12,year-by-month_fe,Year-by-month FE,3,p95,(3) Local P95,RRPV-only,metadata,,,,Yes,
-7,B,Locally defined extreme-heat thresholds,13,standard_error_clustering,Standard error clustering,1,p80,(1) Local P80,RRPV-only,metadata,,,,County,
-7,B,Locally defined extreme-heat thresholds,13,standard_error_clustering,Standard error clustering,2,p90,(2) Local P90,RRPV-only,metadata,,,,County,
-7,B,Locally defined extreme-heat thresholds,13,standard_error_clustering,Standard error clustering,3,p95,(3) Local P95,RRPV-only,metadata,,,,County,
+temperature_bin,specification,estimate,std_error,ci_lower,ci_upper,counties,observations,is_reference
+≤-5°C,Current month,0.012,0.018,-0.024,0.048,335,20100,False
+-5-0°C,Current month,0.006,0.016,-0.025,0.037,335,20100,False
+0-5°C,Current month,0.002,0.013,-0.024,0.028,335,20100,False
+5-10°C,Current month,-0.001,0.01,-0.02,0.018,335,20100,False
+10-15°C,Current month,-0.003,0.006,-0.015,0.009,335,20100,False
+15-20°C,Current month,0,,,,335,20100,True
+20-25°C,Current month,0.027,0.012,0.004,0.05,335,20100,False
+25-30°C,Current month,0.041,0.016,0.009,0.073,335,20100,False
+>30°C,Current month,0.066,0.021,0.025,0.107,335,20100,False
+≤-5°C,Cumulative through lag 1,0.014,0.017,-0.02,0.048,335,20100,False
+-5-0°C,Cumulative through lag 1,0.002,0.013,-0.024,0.028,335,20100,False
+0-5°C,Cumulative through lag 1,-0.003,0.01,-0.022,0.016,335,20100,False
+5-10°C,Cumulative through lag 1,0.002,0.006,-0.01,0.014,335,20100,False
+10-15°C,Cumulative through lag 1,0.005,0.005,-0.004,0.014,335,20100,False
+15-20°C,Cumulative through lag 1,0,,,,335,20100,True
+20-25°C,Cumulative through lag 1,0.038,0.01,0.018,0.058,335,20100,False
+25-30°C,Cumulative through lag 1,0.057,0.016,0.026,0.088,335,20100,False
+>30°C,Cumulative through lag 1,0.084,0.02,0.045,0.123,335,20100,False
+≤-5°C,Cumulative through lag 2,0.017,0.019,-0.021,0.055,335,20100,False
+-5-0°C,Cumulative through lag 2,0.006,0.017,-0.028,0.04,335,20100,False
+0-5°C,Cumulative through lag 2,0.007,0.014,-0.021,0.035,335,20100,False
+5-10°C,Cumulative through lag 2,0.004,0.011,-0.017,0.025,335,20100,False
+10-15°C,Cumulative through lag 2,0.002,0.007,-0.011,0.015,335,20100,False
+15-20°C,Cumulative through lag 2,0,,,,335,20100,True
+20-25°C,Cumulative through lag 2,0.047,0.013,0.021,0.073,335,20100,False
+25-30°C,Cumulative through lag 2,0.064,0.018,0.029,0.099,335,20100,False
+>30°C,Cumulative through lag 2,0.101,0.022,0.058,0.144,335,20100,False

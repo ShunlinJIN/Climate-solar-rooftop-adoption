@@ -1,4 +1,4 @@
-# Shared plotting helpers for current Supplementary Figs. 16-17.
+# Shared plotting helpers for current Supplementary Figs. 17-18.
 
 suppressPackageStartupMessages({
   library(data.table)

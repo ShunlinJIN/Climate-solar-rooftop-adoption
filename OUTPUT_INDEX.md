@@ -10,7 +10,7 @@ Scripts: `code/main/`. Inputs: `data/non-confidential/aggregate_main/`.
 | --- | --- | --- |
 | Figure 1 | `Figure_1_plot_only.R` | `figure1_plot_data.csv` |
 | Figure 2 | `Figure_2_plot_only.R` | `figure2_plot_data.csv`, `figure2_pairwise_tests.csv` |
-| Figure 3 | `Figure_3_plot_only.R` | `figure3_plot_data.csv` |
+| Figure 3 | `Figure_3_plot_only.py` | `figure3_plot_data.csv` |
 | Figure 4 | `Figure_4_plot_only.R` | `figure4_plot_data.csv` |
 | Figure 5 | `Figure_5_plot_only.py` | `figure5_plot_data.csv`, `figure5_panel_e_slopes.csv`, `Figure5_panel_f_source_data.csv`, `figure5_panel_g.csv` |
 | Figure 6 | `Figure_6_plot_only.R` | `figure6_plot_data.csv` |
@@ -36,10 +36,10 @@ Scripts: `code/supplementary/`. Inputs: `data/non-confidential/aggregate_supplem
 | Supplementary Figure 13 | `Supp_Fig_13_plot_only.R` | `supp_fig13_observed_penetration.csv`, `supp_fig13_marginal_effect_curve.csv` |
 | Supplementary Figure 14 | `Supp_Fig_14_plot_only.R` | `supp_fig14_projection.csv` |
 | Supplementary Figure 15 | `Supp_Fig_15_plot_only.py` | `supp_fig15_plot_coordinates.csv` |
-| Supplementary Figure 16 | `Supp_Fig_16_plot_only.R` | `supp_fig16_comparability_density.csv` |
-| Supplementary Figure 17 | `Supp_Fig_17_plot_only.R` | `supp_fig26_hourly_flow_composition.csv` |
-| Supplementary Figure 18 | `Supp_Fig_18_plot_only.py` | `supp_fig18_survey_frequencies.csv`, `supp_fig18_hourly_profile_2020.csv` |
-| Supplementary Figure 19 | `Supp_Fig_19_plot_only.py` | `supp_fig19_propensity_density.csv` |
+| Supplementary Figure 16 | `Supp_Fig_16_plot_only.py` | `supp_fig16_propensity_density.csv` |
+| Supplementary Figure 17 | `Supp_Fig_17_plot_only.R` | `supp_fig17_comparability_density.csv` |
+| Supplementary Figure 18 | `Supp_Fig_18_plot_only.R` | `supp_fig26_hourly_flow_composition.csv` |
+| Supplementary Figure 19 | `Supp_Fig_19_plot_only.py` | `supp_fig19_survey_frequencies.csv`, `supp_fig19_hourly_profile_2020.csv` |
 | Supplementary Figure 20 | `Supp_Fig_20_plot_only.py` | `supp_fig20_complete_event_time.csv` |
 | Supplementary Figure 21 | `Supp_Fig_21_plot_only.py` | `supp_fig21_source.csv` |
 | Supplementary Figure 22 | `Supp_Fig_22_plot_only.py` | `supp_fig22_source.csv` |
@@ -53,40 +53,40 @@ Scripts: `code/supplementary/`. Inputs: `data/non-confidential/aggregate_supplem
 
 All tables are exported by `code/supplementary/reproduce_supplementary_tables.py`. Inputs are in `data/non-confidential/aggregate_supplementary/`. Final titles and notes are supplied in `supplementary_table_notes.json` and exported as `Supplementary_Table_Notes.md`.
 
-| Table | Source file | Exported file |
-| --- | --- | --- |
-| 1 | `supp_table01.csv` | `Supplementary_Table_01.csv` |
-| 2 | `supp_table02.csv` | `Supplementary_Table_02.csv` |
-| 3 | `supp_table03_panelA.csv`, `supp_table03_panelB.csv` | `Supplementary_Table_03_panelA.csv`, `Supplementary_Table_03_panelB.csv` |
-| 4 | `supp_table04.csv` | `Supplementary_Table_04.csv` |
-| 5 | `supp_table05.csv` | `Supplementary_Table_05.csv` |
-| 6 | `supp_table06.csv` | `Supplementary_Table_06.csv` |
-| 7 | `supp_table07.csv` | `Supplementary_Table_07.csv` |
-| 8 | `supp_table08.csv` | `Supplementary_Table_08.csv` |
-| 9 | `supp_table09.csv` | `Supplementary_Table_09.csv` |
-| 10 | `supp_table10.csv` | `Supplementary_Table_10.csv` |
-| 11 | `supp_table11.csv` | `Supplementary_Table_11.csv` |
-| 12 | `supp_table12.csv` | `Supplementary_Table_12.csv` |
-| 13 | `supp_table13.csv` | `Supplementary_Table_13.csv` |
-| 14 | `supp_table14.csv` | `Supplementary_Table_14.csv` |
-| 15 | `supp_table15.csv` | `Supplementary_Table_15.csv` |
-| 16 | `supp_table16.csv` | `Supplementary_Table_16.csv` |
-| 17 | `supp_table17.csv` | `Supplementary_Table_17.csv` |
-| 18 | `supp_table18.csv` | `Supplementary_Table_18.csv` |
-| 19 | `supp_table19.csv` | `Supplementary_Table_19.csv` |
-| 20 | `supp_table20.csv` | `Supplementary_Table_20.csv` |
-| 21 | `supp_table21.csv` | `Supplementary_Table_21.csv` |
-| 22 | `supp_table22.csv` | `Supplementary_Table_22.csv` |
-| 23 | `supp_table23.csv` | `Supplementary_Table_23.csv` |
-| 24 | `supp_table24.csv` | `Supplementary_Table_24.csv` |
-| 25 | `supp_table25.csv` | `Supplementary_Table_25.csv` |
-| 26 | `supp_table26.csv` | `Supplementary_Table_26.csv` |
-| 27 | `supp_table27.csv` | `Supplementary_Table_27.csv` |
-| 28 | `supp_table28.csv` | `Supplementary_Table_28.csv` |
-| 29 | `supp_table29.csv` | `Supplementary_Table_29.csv` |
-| 30 | `supp_table30.csv` | `Supplementary_Table_30.csv` |
-| 31 | `supp_table31.csv` | `Supplementary_Table_31.csv` |
-| 32 | `supp_table32.csv` | `Supplementary_Table_32.csv` |
-| 33 | `supp_table33.csv` | `Supplementary_Table_33.csv` |
-| 34 | `supp_table34.csv` | `Supplementary_Table_34.csv` |
-| 35 | `supp_table35.csv` | `Supplementary_Table_35.csv` |
+| Table | Title | Source file | Exported file |
+| --- | --- | --- | --- |
+| 1 | Capacity, generation, and consumption for RRPV-only adopters | `supp_table01.csv` | `Supplementary_Table_01.csv` |
+| 2 | Capacity, generation, and consumption for RRPV-BS adopters | `supp_table02.csv` | `Supplementary_Table_02.csv` |
+| 3 | Geographic coverage and household-income distributions in the July 2026 analytical sample | `supp_table03_panelA.csv`, `supp_table03_panelB.csv` | `Supplementary_Table_03_panelA.csv`, `Supplementary_Table_03_panelB.csv` |
+| 4 | Composition of the completed analytical sample by survey wave | `supp_table04.csv` | `Supplementary_Table_04.csv` |
+| 5 | Baseline characteristics of households retained in and permanently exiting the panel | `supp_table05.csv` | `Supplementary_Table_05.csv` |
+| 6 | Household characteristics and energy use by RRPV adoption status | `supp_table06.csv` | `Supplementary_Table_06.csv` |
+| 7 | Temperature-bin regressions underlying Fig. 1a–b | `supp_table07.csv` | `Supplementary_Table_07.csv` |
+| 8 | Robustness checks of temperature effects on RRPV-only adoption | `supp_table08.csv` | `Supplementary_Table_08.csv` |
+| 9 | Reported interval from first serious consideration to completed grid connection | `supp_table09.csv` | `Supplementary_Table_09.csv` |
+| 10 | County-wide rooftop-PV pilot event study underlying Supplementary Fig. 7c | `supp_table10.csv` | `Supplementary_Table_10.csv` |
+| 11 | Alternative temperature-response specifications underlying Supplementary Fig. 7d | `supp_table11.csv` | `Supplementary_Table_11.csv` |
+| 12 | Heterogeneous extreme-heat effects on RRPV-only adoption | `supp_table12.csv` | `Supplementary_Table_12.csv` |
+| 13 | Climate-risk perceptions and adoption motives | `supp_table13.csv` | `Supplementary_Table_13.csv` |
+| 14 | Survey income benchmarks, adoption timing and pre-adoption income evidence | `supp_table14.csv` | `Supplementary_Table_14.csv` |
+| 15 | PV-loan rollout event study estimates | `supp_table15.csv` | `Supplementary_Table_15.csv` |
+| 16 | Installation incentives reported by RRPV adopters, by use of bank or installer finance | `supp_table16.csv` | `Supplementary_Table_16.csv` |
+| 17 | Funding sources and financing mechanisms for RRPV installations | `supp_table17.csv` | `Supplementary_Table_17.csv` |
+| 18 | Temperature-bin estimates underlying Fig. 3a (RRPV-BS) | `supp_table18.csv` | `Supplementary_Table_18.csv` |
+| 19 | Robustness checks of temperature effects on RRPV-BS adoption | `supp_table19.csv` | `Supplementary_Table_19.csv` |
+| 20 | Liaoning power-rationing event studies underlying Fig. 3c–d | `supp_table20.csv` | `Supplementary_Table_20.csv` |
+| 21 | Balance tests between treatment and control groups | `supp_table21.csv` | `Supplementary_Table_21.csv` |
+| 22 | Out-of-sample predictive performance in the 2022 holdout sample | `supp_table22.csv` | `Supplementary_Table_22.csv` |
+| 23 | Linear-trend tests for the extreme-heat response, 2018–2022 | `supp_table23.csv` | `Supplementary_Table_23.csv` |
+| 24 | NEX-GDDP-CMIP6 models used in future adoption projections | `supp_table24.csv` | `Supplementary_Table_24.csv` |
+| 25 | Daily distributed-lag regressions underlying Fig. 4a–b | `supp_table25.csv` | `Supplementary_Table_25.csv` |
+| 26 | The effects of electricity generation on consumption | `supp_table26.csv` | `Supplementary_Table_26.csv` |
+| 27 | County-income heterogeneity underlying Fig. 4c–d | `supp_table27.csv` | `Supplementary_Table_27.csv` |
+| 28 | Covariate balance and solar rebound effect estimation using PSM-DID | `supp_table28.csv` | `Supplementary_Table_28.csv` |
+| 29 | Appliance access, baseline demand, post-adoption electricity services, and export orientation | `supp_table29.csv` | `Supplementary_Table_29.csv` |
+| 30 | Coverage of the complete hourly electricity-flow archives | `supp_table30.csv` | `Supplementary_Table_30.csv` |
+| 31 | Survey-reported scheduling and observed daytime electricity use | `supp_table31.csv` | `Supplementary_Table_31.csv` |
+| 32 | Electricity affordability and grid dependence (Fig. 5a–c, f and g) | `supp_table32.csv` | `Supplementary_Table_32.csv` |
+| 33 | Household income, extreme heat and reported constraints (Fig. 5d–e) | `supp_table33.csv` | `Supplementary_Table_33.csv` |
+| 34 | Battery-supported electricity services and reliability (Fig. 5h–i) | `supp_table34.csv` | `Supplementary_Table_34.csv` |
+| 35 | Parameter values used in the PV generation prediction model | `supp_table35.csv` | `Supplementary_Table_35.csv` |

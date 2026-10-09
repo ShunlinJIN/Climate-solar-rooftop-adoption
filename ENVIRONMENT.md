@@ -4,41 +4,28 @@ The public workflow uses Python and R on a standard CPU. No GPU is required.
 
 ## Dependencies
 
-Use Python 3.10 or newer and R 4.3 or newer. `requirements.txt` lists compatible Python package ranges, and `code/setup.R` installs missing R packages or versions below the required minimum. The setup script checks installed package metadata before loading packages. Allow approximately 10–30 minutes for installation; network speed and source compilation can extend this.
+Use Python 3.10 or newer and R 4.3 or newer. `requirements.txt` lists compatible Python package ranges, and `code/setup.R` installs missing R packages or versions below the required minimum. The runtime dependency requirements and Code Ocean post-install configuration are unchanged. Installation time depends on network speed and whether R dependencies must be compiled.
 
-The complete workflow was tested on Linux-6.18.44-x86_64-with-glibc2.39 with Python 3.12.14 and Rscript (R) version 4.4.3 (2025-02-28). It generated all 6 main figures, 27 Supplementary Figures and 35 Supplementary Tables in 137.1 seconds. This time excludes dependency installation and varies with available resources.
+## Validation scope
 
-The Code Ocean postInstall setup was tested in a fresh local Python virtual environment. Code Ocean's hosted environment build and browser Reproducible Run are platform operations performed in the capsule.
+The input-validation script, all 16 Python-based figures, and the export of all 35 Supplementary Tables (36 CSV files because Table 3 has two files) were executed with Python 3.13.5. Rscript was unavailable in this validation environment: the 17 R-based figures, the complete mixed-language workflow and a hosted Code Ocean Reproducible Run were not executed here. Run the master entry point in the configured Python/R environment to validate the complete package. Its success message is issued only after all required figure and table outputs exist.
 
-## Tested Python packages
+`requirements-tested.txt` records the Python packages used in that Python-only validation. It is not a guarantee that these exact versions can be installed with every supported Python version; use `requirements.txt` for other supported environments.
 
-| Package | Version |
+| Python package | Version used |
 | --- | --- |
-| numpy | 2.5.3 |
-| pandas | 2.3.3 |
-| matplotlib | 3.11.2 |
-| scipy | 1.18.1 |
-| geopandas | 1.2.0 |
+| numpy | 2.3.5 |
+| pandas | 2.2.3 |
+| matplotlib | 3.10.8 |
+| scipy | 1.17.0 |
+| geopandas | 1.1.2 |
 | shapely | 2.1.2 |
-| pyproj | 3.8.0 |
-| pyogrio | 0.13.0 |
+| pyproj | 3.7.2 |
+| pyogrio | 0.12.1 |
 
-`requirements-tested.txt` records the directly used Python packages for the tested Python version. Use the compatible ranges in `requirements.txt` on other supported Python versions.
+## R dependencies
 
-## Tested R packages
-
-| Package | Version |
-| --- | --- |
-| cowplot | 1.2.0 |
-| data.table | 1.18.6.1 |
-| dplyr | 1.2.1 |
-| ggplot2 | 4.0.3 |
-| ggprism | 1.0.7 |
-| gridExtra | 2.3.1 |
-| patchwork | 1.3.2 |
-| readr | 2.2.0 |
-| scales | 1.4.0 |
-| tidyr | 1.3.2 |
+`code/setup.R` specifies and checks the minimum versions of cowplot, data.table, dplyr, ggplot2, ggprism, gridExtra, patchwork, readr, scales and tidyr. These requirements are inherited from the existing workflow; no R runtime or R package version was newly validated here.
 
 ## Windows
 
@@ -46,12 +33,12 @@ The Code Ocean postInstall setup was tested in a fresh local Python virtual envi
 
 ## Code Ocean
 
-Use the capsule's R base environment with R 4.3 or newer and Python 3.10 or newer. Configure `environment/postInstall` in the Environment editor. It creates `/opt/climate-solar-venv`, including pip, installs Python dependencies and checks R dependencies. On Ubuntu images, missing virtual-environment support is installed through apt-get. The setup does not depend on `/code` or `/data` being mounted during the environment build.
+Use the capsule's R base environment with R 4.3 or newer and Python 3.10 or newer. Configure `environment/postInstall` in the Environment editor. It creates `/opt/climate-solar-venv`, including pip, installs Python dependencies and checks R dependencies. The setup does not depend on `/code` or `/data` being mounted during the environment build. An existing successfully built environment can be retained.
 
 Set `/code/run` as the run file. It uses the Python environment created by postInstall, reads `/data/non-confidential/` and writes `/results/`. Dependencies are installed during the build, not during the Reproducible Run.
 
 ## Execution and graphics
 
-The master workflow uses temporary working directories, a non-interactive Matplotlib backend and one numerical-library thread per plotting process. It checks that all expected PNG, PDF and table outputs exist before reporting success. Logs and the reproduction manifest record the actual run.
+The master workflow validates the released input structure before running plots, uses temporary working directories, a non-interactive Matplotlib backend and one numerical-library thread per plotting process. It checks that all expected PNG, PDF and table outputs exist before reporting success. Logs and the reproduction manifest record the actual run.
 
-Cairo support in R is required for the SVG and PDF exports. Font substitutions across operating systems can change text spacing without changing plotted values.
+Cairo support in R is required by the R graphics workflow. Font substitutions across operating systems can change text spacing without changing plotted values. Figure and table reproduction uses the included aggregate inputs, not restricted household-level records.

@@ -1,292 +1,192 @@
-# Supplementary Fig. 19
-# Propensity-score distributions before and after matching.
-#
-# Plots the supplied density-curve coordinates.
-# See SOURCE_DATA.md for input definitions.
+"""Supplementary Fig. 19: survey scheduling and observed daytime consumption.
 
+Run with Python 3.9+ and Matplotlib. Source paths are resolved relative to this
+script, so execution does not depend on the current working directory.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import math
+import os
 from pathlib import Path
+import tempfile
 
-import numpy as np
-import pandas as pd
+if "MPLCONFIGDIR" not in os.environ:
+    os.environ["MPLCONFIGDIR"] = str(Path(tempfile.gettempdir()) / "solar_matplotlib")
+
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-import matplotlib as mpl
+from matplotlib.patches import Patch
 
-
-# ---------------------------------------------------------------------
-# Paths
-# ---------------------------------------------------------------------
-CODE_DIR = Path(__file__).resolve().parent
-ROOT_DIR = CODE_DIR.parent
-DATA_DIR = ROOT_DIR / "data"
-OUT_DIR = ROOT_DIR / "output"
-OUT_DIR.mkdir(parents=True, exist_ok=True)
-
-INPUT_FILE = DATA_DIR / "supp_fig19_propensity_density.csv"
-
-
-# ---------------------------------------------------------------------
-# Style
-# ---------------------------------------------------------------------
-mpl.rcParams.update({
-    "font.family": "sans-serif",
-    "font.sans-serif": ["Arial", "DejaVu Sans"],
-    "pdf.fonttype": 42,
-    "ps.fonttype": 42,
-    "axes.linewidth": 0.85,
-    "xtick.major.width": 0.8,
-    "ytick.major.width": 0.8,
-    "xtick.major.size": 3.5,
-    "ytick.major.size": 3.5,
-})
-
-
-def clean_axis(ax):
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-
-
-# ---------------------------------------------------------------------
-# Coordinate smoothing
-# ---------------------------------------------------------------------
-def gaussian_kernel(sigma_points: float):
-    """Return a normalized one-dimensional Gaussian kernel."""
-    radius = max(2, int(round(4.0 * sigma_points)))
-    x = np.arange(-radius, radius + 1, dtype=float)
-    k = np.exp(-0.5 * (x / sigma_points) ** 2)
-    return k / k.sum()
-
-
-def smooth_stored_curve(frame: pd.DataFrame, sigma_points: float, n_grid: int = 700):
-    """Interpolate stored curve coordinates and apply Gaussian smoothing."""
-    q = frame[["propensity_score", "density"]].copy()
-
-    q["propensity_score"] = pd.to_numeric(
-        q["propensity_score"], errors="coerce"
-    )
-    q["density"] = pd.to_numeric(
-        q["density"], errors="coerce"
-    )
-
-    q = (
-        q.replace([np.inf, -np.inf], np.nan)
-        .dropna()
-        .sort_values("propensity_score")
-    )
-
-    q = (
-        q.groupby("propensity_score", as_index=False)["density"]
-        .median()
-        .sort_values("propensity_score")
-    )
-
-    if len(q) < 5:
-        raise ValueError("Too few curve coordinates to draw Fig. 19.")
-
-    xmin = float(q["propensity_score"].min())
-    xmax = float(q["propensity_score"].max())
-
-    x_grid = np.linspace(xmin, xmax, n_grid)
-
-    y_grid = np.interp(
-        x_grid,
-        q["propensity_score"].to_numpy(float),
-        q["density"].to_numpy(float),
-    )
-
-    kernel = gaussian_kernel(sigma_points)
-    pad = len(kernel) // 2
-
-    y_pad = np.pad(
-        y_grid,
-        pad_width=pad,
-        mode="edge",
-    )
-
-    y_smooth = np.convolve(
-        y_pad,
-        kernel,
-        mode="same",
-    )[pad:-pad]
-
-    y_smooth = np.maximum(y_smooth, 0.0)
-
-    return x_grid, y_smooth
-
-
-# ---------------------------------------------------------------------
-# Read plotting source
-# ---------------------------------------------------------------------
-if not INPUT_FILE.exists():
-    raise FileNotFoundError(
-        f"Missing plotting input:\n{INPUT_FILE}"
-    )
-
-d = pd.read_csv(
-    INPUT_FILE,
-    encoding="utf-8-sig",
-)
-
-required = {
-    "stage",
-    "group",
-    "propensity_score",
-    "density",
-}
-
-missing = required.difference(d.columns)
-if missing:
-    raise ValueError(
-        "Fig. 19 plotting input is missing column(s): "
-        + ", ".join(sorted(missing))
-    )
-
-
-# ---------------------------------------------------------------------
-# Draw
-# ---------------------------------------------------------------------
-fig, axes = plt.subplots(
-    1,
-    2,
-    figsize=(10.2, 5.4),
-    sharey=True,
-)
-
-# Line styles and smoothing parameters for each group.
-curve_specs = [
-    ("Control (Non-Solar)", "blue", (0, (5, 5)), 8.5),
-    ("Treatment (Solar)", "red", "solid", 4.5),
+ACTIVITIES = [
+    "Laundry",
+    "Charging an electric vehicle or tricycle",
+    "Heating water",
+    "Water pump or agricultural appliance",
 ]
-
-for ax, stage in zip(axes, ["Unmatched", "Matched"]):
-    for group, color, linestyle, sigma in curve_specs:
-
-        q = d.loc[
-            d["stage"].eq(stage)
-            & d["group"].eq(group)
-        ].copy()
-
-        if q.empty:
-            raise ValueError(
-                f"No plotting coordinates for {stage} / {group}"
-            )
-
-        x, y = smooth_stored_curve(
-            q,
-            sigma_points=sigma,
-            n_grid=700,
-        )
-
-        ax.plot(
-            x,
-            y,
-            color=color,
-            linestyle=linestyle,
-            linewidth=1.9,
-            solid_capstyle="round",
-            dash_capstyle="butt",
-            label=group,
-        )
-
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 3.3)
-
-    ax.set_xticks([
-        0, 0.2, 0.4, 0.6, 0.8, 1.0
-    ])
-    ax.set_xticklabels([
-        "0", "0.20", "0.40", "0.60", "0.80", "1"
-    ])
-
-    ax.set_yticks([
-        0, 1, 2, 3
-    ])
-
-    ax.tick_params(
-        axis="both",
-        labelsize=12,
-    )
-
-    clean_axis(ax)
-
-# Show y tick labels on the right panel as in the SI
-axes[1].tick_params(labelleft=True)
-
-axes[0].set_ylabel(
-    "Density",
-    fontsize=14,
-)
-
-# Titles ABOVE legend
-fig.text(
-    0.27, 0.94,
-    "Unmatched",
-    ha="center",
-    va="bottom",
-    fontsize=17,
-    fontweight="bold",
-)
-
-fig.text(
-    0.74, 0.94,
-    "Matched",
-    ha="center",
-    va="bottom",
-    fontsize=17,
-    fontweight="bold",
-)
-
-# Shared legend BELOW titles
-handles, labels = axes[0].get_legend_handles_labels()
-
-fig.legend(
-    handles,
-    labels,
-    loc="upper center",
-    bbox_to_anchor=(0.5, 0.895),
-    ncol=2,
-    frameon=False,
-    fontsize=12,
-    handlelength=1.9,
-    columnspacing=0.8,
-    handletextpad=0.5,
-)
-
-fig.supxlabel(
-    "Propensity Score",
-    fontsize=14,
-    y=0.06,
-)
-
-fig.subplots_adjust(
-    left=0.10,
-    right=0.98,
-    bottom=0.15,
-    top=0.84,
-    wspace=0.08,
-)
+LABELS = ["Laundry", "EV / tricycle charging", "Water heating", "Water pump /\nagricultural appliance"]
+RESPONSES = ["Never", "Rarely", "Sometimes", "Often", "Always"]
+SURVEY_COLORS = ["#E5E7E9", "#C7DAE0", "#91BDCD", "#4D91AE", "#1D587C"]
+SYSTEMS = ["RRPV-only", "RRPV-BS"]
+SYSTEM_COLORS = ["#159D94", "#3F6FA6"]
 
 
-# ---------------------------------------------------------------------
-# Save
-# ---------------------------------------------------------------------
-png_path = OUT_DIR / "Supplementary_Fig_19.png"
-pdf_path = OUT_DIR / "Supplementary_Fig_19.pdf"
+def read_csv(path):
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        return list(csv.DictReader(handle))
 
-fig.savefig(
-    png_path,
-    dpi=600,
-    bbox_inches="tight",
-    pad_inches=0.04,
-)
 
-fig.savefig(
-    pdf_path,
-    bbox_inches="tight",
-    pad_inches=0.04,
-)
+def load_survey(data_dir):
+    rows = read_csv(data_dir / "supp_fig19_survey_frequencies.csv")
+    if len(rows) != 20:
+        raise ValueError("Expected four activities and five response categories.")
+    result = []
+    for activity in ACTIVITIES:
+        subset = [row for row in rows if row["activity"] == activity]
+        if len(subset) != 5 or {r["response"] for r in subset} != set(RESPONSES):
+            raise ValueError(f"Incomplete or duplicate responses for {activity}.")
+        ns = {int(r["valid_n"]) for r in subset}
+        if len(ns) != 1 or min(ns) <= 0:
+            raise ValueError(f"Inconsistent denominator for {activity}.")
+        n = ns.pop()
+        counts = {r["response"]: int(r["count"]) for r in subset}
+        if min(counts.values()) < 0 or sum(counts.values()) != n:
+            raise ValueError(f"Response counts do not sum to valid N for {activity}.")
+        result.append({"activity": activity, "valid_n": n,
+                       "counts": [counts[r] for r in RESPONSES],
+                       "percentages": [100 * counts[r] / n for r in RESPONSES],
+                       "often_always_pct": 100 * (counts["Often"] + counts["Always"]) / n})
+    return result
 
-plt.close(fig)
 
-print("Supplementary Fig. 19 reproduced.")
-print(png_path)
-print(pdf_path)
+def load_hourly(data_dir):
+    rows = read_csv(data_dir / "supp_fig19_hourly_profile_2020.csv")
+    if len(rows) != 48 or {r["system"] for r in rows} != set(SYSTEMS):
+        raise ValueError("Expected 24 clock-hour means for each system type.")
+    result = []
+    for system in SYSTEMS:
+        subset = sorted([r for r in rows if r["system"] == system], key=lambda r: int(r["hour"]))
+        if [int(r["hour"]) for r in subset] != list(range(24)):
+            raise ValueError(f"Missing or duplicate clock hours for {system}.")
+        years = {int(r["year"]) for r in subset}
+        household_counts = {int(r["households"]) for r in subset}
+        day_counts = {int(r["household_days"]) for r in subset}
+        if years != {2020} or len(household_counts) != 1 or len(day_counts) != 1:
+            raise ValueError(f"The figure requires balanced 2020 coverage for {system}.")
+        households = household_counts.pop()
+        household_days = day_counts.pop()
+        if households <= 0 or household_days != households * 366:
+            raise ValueError(f"Unexpected household-day coverage for {system}.")
+        loads = [float(r["mean_total_load_kwh"]) for r in subset]
+        if not all(math.isfinite(x) and x >= 0 for x in loads):
+            raise ValueError(f"Invalid consumption values for {system}.")
+        daytime = sum(loads[6:19])
+        total = sum(loads)
+        if total <= 0:
+            raise ValueError(f"Nonpositive daily consumption for {system}.")
+        result.append({"system": system, "year": 2020, "households": households,
+                       "household_days": household_days, "household_hours": household_days * 24,
+                       "daytime_kwh": daytime, "nighttime_kwh": total - daytime,
+                       "total_kwh": total, "daytime_share_pct": 100 * daytime / total})
+    return result
+
+
+def separate_axes(ax):
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    for side in ("bottom", "left"):
+        ax.spines[side].set_position(("outward", 6))
+        ax.spines[side].set_linewidth(0.75)
+        ax.spines[side].set_color("#222222")
+    ax.tick_params(direction="out", length=3, width=0.7, colors="#222222", pad=5)
+    ax.grid(False)
+
+
+def make_figure(survey, hourly, output_dir, dpi):
+    plt.rcParams.update({
+        "font.family": "sans-serif", "font.sans-serif": ["Arial", "DejaVu Sans"],
+        "font.size": 10, "axes.labelsize": 10.5, "axes.titlesize": 11,
+        "xtick.labelsize": 9.5, "ytick.labelsize": 10, "text.color": "#222222",
+        "axes.labelcolor": "#222222", "pdf.fonttype": 42, "ps.fonttype": 42,
+        "svg.fonttype": "none", "savefig.facecolor": "white", "figure.facecolor": "white",
+    })
+    fig = plt.figure(figsize=(12, 4.6))
+    ax_a = fig.add_axes([0.195, 0.245, 0.400, 0.600])
+    ax_b = fig.add_axes([0.760, 0.245, 0.210, 0.600])
+    y = list(range(len(survey)))
+    left = [0.0] * len(survey)
+    for j, response in enumerate(RESPONSES):
+        widths = [row["percentages"][j] for row in survey]
+        ax_a.barh(y, widths, left=left, height=0.58, color=SURVEY_COLORS[j],
+                  edgecolor="white", linewidth=0.65, zorder=2)
+        for i, width in enumerate(widths):
+            ax_a.text(left[i] + width / 2, i, f"{width:.1f}", ha="center", va="center",
+                      color="white" if j >= 3 else "#222222", fontsize=8.5)
+            left[i] += width
+    ax_a.set_xlim(0, 100)
+    ax_a.set_ylim(3.55, -0.55)
+    ax_a.set_xticks([0, 20, 40, 60, 80, 100])
+    ax_a.set_yticks(y)
+    ax_a.set_yticklabels([f"{label}\n(n = {row['valid_n']:,})" for label, row in zip(LABELS, survey)])
+    ax_a.set_xlabel("Share of valid responses (%)", labelpad=10)
+    separate_axes(ax_a)
+    ax_a.spines["bottom"].set_bounds(0, 100)
+    ax_a.spines["left"].set_bounds(0, 3)
+    ax_a.tick_params(axis="y", length=0, pad=8)
+    legend = [Patch(facecolor=c, edgecolor="none", label=r) for c, r in zip(SURVEY_COLORS, RESPONSES)]
+    fig.legend(handles=legend, loc="lower center", bbox_to_anchor=(0.395, 0.030),
+               ncol=5, frameon=False, fontsize=9, handlelength=1.25,
+               handletextpad=0.45, columnspacing=0.9)
+
+    values = [r["daytime_share_pct"] for r in hourly]
+    ax_b.bar([0, 1], values, width=0.56, color=SYSTEM_COLORS, edgecolor="none", zorder=2)
+    for i, value in enumerate(values):
+        ax_b.text(i, value + 2.2, f"{value:.1f}%", ha="center", va="bottom", fontsize=11)
+    ax_b.set_xlim(-0.65, 1.65)
+    ax_b.set_ylim(0, 100)
+    ax_b.set_xticks([0, 1])
+    ax_b.set_xticklabels([f"{r['system']}\n(n = {r['households']:,})" for r in hourly])
+    ax_b.set_yticks([0, 20, 40, 60, 80, 100])
+    ax_b.set_ylabel("Daytime share of total consumption (%)", labelpad=11)
+    separate_axes(ax_b)
+    ax_b.spines["bottom"].set_bounds(-0.40, 1.40)
+    ax_b.spines["left"].set_bounds(0, 100)
+    ax_b.tick_params(axis="x", length=0, pad=8)
+
+    fig.text(0.023, 0.943, "a", weight="bold", fontsize=14, va="center")
+    fig.text(0.655, 0.943, "b", weight="bold", fontsize=14, va="center")
+    fig.text(0.395, 0.944, "Scheduling flexible electricity use", ha="center", va="center", fontsize=11)
+    fig.text(0.865, 0.944, "Daytime electricity consumption", ha="center", va="center", fontsize=11)
+    fig.text(0.395, 0.892, "Sunny daytime hours", ha="center", va="center", fontsize=9.5, color="#555555")
+    fig.text(0.865, 0.892, "06:00–18:59, 2020", ha="center", va="center", fontsize=9.5, color="#555555")
+    stem = output_dir / "Supplementary_Fig_19"
+    for suffix in ("svg", "pdf", "png"):
+        metadata = {"Creator": "Shunlin Jin"} if suffix in ("svg", "pdf") else {"Author": "Shunlin Jin"}
+        fig.savefig(stem.with_suffix("." + suffix), dpi=dpi, metadata=metadata)
+    plt.close(fig)
+
+
+def main():
+    root = Path(__file__).resolve().parent.parent
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-dir", type=Path, default=root / "data")
+    parser.add_argument("--output-dir", type=Path, default=root / "output")
+    parser.add_argument("--dpi", type=int, default=600)
+    args = parser.parse_args()
+    if args.dpi < 150:
+        parser.error("Use at least 150 dpi; the default is 600 dpi.")
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    survey = load_survey(args.data_dir)
+    hourly = load_hourly(args.data_dir)
+    make_figure(survey, hourly, args.output_dir, args.dpi)
+    for row in survey:
+        print(f"{row['activity']}: often/always = {row['often_always_pct']:.1f}% (n = {row['valid_n']})")
+    for row in hourly:
+        print(f"{row['system']}: daytime share = {row['daytime_share_pct']:.4f}%")
+    print(f"Output: {args.output_dir.resolve()}")
+
+
+if __name__ == "__main__":
+    main()

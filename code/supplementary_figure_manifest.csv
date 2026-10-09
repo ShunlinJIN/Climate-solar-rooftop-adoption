@@ -1,4 +1,4 @@
-figure,script,interpreter
+﻿figure,script,interpreter
 1,Supp_Fig_01_plot_only.py,python3
 2,Supp_Fig_02_plot_only.py,python3
 3,Supp_Fig_03_plot_only.py,python3
@@ -14,9 +14,9 @@ figure,script,interpreter
 13,Supp_Fig_13_plot_only.R,Rscript
 14,Supp_Fig_14_plot_only.R,Rscript
 15,Supp_Fig_15_plot_only.py,python3
-16,Supp_Fig_16_plot_only.R,Rscript
+16,Supp_Fig_16_plot_only.py,python3
 17,Supp_Fig_17_plot_only.R,Rscript
-18,Supp_Fig_18_plot_only.py,python3
+18,Supp_Fig_18_plot_only.R,Rscript
 19,Supp_Fig_19_plot_only.py,python3
 20,Supp_Fig_20_plot_only.py,python3
 21,Supp_Fig_21_plot_only.py,python3

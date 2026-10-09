@@ -1,8 +1,10 @@
-numpy==2.5.3
-pandas==2.3.3
-matplotlib==3.11.2
-scipy==1.18.1
-geopandas==1.2.0
+# Python package versions used in the Python-only validation (Python 3.13.5).
+# R figures and the hosted Code Ocean run require separate full-workflow verification.
+numpy==2.3.5
+pandas==2.2.3
+matplotlib==3.10.8
+scipy==1.17.0
+geopandas==1.1.2
 shapely==2.1.2
-pyproj==3.8.0
-pyogrio==0.13.0
+pyproj==3.7.2
+pyogrio==0.12.1

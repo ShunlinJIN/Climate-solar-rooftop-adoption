@@ -1,4 +1,4 @@
-from _supp_fig15_19_common import *
+from _supp_fig15_common import *
 
 d = pd.read_csv(DATA_DIR / "supp_fig15_plot_coordinates.csv")
 

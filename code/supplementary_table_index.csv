@@ -1,0 +1,36 @@
+﻿table,title,source_files
+1,"Supplementary Table 1: Capacity, generation, and consumption for RRPV-only adopters",supp_table01.csv
+2,"Supplementary Table 2: Capacity, generation, and consumption for RRPV-BS adopters",supp_table02.csv
+3,Supplementary Table 3: Geographic coverage and household-income distributions in the July 2026 analytical sample,supp_table03_panelA.csv;supp_table03_panelB.csv
+4,Supplementary Table 4: Composition of the completed analytical sample by survey wave,supp_table04.csv
+5,Supplementary Table 5: Baseline characteristics of households retained in and permanently exiting the panel,supp_table05.csv
+6,Supplementary Table 6: Household characteristics and energy use by RRPV adoption status,supp_table06.csv
+7,Supplementary Table 7: Temperature-bin regressions underlying Fig. 1a–b,supp_table07.csv
+8,Supplementary Table 8: Robustness checks of temperature effects on RRPV-only adoption,supp_table08.csv
+9,Supplementary Table 9: Reported interval from first serious consideration to completed grid connection,supp_table09.csv
+10,Supplementary Table 10: County-wide rooftop-PV pilot event study underlying Supplementary Fig. 7c,supp_table10.csv
+11,Supplementary Table 11: Alternative temperature-response specifications underlying Supplementary Fig. 7d,supp_table11.csv
+12,Supplementary Table 12: Heterogeneous extreme-heat effects on RRPV-only adoption,supp_table12.csv
+13,Supplementary Table 13: Climate-risk perceptions and adoption motives,supp_table13.csv
+14,"Supplementary Table 14: Survey income benchmarks, adoption timing and pre-adoption income evidence",supp_table14.csv
+15,Supplementary Table 15: PV-loan rollout event study estimates,supp_table15.csv
+16,"Supplementary Table 16: Installation incentives reported by RRPV adopters, by use of bank or installer finance",supp_table16.csv
+17,Supplementary Table 17: Funding sources and financing mechanisms for RRPV installations,supp_table17.csv
+18,Supplementary Table 18: Temperature-bin estimates underlying Fig. 3a (RRPV-BS),supp_table18.csv
+19,Supplementary Table 19: Robustness checks of temperature effects on RRPV-BS adoption,supp_table19.csv
+20,Supplementary Table 20: Liaoning power-rationing event studies underlying Fig. 3c–d,supp_table20.csv
+21,Supplementary Table 21: Balance tests between treatment and control groups,supp_table21.csv
+22,Supplementary Table 22: Out-of-sample predictive performance in the 2022 holdout sample,supp_table22.csv
+23,"Supplementary Table 23: Linear-trend tests for the extreme-heat response, 2018–2022",supp_table23.csv
+24,Supplementary Table 24: NEX-GDDP-CMIP6 models used in future adoption projections,supp_table24.csv
+25,Supplementary Table 25: Daily distributed-lag regressions underlying Fig. 4a–b,supp_table25.csv
+26,Supplementary Table 26: The effects of electricity generation on consumption,supp_table26.csv
+27,Supplementary Table 27: County-income heterogeneity underlying Fig. 4c–d,supp_table27.csv
+28,Supplementary Table 28: Covariate balance and solar rebound effect estimation using PSM-DID,supp_table28.csv
+29,"Supplementary Table 29: Appliance access, baseline demand, post-adoption electricity services, and export orientation",supp_table29.csv
+30,Supplementary Table 30: Coverage of the complete hourly electricity-flow archives,supp_table30.csv
+31,Supplementary Table 31: Survey-reported scheduling and observed daytime electricity use,supp_table31.csv
+32,"Supplementary Table 32: Electricity affordability and grid dependence (Fig. 5a–c, f and g)",supp_table32.csv
+33,"Supplementary Table 33: Household income, extreme heat and reported constraints (Fig. 5d–e)",supp_table33.csv
+34,Supplementary Table 34: Battery-supported electricity services and reliability (Fig. 5h–i),supp_table34.csv
+35,Supplementary Table 35: Parameter values used in the PV generation prediction model,supp_table35.csv

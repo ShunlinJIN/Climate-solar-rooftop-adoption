@@ -1,18 +1,44 @@
-﻿event_time,baseline_estimate,baseline_std_error,province_year_fe_estimate,province_year_fe_std_error,treated_counties,never_treated_counties,observations
-≤-8,-0.003,0.006,0.002,0.007,39,41,4800
--7,-0.001,0.007,-0.004,0.006,39,41,4800
--6,0.007,0.008,0.007,0.008,39,41,4800
--5,-0.004,0.009,-0.002,0.009,39,41,4800
--4,0.002,0.006,0.001,0.007,39,41,4800
--3,0.005,0.007,0.004,0.006,39,41,4800
--2,0.007,0.006,0.001,0.007,39,41,4800
--1,0.0,,0.0,,39,41,4800
-0,0.003,0.006,0.006,0.007,39,41,4800
-1,0.002,0.007,0.005,0.006,39,41,4800
-2,-0.001,0.006,0.003,0.006,39,41,4800
-3,0.004,0.007,0.007,0.008,39,41,4800
-4,0.009,0.009,0.006,0.008,39,41,4800
-5,0.014,0.008,0.011,0.008,39,41,4800
-6,0.024,0.009,0.021,0.009,39,41,4800
-7,0.027,0.008,0.023,0.008,39,41,4800
-≥8,0.026,0.008,0.024,0.008,39,41,4800
+﻿panel_label,Funding channel,Adopters using channel,All adopters,Use prevalence (%),Users,N with valid contribution share,Mean contribution share among users (%),Median contribution share among users (%),Mean contribution share among valid adopters (%),N with valid contribution amount,Mean contribution amount among users (RMB),Median contribution amount among users (RMB),Primary funding source,Households,Households with identifiable primary source,Share (%),Lower pre-adoption income N,Lower pre-adoption income use prevalence (%),Higher pre-adoption income N,Higher pre-adoption income use prevalence (%),Pre-adoption income quintile,Adopters,Any institutional PV finance (%),Any financial contribution from children (%),Any own funds (%),Mean institutional-finance contribution share (%),Mean child-contribution share (%),Mean own-funds contribution share (%),Lower current income N,Lower current income use prevalence (%),Higher current income N,Higher current income use prevalence (%),Connection cohort,Primary funding source identifiable (%)
+Panel A - use prevalence,Own funds,1033.0,1033.0,100.0,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Panel A - use prevalence,Bank loan or installer finance,185.0,1033.0,17.909002904162634,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Panel A - use prevalence,Loan from relatives or friends,26.0,1033.0,2.516940948693127,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Panel A - use prevalence,Financial assistance from relatives or friends,40.0,1033.0,3.872216844143272,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Panel A - use prevalence,Financial contribution from children,339.0,1033.0,32.81703775411423,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Panel A - use prevalence,Government or collective subsidy,35.0,1033.0,3.3881897386253628,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Panel A - use prevalence,Other funding source,25.0,1033.0,2.420135527589545,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Panel B - contribution shares and amounts,Own funds,,,,1033.0,1033.0,68.77947725072605,56.3,68.77947725072605,1033.0,28504.966118102613,24390.0,,,,,,,,,,,,,,,,,,,,,,
+Panel B - contribution shares and amounts,Bank loan or installer finance,,,,185.0,1033.0,56.71135135135136,57.0,10.156437560503386,1033.0,23194.0,22440.0,,,,,,,,,,,,,,,,,,,,,,
+Panel B - contribution shares and amounts,Loan from relatives or friends,,,,26.0,1033.0,43.42307692307691,42.45,1.0929332042594386,1033.0,19771.92307692308,20015.0,,,,,,,,,,,,,,,,,,,,,,
+Panel B - contribution shares and amounts,Financial assistance from relatives or friends,,,,40.0,1033.0,45.7775,45.15,1.7726040658276865,1033.0,18661.0,17870.0,,,,,,,,,,,,,,,,,,,,,,
+Panel B - contribution shares and amounts,Financial contribution from children,,,,339.0,1033.0,52.110914454277285,51.9,17.101258470474345,1033.0,20976.78466076696,19290.0,,,,,,,,,,,,,,,,,,,,,,
+Panel B - contribution shares and amounts,Government or collective subsidy,,,,35.0,1033.0,9.491428571428573,9.6,0.3215876089060988,1033.0,3824.857142857143,3360.0,,,,,,,,,,,,,,,,,,,,,,
+Panel B - contribution shares and amounts,Other funding source,,,,25.0,1033.0,32.052,32.0,0.7757018393030011,1033.0,12374.8,10970.0,,,,,,,,,,,,,,,,,,,,,,
+Panel C - primary funding source,,,,,,,,,,,,,Own funds,666.0,1033.0,64.47241045498548,,,,,,,,,,,,,,,,,,
+Panel C - primary funding source,,,,,,,,,,,,,Bank loan or installer finance,152.0,1033.0,14.714424007744434,,,,,,,,,,,,,,,,,,
+Panel C - primary funding source,,,,,,,,,,,,,Loan from relatives or friends,2.0,1033.0,0.1936108422071636,,,,,,,,,,,,,,,,,,
+Panel C - primary funding source,,,,,,,,,,,,,Financial assistance from relatives or friends,13.0,1033.0,1.2584704743465636,,,,,,,,,,,,,,,,,,
+Panel C - primary funding source,,,,,,,,,,,,,Financial contribution from children,200.0,1033.0,19.36108422071636,,,,,,,,,,,,,,,,,,
+Panel C - primary funding source,,,,,,,,,,,,,Government or collective subsidy,0.0,1033.0,0.0,,,,,,,,,,,,,,,,,,
+Panel C - primary funding source,,,,,,,,,,,,,Other funding source,0.0,1033.0,0.0,,,,,,,,,,,,,,,,,,
+Panel C - primary funding source,,,,,,,,,,,,,Primary source unavailable,0.0,1033.0,0.0,,,,,,,,,,,,,,,,,,
+Panel D - pre-adoption income groups,Own funds,,,,,,,,,,,,,,,,37.0,100.0,62.0,100.0,,,,,,,,,,,,,,
+Panel D - pre-adoption income groups,Bank loan or installer finance,,,,,,,,,,,,,,,,37.0,18.91891891891892,62.0,16.129032258064516,,,,,,,,,,,,,,
+Panel D - pre-adoption income groups,Loan from relatives or friends,,,,,,,,,,,,,,,,37.0,0.0,62.0,3.225806451612903,,,,,,,,,,,,,,
+Panel D - pre-adoption income groups,Financial assistance from relatives or friends,,,,,,,,,,,,,,,,37.0,0.0,62.0,4.838709677419355,,,,,,,,,,,,,,
+Panel D - pre-adoption income groups,Financial contribution from children,,,,,,,,,,,,,,,,37.0,35.13513513513514,62.0,22.58064516129032,,,,,,,,,,,,,,
+Panel D - pre-adoption income groups,Government or collective subsidy,,,,,,,,,,,,,,,,37.0,5.405405405405405,62.0,6.451612903225806,,,,,,,,,,,,,,
+Panel D - pre-adoption income groups,Other funding source,,,,,,,,,,,,,,,,37.0,8.108108108108109,62.0,0.0,,,,,,,,,,,,,,
+Panel E - pre-adoption income quintiles,,,,,,,,,,,,,,,,,,,,,Q1 (Lowest),19.0,21.052631578947366,47.368421052631575,100.0,12.689473684210526,25.847368421052632,60.55263157894737,,,,,,
+Panel E - pre-adoption income quintiles,,,,,,,,,,,,,,,,,,,,,Q2,10.0,10.0,20.0,100.0,6.35,11.59,71.39,,,,,,
+Panel E - pre-adoption income quintiles,,,,,,,,,,,,,,,,,,,,,Q3,17.0,17.647058823529413,23.52941176470588,100.0,10.117647058823527,13.294117647058824,74.51764705882353,,,,,,
+Panel E - pre-adoption income quintiles,,,,,,,,,,,,,,,,,,,,,Q4,18.0,22.22222222222222,38.88888888888889,100.0,11.977777777777778,18.738888888888887,66.74444444444444,,,,,,
+Panel E - pre-adoption income quintiles,,,,,,,,,,,,,,,,,,,,,Q5 (Highest),35.0,14.285714285714285,14.285714285714285,100.0,7.677142857142857,6.834285714285714,81.02285714285715,,,,,,
+Panel F - contemporaneous income-group comparison,Own funds,,,,,,,,,,,,,,,,,,,,,,,,,,,,492,100.0,497,100.0,,
+Panel F - contemporaneous income-group comparison,Bank loan or installer finance,,,,,,,,,,,,,,,,,,,,,,,,,,,,492,21.951219512195124,497,14.084507042253522,,
+Panel F - contemporaneous income-group comparison,Loan from relatives or friends,,,,,,,,,,,,,,,,,,,,,,,,,,,,492,1.4227642276422765,497,3.6217303822937628,,
+Panel F - contemporaneous income-group comparison,Financial assistance from relatives or friends,,,,,,,,,,,,,,,,,,,,,,,,,,,,492,4.2682926829268295,497,3.420523138832998,,
+Panel F - contemporaneous income-group comparison,Financial contribution from children,,,,,,,,,,,,,,,,,,,,,,,,,,,,492,40.853658536585364,497,25.35211267605634,,
+Panel F - contemporaneous income-group comparison,Government or collective subsidy,,,,,,,,,,,,,,,,,,,,,,,,,,,,492,2.4390243902439024,497,4.426559356136821,,
+Panel F - contemporaneous income-group comparison,Other funding source,,,,,,,,,,,,,,,,,,,,,,,,,,,,492,1.4227642276422765,497,3.2193158953722336,,
+Panel G - connection cohorts,,,,,,,,,,,,,,,,,,,,,,549.0,19.672131147540984,31.51183970856102,100.0,,,,,,,,Connected before January 2021,100.0
+Panel G - connection cohorts,,,,,,,,,,,,,,,,,,,,,,484.0,15.909090909090908,34.29752066115703,100.0,,,,,,,,Connected during January 2021–June 2026,100.0

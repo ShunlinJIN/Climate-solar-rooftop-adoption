@@ -1,6 +1,32 @@
+# Figure 6: lifecycle returns of rooftop solar and battery adoption.
+# Complete figure-specific code; no separate helper file is required.
+# Inputs: figure6_plot_data.csv. Outputs: Figure_6.png and Figure_6.pdf.
 
 rm(list = ls())
-source(file.path(dirname(normalizePath(sub("^--file=", "", commandArgs(trailingOnly=FALSE)[grep("^--file=", commandArgs(trailingOnly=FALSE))]), winslash="/")), "_paths_and_note.R"))
+
+# ──────────────────────────────────────────────────────────────────────────
+# 1. Locate the source data and output directory
+# ──────────────────────────────────────────────────────────────────────────
+
+get_script_dir <- function() {
+  args <- commandArgs(trailingOnly = FALSE)
+  file_arg <- grep("^--file=", args, value = TRUE)
+  if (length(file_arg) == 1L) {
+    return(dirname(normalizePath(sub("^--file=", "", file_arg), winslash = "/", mustWork = TRUE)))
+  }
+  return(normalizePath(getwd(), winslash = "/", mustWork = TRUE))
+}
+
+script_dir <- get_script_dir()
+package_root <- normalizePath(file.path(script_dir, ".."), winslash = "/", mustWork = FALSE)
+data_dir <- file.path(package_root, "data")
+output_dir <- file.path(package_root, "output")
+if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# 2. Dependencies and source data
+# ──────────────────────────────────────────────────────────────────────────
 
 required_packages <- c("ggplot2","dplyr","tidyr","cowplot","grid")
 missing <- required_packages[!vapply(required_packages, requireNamespace, logical(1), quietly=TRUE)]
@@ -27,6 +53,11 @@ get_value <- function(panel_id, group_id, metric_id) {
   }
   as.numeric(x$value[[1]])
 }
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# 3. Figure style
+# ──────────────────────────────────────────────────────────────────────────
 
 color_rrpv <- "#FF6B35"; color_rrpv_bs <- "#004E89"
 color_export <- "#F4A261"; color_savings <- "#2A9D8F"
@@ -56,7 +87,12 @@ my_custom_theme <- theme_minimal(base_size=20) +
     strip.text=element_text(size=18,face="plain",colour="black")
   )
 
-# a
+
+# ──────────────────────────────────────────────────────────────────────────
+# 4. Draw the six panels
+# ──────────────────────────────────────────────────────────────────────────
+
+# Panel a
 df_a <- data.frame(
   System=c("RRPV-only Adopters","RRPV-BS Adopters"),
   Gross_Return_Per_kWp=c(get_value("a","RRPV-only","Gross return"),get_value("a","RRPV-BS","Gross return")),

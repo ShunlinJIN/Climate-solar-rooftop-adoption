@@ -1,6 +1,22 @@
+# Supplementary Figure 4: figure-specific functions are included below.
 import csv
 import matplotlib.pyplot as plt
-from _paths import package_paths
+
+# -----------------------------------------------------------------------------
+# Local functions and setup
+# -----------------------------------------------------------------------------
+from pathlib import Path
+def package_paths(script_file):
+    code_dir = Path(script_file).resolve().parent
+    root = code_dir.parent
+    data_dir = root / "data"
+    output_dir = root / "output"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    return root, data_dir, output_dir
+
+# -----------------------------------------------------------------------------
+# Data, panels and export
+# -----------------------------------------------------------------------------
 ROOT, DATA, OUT = package_paths(__file__)
 rows=[]
 with open(DATA/"supp_fig04_battery_capacity_distribution.csv",encoding="utf-8-sig",newline="") as f:

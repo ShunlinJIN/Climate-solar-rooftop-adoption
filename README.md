@@ -61,6 +61,31 @@ The source directory must contain the `aggregate_main/` and `aggregate_supplemen
 
 ## Scripts and source data
 
+### One file per figure
+
+The `code/main/` directory contains exactly six complete scripts and no subdirectories:
+
+| Figure | Script |
+| --- | --- |
+| 1 | `Figure_1.R` |
+| 2 | `Figure_2.R` |
+| 3 | `Figure_3.py` |
+| 4 | `Figure_4.R` |
+| 5 | `Figure_5.py` |
+| 6 | `Figure_6.R` |
+
+`code/supplementary/` contains `Supp_Fig_01` through `Supp_Fig_27`, with
+`.py` or `.R` according to the interpreter. Every figure has its own complete
+script, including its figure-specific functions. Figures 25 and 26 have separate
+scripts. `Supplementary_Tables.py` exports all 35 supplementary tables and notes.
+There are no figure-specific subdirectories or separate helper scripts in either
+figure directory. Source data remain in the existing `data/non-confidential/`
+directories and are not embedded in the code.
+
+Use the package launcher for reproduction; it supplies the staged data and output
+paths expected by the figure scripts. These scripts recreate the figures from the
+released source data; they do not re-estimate models from restricted records.
+
 | Location | Contents |
 | --- | --- |
 | `code/main/` | Main-figure scripts |

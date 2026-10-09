@@ -1,4 +1,4 @@
-# Supplementary Figs. 25-26: hourly loads and electricity-flow composition.
+# Supplementary Figure 25: hourly household-load validation.
 # Plot-only reproduction from the accompanying non-identifying plotting inputs.
 # No model is re-estimated.
 
@@ -22,7 +22,6 @@ dir.create(out_dir,recursive=TRUE,showWarnings=FALSE)
 
 metrics <- fread(file.path(data_dir,"supp_fig25_hourly_load_metrics.csv"))
 load_source <- fread(file.path(data_dir,"supp_fig25_hourly_load_plot.csv"))
-flow <- fread(file.path(data_dir,"supp_fig26_hourly_flow_composition.csv"))
 
 set.seed(20260725L)
 font_family <- "Arial"
@@ -74,34 +73,4 @@ load_fig <- wrap_plots(make_load("RRPV-only"),make_load("RRPV-BS"),ncol=2) +
 ggsave(file.path(out_dir,"Supplementary_Fig_25.pdf"),load_fig,width=10,height=4.8,device=cairo_pdf,bg="white")
 ggsave(file.path(out_dir,"Supplementary_Fig_25.png"),load_fig,width=10,height=4.8,dpi=1200,bg="white")
 
-make_flow <- function(sys,components,total_col,title) {
-  d <- copy(flow[system==sys])
-  long <- rbindlist(lapply(names(components),function(display) {
-    data.table(hour=d$hour,component=display,value=pmax(0,as.numeric(d[[components[[display]]]])))
-  }))
-  long[,component:=factor(component,levels=names(components))]
-  total <- data.table(hour=d$hour,total=pmax(0,as.numeric(d[[total_col]])))
-  ggplot() +
-    geom_area(data=long,aes(hour,value,fill=component),position=position_stack(reverse=TRUE),
-              alpha=.92,linewidth=0,show.legend=FALSE) +
-    geom_line(data=total,aes(hour,total),colour="black",linewidth=.8,show.legend=FALSE) +
-    scale_fill_manual(values=component_palette) +
-    scale_x_continuous(breaks=c(0,3,6,9,12,15,18,21,23),limits=c(0,23),expand=expansion(mult=c(0,0))) +
-    scale_y_continuous(expand=expansion(mult=c(0,.06))) +
-    labs(title=title,x="Hour of day",y="Average hourly electricity (kWh per household)") +
-    theme_pub + theme(legend.position="none")
-}
-
-fa <- make_flow("RRPV-only",c("Direct PV use"="pv_to_load","PV export"="pv_to_grid"),
-                "pv_generation","RRPV-only: allocation of PV generation")
-fb <- make_flow("RRPV-only",c("Direct PV use"="pv_to_load","Grid-to-load"="grid_to_load"),
-                "total_load","RRPV-only: sources of household load")
-fc <- make_flow("RRPV-BS",c("Direct PV use"="pv_to_load","PV-to-battery"="pv_to_battery","PV export"="pv_to_grid"),
-                "pv_generation","RRPV-BS: allocation of PV generation")
-fd <- make_flow("RRPV-BS",c("Direct PV use"="pv_to_load","Battery-to-load"="battery_to_load","Grid-to-load"="grid_to_load"),
-                "total_load","RRPV-BS: sources of household load")
-
-flow_fig <- wrap_plots(fa,fb,fc,fd,ncol=2,nrow=2) + plot_annotation(tag_levels="a")
-ggsave(file.path(out_dir,"Supplementary_Fig_26.pdf"),flow_fig,width=11.5,height=8.5,device=cairo_pdf,bg="white")
-ggsave(file.path(out_dir,"Supplementary_Fig_26.png"),flow_fig,width=11.5,height=8.5,dpi=1200,bg="white")
-message("Supplementary Figs. 25-26 reproduced; no models re-estimated.")
+message("Supplementary Fig. 25 reproduced; no models re-estimated.")

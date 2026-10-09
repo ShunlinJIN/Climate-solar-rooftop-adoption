@@ -81,7 +81,7 @@ def main():
             shutil.copytree(data/("aggregate_main" if section=="main" else "aggregate_supplementary"), work/"data")
             (work/"output").mkdir()
             entries=list(manifest)
-            if section=="supplementary":entries.append(dict(figure="tables",script="reproduce_supplementary_tables.py",interpreter="python3"))
+            if section=="supplementary":entries.append(dict(figure="tables",script="Supplementary_Tables.py",interpreter="python3"))
             for entry in entries:
                 script=work/"code"/entry["script"]
                 if not script.is_file():raise FileNotFoundError(script)
@@ -123,7 +123,7 @@ def main():
         expected += [p for p in (output/folder).iterdir() if p.is_file() and p not in expected]
     expected += [p for p in (output/'tables_appendix').iterdir() if p.is_file() and p not in expected]
     print("Supplementary tables (1-35): SUCCESS",flush=True)
-    report=dict(status="success", release="2026-10-09", input_validation=input_validation, python=sys.version.split()[0],platform=platform.platform(),
+    report=dict(status="success", release="2026-10-09", layout_revision="2026-10-09-clean-names", input_validation=input_validation, python=sys.version.split()[0],platform=platform.platform(),
         software=software_versions(rscript),
         r=subprocess.check_output([rscript,"--version"],text=True,stderr=subprocess.STDOUT).strip(),
         elapsed_seconds=round(time.monotonic()-started,3),main_figures=6,supplementary_figures=27,supplementary_tables=35,

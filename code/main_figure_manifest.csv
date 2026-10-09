@@ -1,7 +1,7 @@
-﻿figure,script,interpreter
-1,Figure_1_plot_only.R,Rscript
-2,Figure_2_plot_only.R,Rscript
-3,Figure_3_plot_only.py,python3
-4,Figure_4_plot_only.R,Rscript
-5,Figure_5_plot_only.py,python3
-6,Figure_6_plot_only.R,Rscript
+figure,script,interpreter
+1,Figure_1.R,Rscript
+2,Figure_2.R,Rscript
+3,Figure_3.py,python3
+4,Figure_4.R,Rscript
+5,Figure_5.py,python3
+6,Figure_6.R,Rscript

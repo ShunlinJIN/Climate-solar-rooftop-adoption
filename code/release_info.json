@@ -6,5 +6,16 @@
   "supplementary_tables": 35,
   "current_income_adopters": 989,
   "lower_current_income": 492,
-  "higher_current_income": 497
+  "higher_current_income": 497,
+  "code_layout": "one-file-per-figure",
+  "layout_revision": "2026-10-09-clean-names",
+  "main_script_names": [
+    "Figure_1.R",
+    "Figure_2.R",
+    "Figure_3.py",
+    "Figure_4.R",
+    "Figure_5.py",
+    "Figure_6.R"
+  ],
+  "supplementary_script_count": 27
 }

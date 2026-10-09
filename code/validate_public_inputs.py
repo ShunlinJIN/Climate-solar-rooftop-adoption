@@ -15,8 +15,8 @@ DEFAULT_DATA = CODE.parent / 'data' / 'non-confidential'
 EXPECTED_PANELS = {12: set('AB'), 13: set('ABCD'), 27: set('AB'), 28: set('AB'),
                    29: set('ABCDE'), 31: set('ABC'), 32: set('ABCDEFGHI'),
                    33: set('ABCDE'), 34: set('ABC')}
-EXPECTED_FIGURES = {16: 'Supp_Fig_16_plot_only.py', 17: 'Supp_Fig_17_plot_only.R',
-                    18: 'Supp_Fig_18_plot_only.R', 19: 'Supp_Fig_19_plot_only.py'}
+EXPECTED_FIGURES = {16: 'Supp_Fig_16.py', 17: 'Supp_Fig_17.R',
+                    18: 'Supp_Fig_18.R', 19: 'Supp_Fig_19.py'}
 CHANNELS = ('Own funds', 'Bank loan or installer finance', 'Loan from relatives or friends',
             'Financial assistance from relatives or friends', 'Financial contribution from children',
             'Government or collective subsidy', 'Other funding source')
@@ -145,18 +145,33 @@ def validate(data_dir: Path = DEFAULT_DATA, code_dir: Path = CODE) -> dict:
         by_id={r['figure']:r['script'] for r in entries}
         if section=='supplementary':
             for n,s in EXPECTED_FIGURES.items():require(by_id.get(str(n))==s,f'Old Supplementary Figure {n} mapping.')
-        else:require(by_id.get('3')=='Figure_3_plot_only.py','The approved Figure 3 Python script is not selected.')
+        else:require(by_id.get('3')=='Figure_3.py','The approved Figure 3 Python script is not selected.')
+    for section, manifest_name, total in [('main', 'main_figure_manifest.csv', 6),
+                                          ('supplementary', 'supplementary_figure_manifest.csv', 27)]:
+        _, entries = read_csv(code_dir / manifest_name)
+        require(len(entries) == total, f'{section}: one complete script is required per figure.')
+        for entry in entries:
+            number = int(entry['figure'])
+            suffix = '.R' if entry['interpreter'] == 'Rscript' else '.py'
+            expected_name = (f'Figure_{number}' if section == 'main' else f'Supp_Fig_{number:02d}') + suffix
+            require(entry['script'] == expected_name, f'Unexpected figure filename: {entry["script"]}')
+        expected = {entry['script'] for entry in entries}
+        if section == 'supplementary':
+            expected.add('Supplementary_Tables.py')
+        directory = code_dir / section
+        actual = {p.name for p in directory.iterdir() if p.name != '__pycache__'}
+        require(actual == expected,
+                f'{section}: expected only the named figure scripts; remove old helpers/folders after backup. '
+                f'Extra: {sorted(actual - expected)}; missing: {sorted(expected - actual)}')
+        require(all((directory / name).is_file() for name in expected),
+                f'{section}: a directory occupies a script path.')
     check_figure3(main)
-    obsolete_code=['main/Figure_3_plot_only.R','supplementary/Supp_Fig_16_plot_only.R',
-                   'supplementary/Supp_Fig_18_plot_only.py','supplementary/_supp_fig16_17_common.R',
-                   'supplementary/_supp_fig15_19_common.py']
     obsolete_data=['supp_fig16_comparability_density.csv','supp_fig16_overlap_audit.csv',
                    'supp_fig18_hourly_profile_2020.csv','supp_fig18_survey_frequencies.csv',
                    'supp_fig19_propensity_density.csv']
-    stale=[str(code_dir/p) for p in obsolete_code if (code_dir/p).exists()]
-    stale += [str(supplementary/p) for p in obsolete_data if (supplementary/p).exists()]
+    stale = [str(supplementary/p) for p in obsolete_data if (supplementary/p).exists()]
     require(not stale,'Remove obsolete release files after backing them up: '+', '.join(stale))
-    return {'status':'success','release':'2026-10-09','main_figures':6,'supplementary_figures':27,
+    return {'status':'success','release':'2026-10-09','layout_revision':'2026-10-09-clean-names','main_figures':6,'supplementary_figures':27,
             'supplementary_tables':35,'table_csv_files':len(expected_sources),'financing':financing,
             'figure3_motive_order':'verified','table28_postmatching_smd':'verified',
             'confidential_records_required':False}
@@ -172,7 +187,7 @@ def main() -> int:
             args.report.parent.mkdir(parents=True,exist_ok=True)
             args.report.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8')
         print('Public input validation: SUCCESS')
-        print('Tables 1-35; figures 1-6 and 1-27; current-income groups 492/497; Figure 3b order checked.')
+        print('Tables 1-35; figures 1-6 and 1-27; current-income groups 492/497; Figure 3b order and clean script layout checked.')
         return 0
     except (ValueError,FileNotFoundError,KeyError,TypeError,json.JSONDecodeError) as exc:
         print(f'PUBLIC INPUT VALIDATION FAILED: {exc}',file=sys.stderr)

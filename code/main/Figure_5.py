@@ -1,17 +1,33 @@
-"""Figure 5 plotting helpers.
-Numerical input for panels a-d, h and i is provided in the aggregate source CSV.
-Panel g is supplied separately in figure5_panel_g.csv.
+#!/usr/bin/env python3
+"""Figure 5: electricity affordability, energy poverty and battery reliability.
+
+All figure-specific functions are defined in this file. Inputs are the published
+aggregate CSV files; this script does not estimate models from household data.
+Run the full package with run.ps1, or run this file with --data-dir and --output.
+Author: Shunlin Jin.
 """
 from pathlib import Path
+import argparse
 import gc
 import os
 import tempfile
+
 os.environ.setdefault("MPLCONFIGDIR", str(Path(tempfile.gettempdir()) / "solar_matplotlib"))
+for thread_key in ("OPENBLAS_NUM_THREADS", "OPENBLAS_DEFAULT_NUM_THREADS",
+                   "OMP_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+    os.environ[thread_key] = "1"
+
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 import numpy as np
 import pandas as pd
+
+# ──────────────────────────────────────────────────────────────────────────
+# 1. Figure style and labels
+# ──────────────────────────────────────────────────────────────────────────
+
 CORAL="#E76F51"
 NAVY="#264653"
 ORANGE="#F4A261"
@@ -25,7 +41,6 @@ FONT_LABEL=11.5
 FONT_TICK=11.0
 FONT_SMALL=10.5
 FONT_PANEL=15.0
-
 
 def set_style():
     plt.rcParams.update({
@@ -50,9 +65,11 @@ def set_style():
         "ps.fonttype": 42,
     })
 
+
 def style_axis(ax):
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
+
 
 def heading(ax, letter, title, pad=7.0):
     ax.text(
@@ -63,6 +80,12 @@ def heading(ax, letter, title, pad=7.0):
         clip_on=False,
     )
     ax.set_title(title, loc="center", pad=pad, fontsize=FONT_TITLE, fontweight="normal")
+
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# 2. Read and validate the published inputs
+# ──────────────────────────────────────────────────────────────────────────
 
 def load_final_data(path):
     df = pd.read_csv(path, encoding="utf-8-sig", low_memory=False)
@@ -80,6 +103,77 @@ def load_final_data(path):
         "supply": df.loc[df["figure_panel"].astype(str).eq("h")].copy(),
         "duration": df.loc[df["figure_panel"].astype(str).eq("i")].copy(),
     }
+
+
+def read_slope_data(path):
+    source = pd.read_csv(path)
+    needed = {"household_fixed_effects", "time_fixed_effects", "temperature_range", "estimate",
+              "conf_low", "conf_high", "observations", "households", "adopters", "clusters"}
+    if not needed.issubset(source.columns):
+        raise ValueError(f"Missing slope fields: {sorted(needed - set(source.columns))}")
+    if len(source) != 2 or set(source.time_fixed_effects) != {"village_date", "village_year_month"}:
+        raise ValueError("Panel e requires exactly one estimate for each fixed-effects specification.")
+    if not source.household_fixed_effects.eq("Yes").all() or not source.temperature_range.eq(">30 C").all():
+        raise ValueError("Both estimates must include household fixed effects and refer to temperatures above 30°C.")
+    for name in ("observations", "households", "adopters", "clusters"):
+        if source[name].nunique() != 1:
+            raise ValueError(f"The two specifications must use the same sample: {name} differs.")
+    vals = source[["estimate", "conf_low", "conf_high"]].to_numpy(float)
+    if not np.isfinite(vals).all() or not ((vals[:, 1] <= vals[:, 0]) & (vals[:, 0] <= vals[:, 2])).all():
+        raise ValueError("Invalid point estimates or confidence limits in panel e.")
+    return source
+
+
+def iv_display_data(source, rmb_per_usd):
+    source = source.copy()
+    money = source.outcome.eq("bill_rmb")
+    source["display_divisor"] = source.display_divisor.astype(float)
+    source.loc[money, "display_divisor"] = rmb_per_usd
+    for native, shown in [("estimate", "display_estimate"), ("std_error", "display_std_error"),
+                          ("ci_low", "display_ci_low"), ("ci_high", "display_ci_high")]:
+        source[shown] = source[native] / source.display_divisor
+    source["display_unit"] = np.select(
+        [money, source.outcome.eq("bill_income_pp")],
+        ["US$/month", "percentage points"], default="10 kWh/month")
+    return source
+
+
+def outage_summary(frame):
+    valid = frame.loc[frame["raw_code"].isin([2,3,4])].copy()
+    denominator = int(valid["count"].sum())
+    appliance = int(valid.loc[valid["raw_code"].eq(3), "count"].sum())
+    basic = int(valid.loc[valid["raw_code"].eq(4), "count"].sum())
+    supplied = appliance + basic
+    return pd.DataFrame([
+        {"label":"Battery supply","count":supplied,"denominator":denominator,
+         "percentage":100*supplied/denominator},
+        {"label":"Appliance support","count":appliance,"denominator":denominator,
+         "percentage":100*appliance/denominator},
+        {"label":"Basic services maintained","count":basic,"denominator":denominator,
+         "percentage":100*basic/denominator},
+    ])
+
+
+def duration_distribution(frame):
+    valid = frame.loc[frame["raw_code"].isin([1,2,3,4])].copy()
+    denominator = int(valid["count"].sum())
+    labels = {1:"<1 hour",2:"1–3 hours",3:"3–6 hours",4:">6 hours"}
+    rows = []
+    for code in [1,2,3,4]:
+        c = int(valid.loc[valid["raw_code"].eq(code), "count"].sum())
+        rows.append({
+            "label": labels[code],
+            "count": c,
+            "denominator": denominator,
+            "percentage": 100*c/denominator,
+        })
+    return pd.DataFrame(rows)
+
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# 3. Draw panels a–i
+# ──────────────────────────────────────────────────────────────────────────
 
 def event_panel(ax, dynamic, outcome, letter, title, ylabel, scale=1.0):
     data = dynamic.loc[
@@ -112,6 +206,7 @@ def event_panel(ax, dynamic, outcome, letter, title, ylabel, scale=1.0):
     ax.set_ylabel(ylabel)
     ax.set_xticks([-12, -6, -1, 6, 12, 18, 24])
     style_axis(ax)
+
 
 def panel_c(ax, dynamic):
     ax.axhline(0, linestyle="--", linewidth=0.75, color=GRAY)
@@ -163,6 +258,7 @@ def panel_c(ax, dynamic):
     ax.set_xticks([-12, -6, -1, 6, 12, 18, 24])
     style_axis(ax)
 
+
 def panel_d(ax, income, rmb_per_usd):
     order = [
         "monthly_nonpv_income_rmb",
@@ -202,6 +298,26 @@ def panel_d(ax, income, rmb_per_usd):
     heading(ax, "d", "Household income and\nelectricity expenditure")
     style_axis(ax)
 
+
+def panel_e(ax, source):
+    frame = source.set_index("time_fixed_effects").loc[["village_date", "village_year_month"]]
+    est, lo, hi = [frame[column].to_numpy(float) for column in ("estimate", "conf_low", "conf_high")]
+    ax.axvline(0, color=GRAY, ls="--", lw=0.75, zorder=1)
+    ax.errorbar(est, [1, 0], xerr=[est - lo, hi - est], fmt="o",
+                color=TEAL, markerfacecolor=TEAL, markeredgecolor=TEAL,
+                markeredgewidth=0.9, ecolor=GRAY, markersize=4,
+                capsize=2.1, linewidth=0.9, zorder=3)
+    ax.set_yticks([1, 0], ["Household FE +\nvillage × date FE",
+                          "Household FE +\nvillage × year-month FE"])
+    ax.set_ylim(-0.55, 1.55)
+    ax.set_xlim(-0.025, 0.265)
+    ax.set_xticks([0, 0.05, 0.10, 0.15, 0.20, 0.25])
+    ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: "0" if abs(x) < 1e-10 else f"{x:.2f}"))
+    ax.set_xlabel("Post-adoption slope change\n(kWh/day/°C)")
+    heading(ax, "e", "Electricity-use response\nabove 30°C")
+    style_axis(ax)
+
+
 def panel_f(ax, source):
     """Monthly 5% incidence effects overall and by pre-adoption income."""
     labels = ['All households', 'Lower income', 'Higher income']
@@ -229,55 +345,6 @@ def panel_f(ax, source):
     heading(ax, 'f', 'Energy-poverty incidence\n(5% threshold)')
     style_axis(ax)
 
-
-def outage_summary(frame):
-    valid = frame.loc[frame["raw_code"].isin([2,3,4])].copy()
-    denominator = int(valid["count"].sum())
-    appliance = int(valid.loc[valid["raw_code"].eq(3), "count"].sum())
-    basic = int(valid.loc[valid["raw_code"].eq(4), "count"].sum())
-    supplied = appliance + basic
-    return pd.DataFrame([
-        {"label":"Battery supply","count":supplied,"denominator":denominator,
-         "percentage":100*supplied/denominator},
-        {"label":"Appliance support","count":appliance,"denominator":denominator,
-         "percentage":100*appliance/denominator},
-        {"label":"Basic services maintained","count":basic,"denominator":denominator,
-         "percentage":100*basic/denominator},
-    ])
-
-def duration_distribution(frame):
-    valid = frame.loc[frame["raw_code"].isin([1,2,3,4])].copy()
-    denominator = int(valid["count"].sum())
-    labels = {1:"<1 hour",2:"1–3 hours",3:"3–6 hours",4:">6 hours"}
-    rows = []
-    for code in [1,2,3,4]:
-        c = int(valid.loc[valid["raw_code"].eq(code), "count"].sum())
-        rows.append({
-            "label": labels[code],
-            "count": c,
-            "denominator": denominator,
-            "percentage": 100*c/denominator,
-        })
-    return pd.DataFrame(rows)
-
-def bar_distribution(ax, data, letter, title, xlabel, colours):
-    plot = data.copy()
-    y = np.arange(len(plot))
-    ax.barh(y, plot["percentage"], color=colours, height=0.50, zorder=2)
-    for idx, row in plot.iterrows():
-        ax.text(
-            min(float(row["percentage"])+2.2,104.0), idx,
-            f"{float(row['percentage']):.1f}%",
-            ha="left", va="center", color="#424242", fontsize=FONT_SMALL
-        )
-    ax.set_yticks(y)
-    ax.set_yticklabels([str(label).replace('Basic services maintained','Basic services\nmaintained').replace('Appliance support','Appliance\nsupport') for label in plot['label']])
-    ax.invert_yaxis()
-    ax.set_xlim(0,108)
-    ax.set_xticks([0,20,40,60,80,100])
-    ax.set_xlabel(xlabel)
-    heading(ax, letter, title)
-    style_axis(ax)
 
 def iv_panel(ax, estimates):
     """Horizontal bars on one visible pair of axes, with explicit display units.
@@ -330,6 +397,32 @@ def iv_panel(ax, estimates):
     ax.set_xlabel("Effect (units at left)")
     ax.tick_params(axis="y", length=3.0, pad=4.0)
     style_axis(ax)
+
+
+def bar_distribution(ax, data, letter, title, xlabel, colours):
+    plot = data.copy()
+    y = np.arange(len(plot))
+    ax.barh(y, plot["percentage"], color=colours, height=0.50, zorder=2)
+    for idx, row in plot.iterrows():
+        ax.text(
+            min(float(row["percentage"])+2.2,104.0), idx,
+            f"{float(row['percentage']):.1f}%",
+            ha="left", va="center", color="#424242", fontsize=FONT_SMALL
+        )
+    ax.set_yticks(y)
+    ax.set_yticklabels([str(label).replace('Basic services maintained','Basic services\nmaintained').replace('Appliance support','Appliance\nsupport') for label in plot['label']])
+    ax.invert_yaxis()
+    ax.set_xlim(0,108)
+    ax.set_xticks([0,20,40,60,80,100])
+    ax.set_xlabel(xlabel)
+    heading(ax, letter, title)
+    style_axis(ax)
+
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# 4. Export PNG, PDF and SVG
+# ──────────────────────────────────────────────────────────────────────────
 
 def png_dpi_value(value):
     """Validate a bounded, positive PNG resolution for each command-line entry."""
@@ -392,3 +485,61 @@ def save_formats(fig, out, name, png_dpi=300):
     (out / (name + '.png')).unlink(missing_ok=True)
     print(f'WARNING: {name} PNG could not be exported. PDF/SVG and CSV outputs remain available.', flush=True)
     return status
+
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# 5. Assemble the final nine-panel figure
+# ──────────────────────────────────────────────────────────────────────────
+
+def main():
+    script_dir = Path(__file__).resolve().parent
+    root = script_dir.parent
+    # Support both the full runner's temporary layout and direct use in the repository.
+    staged = root / "data"
+    repository = script_dir.parents[1] / "data/non-confidential/aggregate_main"
+    default_data = staged if (staged / "figure5_plot_data.csv").is_file() else repository
+    default_output = (root / "output" if default_data == staged
+                      else script_dir.parents[1] / "output/figures")
+    if script_dir == Path("/code/main") and default_data != staged:
+        default_output = Path("/results/figures")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-dir", type=Path, default=default_data)
+    parser.add_argument("--output", type=Path, default=default_output)
+    parser.add_argument("--rmb-per-usd", type=float, default=6.8)
+    parser.add_argument("--png-dpi", "--dpi", dest="png_dpi", type=png_dpi_value, default=300)
+    args = parser.parse_args()
+    if not np.isfinite(args.rmb_per_usd) or args.rmb_per_usd <= 0:
+        raise ValueError("Currency conversion must be positive and finite.")
+    args.output.mkdir(parents=True, exist_ok=True)
+    data = load_final_data(args.data_dir / "figure5_plot_data.csv")
+    e = read_slope_data(args.data_dir / "figure5_panel_e_slopes.csv")
+    burden = pd.read_csv(args.data_dir / "Figure5_panel_f_source_data.csv")
+    set_style()
+    g = iv_display_data(pd.read_csv(args.data_dir / "figure5_panel_g.csv"), args.rmb_per_usd)
+    fig, axes = plt.subplots(3, 3, figsize=(12.3, 11.2))
+    a, b, c, d, ee, f, gg, h, i = axes.ravel()
+    fig.subplots_adjust(left=.175, right=.98, top=.94, bottom=.075, wspace=.75, hspace=.70)
+    event_panel(a, data["monthly_dynamic"], "electricity_bill_rmb", "a", "Electricity expenditure",
+                "Effect (US$/month)", scale=args.rmb_per_usd)
+    event_panel(b, data["monthly_dynamic"], "bill_income_ratio_current_pct", "b",
+                "Electricity-bill-to-income\nratio", "Effect (percentage points)")
+    panel_c(c, data["monthly_dynamic"])
+    panel_d(d, data["income_static"], args.rmb_per_usd)
+    panel_e(ee, e)
+    panel_f(f, burden)
+    iv_panel(gg, g)
+    bar_distribution(h, outage_summary(data["supply"]), "h", "Battery supply\nduring outages",
+                     "Respondents (%)", [TEAL, ORANGE, NAVY])
+    bar_distribution(i, duration_distribution(data["duration"]), "i", "Reported backup\nduration",
+                     "Respondents (%)", [LIGHT_GRAY, BLUE, DEEP_BLUE, NAVY])
+    save_formats(fig, args.output, "Figure_5", png_dpi=args.png_dpi)
+    plt.close(fig)
+    del fig, axes, a, b, c, d, ee, f, gg, h, i
+    gc.collect()
+    print(f"Figure saved in: {args.output.resolve()}")
+
+
+
+if __name__ == "__main__":
+    main()

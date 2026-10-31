@@ -90,3 +90,9 @@ All tables are exported by `code/supplementary/Supplementary_Tables.py`. Inputs 
 | 33 | Household income, extreme heat and reported constraints (Fig. 5d–e) | `supp_table33.csv` | `Supplementary_Table_33.csv` |
 | 34 | Battery-supported electricity services and reliability (Fig. 5h–i) | `supp_table34.csv` | `Supplementary_Table_34.csv` |
 | 35 | Parameter values used in the PV generation prediction model | `supp_table35.csv` | `Supplementary_Table_35.csv` |
+
+<!-- github-local-output-start -->
+## Local output locations
+
+Paths in the input and script mappings above are relative to the repository root. A local run writes main figures to `output/figures/`, Supplementary Figures to `output/figures_appendix/`, and Supplementary Tables and their notes to `output/tables_appendix/`. Logs are in `output/log/` and runtime details are in `output/reproduction_manifest.json`. The companion Code Ocean capsule uses `/results/` as its output root.
+<!-- github-local-output-end -->

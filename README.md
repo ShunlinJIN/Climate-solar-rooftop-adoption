@@ -1,92 +1,79 @@
 # Rooftop solar responds to extreme heat and reduces energy poverty among rural households
 
-`code/regression/` contains the main regression estimation scripts. These require the underlying analysis datasets and are not executed by the default figure-and-table reproduction workflow.
+Code and released non-confidential source data accompanying the paper.
 
-Processed county-level daily, monthly and hourly supporting datasets: [County_Inputs.zip](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption/releases/download/data-20261031/County_Inputs.zip). Extract the ZIP into the repository root to create `data/county_inputs/`. These files are distributed as Release assets rather than ordinary Git files.
-
-**Authors:** Shunlin Jin, Xianling Long, Yana Jin, Weidong Wang, and Shiqiu Zhang  
+**Authors:** Shunlin Jin, Xianling Long, Yana Jin, Weidong Wang and Shiqiu Zhang  
 **Corresponding authors:** Xianling Long and Yana Jin
 
-The workflow generates **6 main figures, 27 Supplementary Figures and 35 Supplementary Tables**. All figures are exported as PDF and PNG. Figures 1, 2, 3, 4 and 5 and Supplementary Figures 7 and 19 also have SVG exports. Table outputs are CSV files with English titles and notes.
+The public workflow reproduces **6 main figures, 27 Supplementary Figures and 35 Supplementary Tables** from the included processed figure and table inputs. Regression estimation scripts are provided separately in [code/regression](code/regression/README.md); they require the underlying analysis datasets and are not executed by the figure-and-table workflow.
 
-## Reproducible Run
+## Run locally
 
-Configure `environment/postInstall` in the capsule's Environment editor, and set `/code/run` as the run file. Click **Reproducible Run** after the environment is built. The workflow reads `/data/non-confidential/` and writes all outputs to `/results/` without interactive input or data downloads.
+Download or clone this repository. Run the following commands from its root, the folder containing `code/` and `data/`. Install Python 3.10 or newer and R 4.3 or newer first. See [ENVIRONMENT.md](ENVIRONMENT.md) for dependency and Rscript configuration details.
 
-| Results location | Contents |
-| --- | --- |
-| `/results/figures/` | Main figures |
-| `/results/figures_appendix/` | Supplementary Figures |
-| `/results/tables_appendix/` | Table CSVs and English titles and notes |
-| `/results/log/` | Individual script logs |
-| `/results/reproduction_manifest.json` | Software versions, runtime and output checksums |
+### Windows PowerShell
 
-A complete successful run ends with `Reproduction completed successfully.` The workflow uses a standard CPU; no GPU is required. Dependency setup and tested versions are described in `ENVIRONMENT.md`.
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r .\code\requirements.txt
+Rscript .\code\setup.R
+.\.venv\Scripts\python.exe .\code\run_public.py
+```
 
-## Local execution of an exported capsule
-
-From the exported capsule root containing `code/` and `data/`:
+### Linux or macOS
 
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r code/requirements.txt
+.venv/bin/python -m pip install -r code/requirements.txt
 Rscript code/setup.R
-python code/run_public.py
+.venv/bin/python code/run_public.py
 ```
 
-Local outputs are written to `output/`. On Windows, use `.venv\Scripts\Activate.ps1` to activate the virtual environment, or invoke its Python executable directly. Rscript can be selected through the `RSCRIPT` environment variable.
+No virtual-environment activation is required for these commands. A completed run ends with `Reproduction completed successfully.` The workflow uses a standard CPU.
 
-## Scripts and source data
-
-### One file per figure
-
-The `code/main/` directory contains exactly six complete scripts and no subdirectories:
-
-| Figure | Script |
+| Local output | Contents |
 | --- | --- |
-| 1 | `Figure_1.R` |
-| 2 | `Figure_2.R` |
-| 3 | `Figure_3.py` |
-| 4 | `Figure_4.R` |
-| 5 | `Figure_5.py` |
-| 6 | `Figure_6.R` |
+| `output/figures/` | Main Figures 1-6 |
+| `output/figures_appendix/` | Supplementary Figures 1-27 |
+| `output/tables_appendix/` | Supplementary Table CSVs and English titles and notes |
+| `output/log/` | Individual script logs |
+| `output/reproduction_manifest.json` | Software versions, elapsed time and output checksums for the actual run |
 
-`code/supplementary/` contains `Supp_Fig_01` through `Supp_Fig_27`, with
-`.py` or `.R` according to the interpreter. Every figure has its own complete
-script, including its figure-specific functions. Figures 25 and 26 have separate
-scripts. `Supplementary_Tables.py` exports all 35 supplementary tables and notes.
-There are no figure-specific subdirectories or separate helper scripts in either
-figure directory. Source data remain in the existing `data/non-confidential/`
-directories and are not embedded in the code.
+Main Figures 1-6 have PDF, PNG and SVG exports. Supplementary Figures have PDF and PNG exports, with additional SVG exports where implemented. Supplementary Table 3 has separate Panel A and Panel B CSV files, so the 35 tables produce 36 table CSVs.
+
+## Data and code
 
 | Location | Contents |
 | --- | --- |
-| `code/main/` | Main-figure scripts |
-| `code/supplementary/` | Supplementary-figure scripts and table export |
-| `code/regression/` | Main-text regression estimation code |
-| `data/non-confidential/aggregate_main/` | Main-figure source data |
-| `data/non-confidential/aggregate_supplementary/` | Supplementary figure and table source data |
+| `code/main/` | One script for each main figure |
+| `code/supplementary/` | Supplementary figure scripts and table export |
+| `code/regression/` | County, household and rebound regression estimation scripts |
+| `data/non-confidential/aggregate_main/` | Included main-figure inputs |
+| `data/non-confidential/aggregate_supplementary/` | Included Supplementary Figure and Table inputs |
+| `data/county_inputs/` | Additional county datasets after extracting the separate Release download |
 
-Table 3 has separate Panel A and Panel B CSV files. Other multipart tables identify their panels within a single CSV. `supplementary_table_notes.json` supplies the exported titles and notes.
+The processed daily, monthly and hourly county datasets are distributed as **[County_Inputs.zip](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption/releases/download/data-20261031/County_Inputs.zip)** in [Release `data-20261031`](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption/releases/tag/data-20261031). These large files are Release attachments and do not appear in the repository's ordinary `data/` file listing or its automatically generated source-code ZIP. Extract `County_Inputs.zip` into the repository root to create:
 
-Supplementary Table 17 Panel F uses the same reported current-income sample as Tables 13 and 29 (989 adopters; 492 below and 497 at or above RMB 15,960 per person per year, excluding RRPV revenue). `financing_current_income_counts.csv` supplies its aggregate numerators and denominators. The other financing panels retain their own stated samples.
+- `data/county_inputs/county_daily.parquet`
+- `data/county_inputs/county_monthly.parquet`
+- `data/county_inputs/county_hourly.parquet`
 
-The runner validates current figure/table numbering, Panel F denominators and proportions, and key shared source values before creating outputs. This input-only check can also be run without R:
+The default figure-and-table workflow reads `data/non-confidential/` and does not require this additional download. The county files are supporting inputs; access to other underlying records may still be required to re-estimate a model. See [data/README.md](data/README.md) and [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md) for details.
 
-```bash
-python /code/validate_public_inputs.py --data-dir /data/non-confidential
+Use `code/run_public.py` as the local entry point. It supplies the temporary data and output paths expected by the individual figure scripts. The [output index](OUTPUT_INDEX.md) maps each result to its script and released inputs.
+
+To check the released figure/table inputs without running R, use the Python executable from the same environment:
+
+```powershell
+.\.venv\Scripts\python.exe .\code\validate_public_inputs.py --data-dir .\data\non-confidential
 ```
 
-See `OUTPUT_INDEX.md` for the output-to-input mapping. Data access arrangements are described in `DATA_AVAILABILITY.md`.
+On Linux or macOS, the equivalent command is `.venv/bin/python code/validate_public_inputs.py --data-dir data/non-confidential`.
 
-## Repositories
+## Code Ocean
 
-- [Public source repository](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption)
-- [Anonymous review mirror](https://anonymous.4open.science/r/Climate-solar-27C0/)
+A companion capsule is deposited at [Code Ocean](https://codeocean.com/capsule/7877886/tree). Capsule-specific environment-build and run instructions are in [environment/README.md](environment/README.md). Local GitHub runs use the commands and `output/` paths above.
 
-## License
+## License and access
 
-Source code is released under the MIT License (`LICENSE`). The accompanying non-identifying source data are released under CC BY 4.0 (`DATA_LICENSE.md`).
-
-Figure 6 retains the full adopter labels with smaller panel-c axis text and also exports `Figure_6.svg`.
+See [LICENSE](LICENSE) for the source-code license and [DATA_LICENSE.md](DATA_LICENSE.md) for the released source-data terms. Third-party and restricted records remain subject to their original access and redistribution conditions, as described in [DATA_AVAILABILITY.md](DATA_AVAILABILITY.md).

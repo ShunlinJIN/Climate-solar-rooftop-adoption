@@ -1,17 +1,13 @@
-# Capsule environment
+# Companion Code Ocean environment
 
-Use an R environment with R 4.3 or newer and Python 3.10 or newer. Ubuntu 22.04 R images can use their existing Python interpreter.
+This directory contains the environment configuration for the companion Code Ocean capsule. For a local GitHub run, use the [main README](../README.md) and [ENVIRONMENT.md](../ENVIRONMENT.md).
 
-## Build setup
+## Code Ocean build
 
-In the capsule's **Environment** screen, replace the post-install script with the complete contents of `environment/postInstall`. This script must be configured in the Environment editor to run during the build phase.
+Use the capsule's configured R/Python base environment. Configure the contents of `environment/postInstall` as the post-install script in the capsule's Environment editor. The script prepares `/opt/climate-solar-venv` and installs the required Python and R plotting dependencies during the environment build. It does not require `/code` or `/data` to be mounted during that build.
 
-The script creates an isolated Python environment at `/opt/climate-solar-venv`, including pip, and installs the Python and R dependencies. If the Ubuntu image lacks virtual-environment support, it installs `python3-venv` through apt-get. It checks Python dependency compatibility and verifies that the required R packages can load. Setup does not read `/code` or `/data` during the environment build.
+## Code Ocean run
 
-## Run
+Set `/code/run` as the capsule's run file and use **Reproducible Run** after the environment is built. In the capsule, the workflow reads `/data/non-confidential/` and writes `/results/`. Per-script logs and `reproduction_manifest.json` are saved with those outputs.
 
-Set `/code/run` as the run file. It uses the Python environment prepared by postInstall. Select **Reproducible Run** to build the environment and execute the workflow. Inputs are under `/data/non-confidential/`; outputs are written to `/results/`.
-
-The environment build log records dependency-installation and postInstall errors. A successful workflow writes `reproduction_manifest.json` together with figures, tables and individual script logs. Software requirements and tested versions are documented in `/code/ENVIRONMENT.md`.
-
-Platform documentation: https://docs.codeocean.com/osl-guide/getting-started/the-computational-environment/using-the-postinstall-script-for-further-customization
+The local entry point is `python code/run_public.py`, which writes `output/` at the GitHub repository root by default.

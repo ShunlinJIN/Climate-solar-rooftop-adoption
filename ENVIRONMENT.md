@@ -1,44 +1,35 @@
 # Computational environment
 
-The public workflow uses Python and R on a standard CPU. No GPU is required.
+The public figure-and-table workflow uses Python and R on a standard CPU. Its dependency files are [code/requirements.txt](code/requirements.txt) and [code/setup.R](code/setup.R).
 
-## Dependencies
+## Local setup
 
-Use Python 3.10 or newer and R 4.3 or newer. `code/requirements.txt` lists compatible Python package ranges, and `code/setup.R` installs missing R packages or versions below the required minimum. The runtime dependency requirements and Code Ocean post-install configuration are unchanged. Installation time depends on network speed and whether R dependencies must be compiled.
+Use Python 3.10 or newer and R 4.3 or newer. Follow the Windows or Linux/macOS commands in the [main README](README.md). `code/setup.R` installs missing R packages or updates packages below its minimum versions; installation requires access to the configured package repositories.
 
-## Validation scope
+For an existing Python environment, install dependencies with `python -m pip install -r code/requirements.txt`. Install or check the R plotting dependencies with `Rscript code/setup.R`.
 
-The input-validation script, all 16 Python-based figures, and the export of all 35 Supplementary Tables (36 CSV files because Table 3 has two files) were executed with Python 3.13.5. The Python outputs and table exports were compared before and after the filename and file-organization changes with fixed output metadata; all compared files were byte-identical. Rscript was unavailable in this validation environment: the 17 R-based figures, the complete mixed-language workflow and a hosted Code Ocean Reproducible Run were not executed here. The R figure-specific executable statements were checked for preservation after functions were inlined and Figures 25 and 26 were separated. Run the master entry point in the configured Python/R environment to validate the complete package. Its success message is issued only after all required figure and table outputs exist.
+The default plotting workflow uses cowplot, data.table, dplyr, ggplot2, ggprism, gridExtra, patchwork, readr, scales and tidyr in R, and NumPy, pandas, Matplotlib, SciPy, GeoPandas and Shapely in Python, together with their dependencies. The setup files specify the applicable version requirements. Regression estimation has additional dependencies listed in [code/regression/README.md](code/regression/README.md).
 
-`code/requirements-tested.txt` records the Python packages used in that Python-only validation. It is not a guarantee that these exact versions can be installed with every supported Python version; use `code/requirements.txt` for other supported environments.
+## Selecting Rscript
 
-| Python package | Version used |
-| --- | --- |
-| numpy | 2.3.5 |
-| pandas | 2.2.3 |
-| matplotlib | 3.10.8 |
-| scipy | 1.17.0 |
-| geopandas | 1.1.2 |
-| shapely | 2.1.2 |
-| pyproj | 3.7.2 |
-| pyogrio | 0.12.1 |
+The runner checks `RSCRIPT`, then the system PATH, and then common Windows R installation locations. If Rscript is not found, set `RSCRIPT` to the full path of your installed `Rscript.exe` or `Rscript` executable. In PowerShell, the setup command with that variable is:
 
-## R dependencies
+```powershell
+& $env:RSCRIPT .\code\setup.R
+```
 
-`code/setup.R` specifies and checks the minimum versions of cowplot, data.table, dplyr, ggplot2, ggprism, gridExtra, patchwork, readr, scales and tidyr. These requirements are inherited from the existing workflow; no R runtime or R package version was newly validated here.
+Then run the Python entry point from the same terminal. The variable must refer to an existing executable, not to an R installation directory.
 
-## Windows (exported capsule)
+## Environments and run records
 
-The GitHub distribution includes a PowerShell launcher. From an exported capsule root, the equivalent direct entry point is `python code/run_public.py`; set `RSCRIPT` to the actual Rscript executable when needed.
+The original analyses used R 4.4.0 and Python 3.13.3. The companion Code Ocean figure-and-table workflow used R 4.5.1 and Python 3.10.12. These are separate environments; GitHub does not provide the capsule's hosted runtime.
 
-## Code Ocean
-
-Use the capsule's R base environment with R 4.3 or newer and Python 3.10 or newer. Configure `environment/postInstall` in the Environment editor. It creates `/opt/climate-solar-venv`, including pip, installs Python dependencies and checks R dependencies. The setup does not depend on `/code` or `/data` being mounted during the environment build. An existing successfully built environment can be retained.
-
-Set `/code/run` as the run file. It uses the Python environment created by postInstall, reads `/data/non-confidential/` and writes `/results/`. Dependencies are installed during the build, not during the Reproducible Run.
+Each completed local run records its actual interpreter and package versions in `output/reproduction_manifest.json`. The figure-and-table workflow has also completed successfully in the author's Windows checkout. `code/requirements-tested.txt` is a recorded Python dependency snapshot; it is not a complete lockfile for every environment or for the upstream regression analyses.
 
 ## Execution and graphics
 
-The master workflow validates the released input structure before running plots, uses temporary working directories, a non-interactive Matplotlib backend and one numerical-library thread per plotting process. It checks that all expected PNG, PDF and table outputs exist before reporting success. Logs and the reproduction manifest record the actual run.
+From the repository root, use `python code/run_public.py` with the configured Python environment. By default it reads `data/non-confidential/` and writes `output/`. It validates the released inputs, stages temporary working directories for the figure scripts and checks the expected figure and table outputs before reporting success. Per-script logs are written to `output/log/`.
 
-Cairo support in R is required by the R graphics workflow. Font substitutions across operating systems can change text spacing without changing plotted values. Figure and table reproduction uses the included aggregate inputs, not restricted household-level records.
+Cairo support is required by the R graphics workflow. Font substitutions between operating systems can change text spacing. The public plotting workflow uses released processed figure/table inputs; regression estimation requires the underlying analysis datasets and is not part of that default run.
+
+The files under `environment/` describe the companion Code Ocean build. They are not prerequisites for the local commands above. See [environment/README.md](environment/README.md) for those platform-specific instructions.

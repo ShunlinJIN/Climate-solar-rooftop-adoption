@@ -10,4 +10,8 @@ Rooftop solar installation, electricity consumption and generation data are conf
 
 Household survey microdata are not publicly available to protect respondent privacy and confidentiality. De-identified survey data may be requested from the corresponding author for research purposes, subject to applicable privacy and confidentiality requirements.
 
-The processed county-level daily, monthly and hourly supporting datasets are also distributed as [County_Inputs.zip](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption/releases/download/data-20261031/County_Inputs.zip). Extract this archive into the repository root to create `data/county_inputs/`.
+<!-- github-data-distribution-start -->
+## Public GitHub distribution
+
+The released figure and table inputs are included in `data/non-confidential/` in this public repository. The processed county-level daily, monthly and hourly supporting datasets are available in [Release `data-20261031`](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption/releases/tag/data-20261031) as [County_Inputs.zip](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption/releases/download/data-20261031/County_Inputs.zip). Extract this separate archive into the repository root to create `data/county_inputs/`. The access and redistribution restrictions on underlying third-party or confidential records described above remain applicable. See [data/README.md](data/README.md) for the download layout.
+<!-- github-data-distribution-end -->

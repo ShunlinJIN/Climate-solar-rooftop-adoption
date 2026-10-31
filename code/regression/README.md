@@ -1,8 +1,8 @@
-# Rooftop solar responds to extreme heat and reduces energy poverty among rural households
+# Regression estimation code
 
-Regression estimation code for the empirical models reported in the main text.
+These scripts estimate the empirical models reported in the paper. They require the underlying analysis datasets and are not executed by the default figure-and-table reproduction workflow, `code/run_public.py`.
 
-These scripts are provided for inspection and require the underlying analysis datasets. They are not called by the capsule's figure-and-table reproduction workflow, which runs through `/code/run`.
+Before running an estimation script, configure its input paths to point to your authorized copies of the required records. Restricted records are excluded from the public repository; see the [data availability statement](../../DATA_AVAILABILITY.md). Released county-level supporting datasets can be downloaded and extracted to `data/county_inputs/` as described in [data/README.md](../../data/README.md). These county files do not by themselves supply every record required by the estimation scripts.
 
 ## County
 

@@ -1,6 +1,6 @@
 # Figure 6: lifecycle returns of rooftop solar and battery adoption.
 # Complete figure-specific code; no separate helper file is required.
-# Inputs: figure6_plot_data.csv. Outputs: Figure_6.png and Figure_6.pdf.
+# Inputs: figure6_plot_data.csv. Outputs: Figure_6.png, Figure_6.pdf and Figure_6.svg.
 
 rm(list = ls())
 
@@ -154,7 +154,7 @@ plot_c <- ggplot(df_c,aes(x=System,y=Percentage)) +
   my_custom_theme +
   theme(legend.position="none",strip.text=element_text(size=16),
         strip.placement="outside",strip.background=element_blank(),
-        panel.spacing=unit(1.5,"lines"),axis.text.x=element_text(size=12),
+        panel.spacing=unit(1.5,"lines"),axis.text.x=element_text(size=10),
         plot.margin=margin(t=12,r=12,b=35,l=12))
 
 make_zone <- function(panel) {
@@ -228,4 +228,5 @@ final_plot <- plot_grid(plot_a,plot_b,plot_c,plot_d,plot_e,plot_f,
 
 ggsave(file.path(output_dir,"Figure_6.pdf"),final_plot,width=24,height=16,device=cairo_pdf,bg="white",limitsize=FALSE)
 ggsave(file.path(output_dir,"Figure_6.png"),final_plot,width=24,height=16,dpi=300,bg="white",limitsize=FALSE)
+ggsave(file.path(output_dir,"Figure_6.svg"),final_plot,width=24,height=16,device=grDevices::svg,bg="white",limitsize=FALSE)
 message("Figure 6 reproduced successfully.")

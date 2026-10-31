@@ -4,13 +4,13 @@ The public workflow uses Python and R on a standard CPU. No GPU is required.
 
 ## Dependencies
 
-Use Python 3.10 or newer and R 4.3 or newer. `requirements.txt` lists compatible Python package ranges, and `code/setup.R` installs missing R packages or versions below the required minimum. The runtime dependency requirements and Code Ocean post-install configuration are unchanged. Installation time depends on network speed and whether R dependencies must be compiled.
+Use Python 3.10 or newer and R 4.3 or newer. `code/requirements.txt` lists compatible Python package ranges, and `code/setup.R` installs missing R packages or versions below the required minimum. The runtime dependency requirements and Code Ocean post-install configuration are unchanged. Installation time depends on network speed and whether R dependencies must be compiled.
 
 ## Validation scope
 
 The input-validation script, all 16 Python-based figures, and the export of all 35 Supplementary Tables (36 CSV files because Table 3 has two files) were executed with Python 3.13.5. The Python outputs and table exports were compared before and after the filename and file-organization changes with fixed output metadata; all compared files were byte-identical. Rscript was unavailable in this validation environment: the 17 R-based figures, the complete mixed-language workflow and a hosted Code Ocean Reproducible Run were not executed here. The R figure-specific executable statements were checked for preservation after functions were inlined and Figures 25 and 26 were separated. Run the master entry point in the configured Python/R environment to validate the complete package. Its success message is issued only after all required figure and table outputs exist.
 
-`requirements-tested.txt` records the Python packages used in that Python-only validation. It is not a guarantee that these exact versions can be installed with every supported Python version; use `requirements.txt` for other supported environments.
+`code/requirements-tested.txt` records the Python packages used in that Python-only validation. It is not a guarantee that these exact versions can be installed with every supported Python version; use `code/requirements.txt` for other supported environments.
 
 | Python package | Version used |
 | --- | --- |
@@ -27,9 +27,9 @@ The input-validation script, all 16 Python-based figures, and the export of all 
 
 `code/setup.R` specifies and checks the minimum versions of cowplot, data.table, dplyr, ggplot2, ggprism, gridExtra, patchwork, readr, scales and tidyr. These requirements are inherited from the existing workflow; no R runtime or R package version was newly validated here.
 
-## Windows
+## Windows (exported capsule)
 
-`run.ps1` accepts `-PythonPath`, `-RscriptPath`, `-OutputDir` and `-Install`. Without an R path, it searches PATH, R's Windows registration and standard R installation directories. Direct invocation of `code/run_public.py` uses the same lookup. Set `RSCRIPT` to select a particular installed version.
+The GitHub distribution includes a PowerShell launcher. From an exported capsule root, the equivalent direct entry point is `python code/run_public.py`; set `RSCRIPT` to the actual Rscript executable when needed.
 
 ## Code Ocean
 

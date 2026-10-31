@@ -75,9 +75,10 @@ local({
     labels <- x$x_label
     if (source_panel == "c") labels <- c("High\n(steeper)", "Low\n(flatter)")
     plot <- ggplot(x, aes(x = x_order, y = 100 * estimate)) +
-      geom_col(aes(fill = "Estimated impacts"), width = .58, alpha = .8) +
       geom_errorbar(aes(ymin = 100 * ci_lower, ymax = 100 * ci_upper, colour = "95% CI"),
                     width = .11, linewidth = .4) +
+      geom_point(aes(fill = "Estimated impacts"), shape = 21, size = 2.6,
+                 stroke = .25, colour = "cyan4", alpha = .8) +
       scale_x_continuous(name = xlabel, breaks = x$x_order, labels = labels,
                          limits = c(.4, nrow(x) + .6), expand = c(0, 0)) +
       scale_y_continuous(name = "Estimated impacts (%)", breaks = seq(0, 15, 3),

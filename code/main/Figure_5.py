@@ -2,7 +2,7 @@
 """Figure 5: electricity affordability, energy poverty and battery reliability.
 
 All figure-specific functions are defined in this file. Inputs are the published
-aggregate CSV files; this script does not estimate models from household data.
+aggregate CSV files.
 Run the full package with run.ps1, or run this file with --data-dir and --output.
 Author: Shunlin Jin.
 """
@@ -347,7 +347,7 @@ def panel_f(ax, source):
 
 
 def iv_panel(ax, estimates):
-    """Horizontal bars on one visible pair of axes, with explicit display units.
+    """2SLS coefficient points and 95% confidence intervals, with explicit units.
 
     Expenditure is displayed in US$/month and electricity in 10 kWh/month;
     the ratio remains in percentage points. This is unit conversion only, not
@@ -370,15 +370,16 @@ def iv_panel(ax, estimates):
                      ["display_estimate", "display_ci_low", "display_ci_high"])
         lower = min(lower, lo-.6)
         upper = max(upper, hi+1.7)
-        ax.barh(index, b, height=.47, color=colour, edgecolor="none", zorder=2)
-        ax.errorbar(b, index, xerr=[[b-lo], [hi-b]], fmt="none",
+        ax.errorbar(b, index, xerr=[[b-lo], [hi-b]], fmt="o",
+                    color=colour, markerfacecolor=colour, markeredgecolor=colour,
+                    markeredgewidth=.9, markersize=4.0,
                     ecolor="#303030", elinewidth=.85, capsize=2.5,
                     capthick=.85, zorder=4)
         raw = b if outcome == "bill_rmb" else float(row.estimate)
         number = f"{raw:+.2f}" if outcome == "bill_rmb" else f"{raw:+.3f}"
         number = number.replace("-", "−")
         # Keep the complete label on its own side of zero, separated from the
-        # reference line by six points and above the bar/error bar. Stars stay
+        # reference line by six points and above the coefficient and interval. Stars stay
         # in the numerical CSV for tables; they are not printed in the figure.
         negative = raw < 0
         ax.annotate(f"{number} {raw_unit}",

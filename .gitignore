@@ -4,3 +4,7 @@ __pycache__/
 .Rhistory
 .RData
 .venv/
+/data/county_inputs/
+/output/
+/results/
+/.venv/

@@ -1,0 +1,27 @@
+# Install required R packages
+install.packages(c(
+  "tidyverse",
+  "dplyr",
+  "tidyr",
+  "readr",
+  "ggplot2",
+  "lubridate",
+  "stringr",
+  "broom",
+  "cobalt",
+  "cowplot",
+  "exactextractr",
+  "fixest",
+  "flextable",
+  "ggprism",
+  "gt",
+  "lmtest",
+  "MatchIt",
+  "ncdf4",
+  "officer",
+  "patchwork",
+  "scales",
+  "sf",
+  "terra",
+  "zoo"
+), repos = "https://cloud.r-project.org/")

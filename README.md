@@ -1,63 +1,41 @@
-# Climate-driven rooftop solar adoption alleviates rural energy poverty
+# Rooftop solar responds to extreme heat and reduces energy poverty among rural households
 
-Code and accompanying non-identifying source data for reproducing the figures and tables in the main text and Supplementary Information. The public workflow recreates the reported outputs; it does not re-estimate the empirical models from restricted household-level or provider records.
+`code/regression/` contains the main regression estimation scripts. These require the underlying analysis datasets and are not executed by the default figure-and-table reproduction workflow.
+
+Processed county-level daily, monthly and hourly supporting datasets: [County_Inputs.zip](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption/releases/download/data-20261031/County_Inputs.zip). Extract the ZIP into the repository root to create `data/county_inputs/`. These files are distributed as Release assets rather than ordinary Git files.
 
 **Authors:** Shunlin Jin, Xianling Long, Yana Jin, Weidong Wang, and Shiqiu Zhang  
 **Corresponding authors:** Xianling Long and Yana Jin
 
 The workflow generates **6 main figures, 27 Supplementary Figures and 35 Supplementary Tables**. All figures are exported as PDF and PNG. Figures 1, 2, 3, 4 and 5 and Supplementary Figures 7 and 19 also have SVG exports. Table outputs are CSV files with English titles and notes.
 
-## Local reproduction
+## Reproducible Run
 
-Use Python 3.10 or newer and R 4.3 or newer. Dependency installation requires internet access; figure and table reproduction uses the included inputs without downloading data.
+Configure `environment/postInstall` in the capsule's Environment editor, and set `/code/run` as the run file. Click **Reproducible Run** after the environment is built. The workflow reads `/data/non-confidential/` and writes all outputs to `/results/` without interactive input or data downloads.
 
-### Windows PowerShell
+| Results location | Contents |
+| --- | --- |
+| `/results/figures/` | Main figures |
+| `/results/figures_appendix/` | Supplementary Figures |
+| `/results/tables_appendix/` | Table CSVs and English titles and notes |
+| `/results/log/` | Individual script logs |
+| `/results/reproduction_manifest.json` | Software versions, runtime and output checksums |
 
-Open PowerShell in the package root, which contains `code/`, `data/` and `run.ps1`. Install dependencies and run the workflow:
+A complete successful run ends with `Reproduction completed successfully.` The workflow uses a standard CPU; no GPU is required. Dependency setup and tested versions are described in `ENVIRONMENT.md`.
 
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\run.ps1 -Install
-```
+## Local execution of an exported capsule
 
-For subsequent runs, omit `-Install`. The launcher checks R on PATH, registered R installations and standard Windows installation directories. For a custom installation, specify both interpreters:
-
-```powershell
-.\run.ps1 -PythonPath "C:\path\to\python.exe" -RscriptPath "C:\path\to\Rscript.exe"
-```
-
-### macOS and Linux
+From the exported capsule root containing `code/` and `data/`:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install -r code/requirements.txt
 Rscript code/setup.R
 python code/run_public.py
 ```
 
-Install dependencies once. A later run needs only the last command. `RSCRIPT` can specify a full Rscript path when R is not on PATH. See `ENVIRONMENT.md` for dependencies and tested versions.
-
-## Outputs
-
-Local outputs are saved in `output/`:
-
-| Location | Contents |
-| --- | --- |
-| `figures/` | Main figures |
-| `figures_appendix/` | Supplementary Figures |
-| `tables_appendix/` | Supplementary Tables and `Supplementary_Table_Notes.md` |
-| `log/` | Individual script logs |
-| `reproduction_manifest.json` | Runtime, software versions and output checksums |
-
-A successful run ends with `Reproduction completed successfully.` Rerunning replaces the generated figure and table folders; source data are unchanged. Use a dedicated output directory.
-
-To select a different output location or source-data directory:
-
-```bash
-python code/run_public.py --data-dir path/to/non-confidential --output-dir custom_output
-```
-
-The source directory must contain the `aggregate_main/` and `aggregate_supplementary/` subdirectories with the documented filenames and columns.
+Local outputs are written to `output/`. On Windows, use `.venv\Scripts\Activate.ps1` to activate the virtual environment, or invoke its Python executable directly. Rscript can be selected through the `RSCRIPT` environment variable.
 
 ## Scripts and source data
 
@@ -82,14 +60,11 @@ There are no figure-specific subdirectories or separate helper scripts in either
 figure directory. Source data remain in the existing `data/non-confidential/`
 directories and are not embedded in the code.
 
-Use the package launcher for reproduction; it supplies the staged data and output
-paths expected by the figure scripts. These scripts recreate the figures from the
-released source data; they do not re-estimate models from restricted records.
-
 | Location | Contents |
 | --- | --- |
 | `code/main/` | Main-figure scripts |
 | `code/supplementary/` | Supplementary-figure scripts and table export |
+| `code/regression/` | Main-text regression estimation code |
 | `data/non-confidential/aggregate_main/` | Main-figure source data |
 | `data/non-confidential/aggregate_supplementary/` | Supplementary figure and table source data |
 
@@ -100,10 +75,10 @@ Supplementary Table 17 Panel F uses the same reported current-income sample as T
 The runner validates current figure/table numbering, Panel F denominators and proportions, and key shared source values before creating outputs. This input-only check can also be run without R:
 
 ```bash
-python code/validate_public_inputs.py
+python /code/validate_public_inputs.py --data-dir /data/non-confidential
 ```
 
-See `OUTPUT_INDEX.md` for the output-to-input mapping and `SOURCE_DATA.md` for field definitions and units. Data access arrangements are described in `DATA_AVAILABILITY.md`.
+See `OUTPUT_INDEX.md` for the output-to-input mapping. Data access arrangements are described in `DATA_AVAILABILITY.md`.
 
 ## Repositories
 
@@ -113,3 +88,5 @@ See `OUTPUT_INDEX.md` for the output-to-input mapping and `SOURCE_DATA.md` for f
 ## License
 
 Source code is released under the MIT License (`LICENSE`). The accompanying non-identifying source data are released under CC BY 4.0 (`DATA_LICENSE.md`).
+
+Figure 6 retains the full adopter labels with smaller panel-c axis text and also exports `Figure_6.svg`.

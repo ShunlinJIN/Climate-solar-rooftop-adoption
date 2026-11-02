@@ -38,7 +38,7 @@ Scripts: `code/supplementary/`. Inputs: `data/non-confidential/aggregate_supplem
 | Supplementary Figure 15 | `Supp_Fig_15.py` | `supp_fig15_plot_coordinates.csv` |
 | Supplementary Figure 16 | `Supp_Fig_16.py` | `supp_fig16_propensity_density.csv` |
 | Supplementary Figure 17 | `Supp_Fig_17.R` | `supp_fig17_comparability_density.csv` |
-| Supplementary Figure 18 | `Supp_Fig_18.R` | `supp_fig26_hourly_flow_composition.csv` |
+| Supplementary Figure 18 | `Supp_Fig_18.R` | `supp_fig18_hourly_flow_profiles.csv` |
 | Supplementary Figure 19 | `Supp_Fig_19.py` | `supp_fig19_survey_frequencies.csv`, `supp_fig19_hourly_profile_2020.csv` |
 | Supplementary Figure 20 | `Supp_Fig_20.py` | `supp_fig20_complete_event_time.csv` |
 | Supplementary Figure 21 | `Supp_Fig_21.py` | `supp_fig21_source.csv` |

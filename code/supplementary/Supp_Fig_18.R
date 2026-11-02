@@ -2,7 +2,8 @@
 # Mean hourly electricity-flow profiles.
 #
 # Corrected plot-only reproduction:
-# - reads the existing aggregate source used for Supplementary Fig. 26;
+# - reads the explicitly named Supplementary Fig. 18 aggregate source;
+# - its values are identical to the profiles used for Supplementary Fig. 26;
 # - restores the blue/orange series colors and panel-specific legends;
 # - repositions panel tags so they do not overlap y-axis tick labels.
 #
@@ -174,7 +175,7 @@ save_public_figure <- function(plot, number, width, height) {
 d <- fread(
   file.path(
     DATA_DIR,
-    "supp_fig26_hourly_flow_composition.csv"
+    "supp_fig18_hourly_flow_profiles.csv"
   )
 )
 
@@ -188,7 +189,7 @@ required <- c(
 absent <- setdiff(required, names(d))
 if (length(absent)) {
   stop(
-    "Existing Fig. 26 aggregate input is missing: ",
+    "Fig. 18 aggregate input is missing: ",
     paste(absent, collapse = ", ")
   )
 }

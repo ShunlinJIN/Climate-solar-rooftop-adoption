@@ -52,6 +52,17 @@ Main Figures 1-6 have PDF, PNG and SVG exports. Supplementary Figures have PDF a
 | `data/non-confidential/aggregate_supplementary/` | Included Supplementary Figure and Table inputs |
 | `data/county_inputs/` | Additional county datasets after extracting the separate Release download |
 
+<!-- supplementary-source-layout-start -->
+### Supplementary source files
+
+Supplementary Figure 18 reads `supp_fig18_hourly_flow_profiles.csv`; its values
+are identical to the shared hourly profiles retained for Figure 26. Supplementary
+Table 17 Panel F stores financing numerators directly in `supp_table17.csv`,
+in `Lower current income users` and `Higher current income users`, alongside
+the existing denominators (492 and 497) and full-precision percentages.
+The separate financing-count file has been consolidated into Table 17.
+<!-- supplementary-source-layout-end -->
+
 The processed daily, monthly and hourly county datasets are distributed as **[County_Inputs.zip](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption/releases/download/data-20261031/County_Inputs.zip)** in [Release `data-20261031`](https://github.com/ShunlinJIN/Climate-solar-rooftop-adoption/releases/tag/data-20261031). These large files are Release attachments and do not appear in the repository's ordinary `data/` file listing or its automatically generated source-code ZIP. Extract `County_Inputs.zip` into the repository root to create:
 
 - `data/county_inputs/county_daily.parquet`

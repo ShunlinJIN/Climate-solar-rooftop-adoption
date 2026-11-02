@@ -41,24 +41,21 @@ def check_financing(data_dir: Path) -> dict:
     panel = [row for row in rows if row['panel_label'].startswith('Panel F')]
     require(len(panel) == 7, 'Table 17 Panel F must contain seven funding channels.')
     require({r['Funding channel'] for r in panel} == set(CHANNELS), 'Table 17 Panel F channels do not match.')
-    _, counts = read_csv(data_dir / 'financing_current_income_counts.csv')
-    require(len(counts) == 14, 'Expected fourteen aggregate financing count rows.')
-    lookup = {(r['income_group'], r['funding_channel']): r for r in counts}
-    require(len(lookup) == 14, 'Duplicated financing count keys.')
+    # Numerators are stored with the corresponding Panel F denominators and percentages.
+    for group in ('Lower', 'Higher'):
+        require(f'{group} current income users' in panel[0],
+                f'Table 17 Panel F is missing the merged {group} financing counts.')
     for row in panel:
         for group, expected_n in [('Lower', 492), ('Higher', 497)]:
             key = (group, row['Funding channel'])
-            require(key in lookup, f'Missing aggregate count: {key}')
-            count_row = lookup[key]
-            n = float(count_row['households']); users = float(count_row['users'])
+            n = float(row[f'{group} current income N'])
+            users = float(row[f'{group} current income users'])
             require(n == expected_n and n.is_integer(), f'{group} financing denominator must be {expected_n}.')
             require(users.is_integer() and 0 <= users <= n, f'Invalid user count: {key}')
             expected = 100 * users / n
-            require(float(row[f'{group} current income N']) == expected_n,
-                    f'Table 17 Panel F {group} N must be {expected_n}; do not use 496 or 517/516.')
-            for observed in [count_row['use_percent'], row[f'{group} current income use prevalence (%)']]:
-                require(math.isclose(float(observed), expected, rel_tol=0, abs_tol=1e-9),
-                        f'Percentage does not equal 100 * users / N: {key}')
+            observed = float(row[f'{group} current income use prevalence (%)'])
+            require(math.isclose(observed, expected, rel_tol=0, abs_tol=1e-9),
+                    f'Percentage does not equal 100 * users / N: {key}')
     # Unconditional financing summaries use all adopters, not the income-complete subsample.
     overall = {r['Funding channel']: r for r in rows if r['panel_label'].startswith('Panel A')}
     require(len(overall) == 7, 'Table 17 Panel A is incomplete.')
@@ -77,6 +74,33 @@ def check_financing(data_dir: Path) -> dict:
     return {'current_income_households': 989, 'lower_income': 492, 'higher_income': 497,
             'median_annual_pc_income_rmb': 15960, 'lower_rule': '<', 'higher_rule': '>=',
             'financing_channels': 7, 'unconditional_adopters': 1033}
+
+def check_figure18(supplementary: Path) -> dict:
+    fields, rows = read_csv(supplementary / 'supp_fig18_hourly_flow_profiles.csv')
+    _, shared_rows = read_csv(supplementary / 'supp_fig26_hourly_flow_composition.csv')
+    flow_columns = ('pv_generation', 'total_load', 'pv_to_load', 'grid_to_load',
+                    'pv_to_grid', 'pv_to_battery', 'battery_to_load')
+    require(set(('system', 'hour') + flow_columns).issubset(fields),
+            'Figure 18 is missing required hourly-flow columns.')
+    require(len(rows) == 48, 'Figure 18 must have 48 rows: 24 hours for each system.')
+    def keyed(items):
+        return {(r['system'], int(r['hour'])): r for r in items}
+    current = keyed(rows); shared = keyed(shared_rows)
+    expected = {(system, hour) for system in ('RRPV-only', 'RRPV-BS') for hour in range(24)}
+    require(set(current) == expected and len(current) == len(rows),
+            'Figure 18 contains missing or duplicated system-hour keys.')
+    require(set(shared) == expected and len(shared) == len(shared_rows),
+            'Figure 26 contains missing or duplicated system-hour keys.')
+    for key, row in current.items():
+        for column in flow_columns:
+            value = float(row[column])
+            require(math.isfinite(value) and value >= 0,
+                    f'Invalid Figure 18 flow value: {key}, {column}')
+            require(value == float(shared[key][column]),
+                    f'Figures 18 and 26 must use the same released hourly profiles: {key}, {column}')
+    return {'rows': 48, 'system_types': 2, 'clock_hours_per_system': 24,
+            'source_file': 'supp_fig18_hourly_flow_profiles.csv',
+            'same_values_as_figure26': True}
 
 def check_figure3(main_dir: Path) -> None:
     _, rows = read_csv(main_dir / 'figure3_plot_data.csv')
@@ -126,6 +150,7 @@ def validate(data_dir: Path = DEFAULT_DATA, code_dir: Path = CODE) -> dict:
         require('989' in notes[str(n)]['notes'] and '15,960' in notes[str(n)]['notes'],
                 f'Table {n} notes must describe the harmonized current-income definition.')
     financing = check_financing(supplementary)
+    figure18 = check_figure18(supplementary)
     _, matched = read_csv(supplementary / 'supp_table28.csv')
     smd = {r['row_id']: float(r['estimate']) for r in matched
            if r['panel'] == 'A' and r['column_id'] == 'matched_smd'}
@@ -173,7 +198,7 @@ def validate(data_dir: Path = DEFAULT_DATA, code_dir: Path = CODE) -> dict:
     require(not stale,'Remove obsolete release files after backing them up: '+', '.join(stale))
     return {'status':'success','release':'2026-10-09','layout_revision':'2026-10-09-clean-names','main_figures':6,'supplementary_figures':27,
             'supplementary_tables':35,'table_csv_files':len(expected_sources),'financing':financing,
-            'figure3_motive_order':'verified','table28_postmatching_smd':'verified',
+            'figure3_motive_order':'verified','table28_postmatching_smd':'verified','figure18':figure18,
             'confidential_records_required':False}
 
 def main() -> int:

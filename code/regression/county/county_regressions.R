@@ -11,7 +11,7 @@ analysis_start <- as.Date("2018-01-01")
 analysis_end <- as.Date("2022-12-01")
 event_date <- as.Date("2021-09-01")
 event_window <- c(-8L, 14L) # Reporting window; pre-period times <= -8 are pooled.
-event_temperature_controls <- FALSE
+event_temperature_controls <- TRUE
 expected_counties <- c(rrpv_only = 335L, rrpv_bs = 91L)
 
 temperature_bins <- c("le_neg5", "neg5_0", "0_5", "5_10", "10_15",

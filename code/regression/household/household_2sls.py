@@ -22,6 +22,35 @@ NONREFERENCE_BINS = ("le_m5", "m5_0", "0_5", "5_10", "10_15", "20_25", "25_30", 
 BASELINE_CONTROLS = tuple("lag_bin_" + b for b in NONREFERENCE_BINS if b != "gt30") + tuple(
     "followup_bin_" + b for b in NONREFERENCE_BINS
 )
+# lag_: calendar month t-1; followup_: mean over calendar months t+1, t+2, t+3.
+# Temperature bins are day counts, omitting (15,20] C; lagged >30 C is the instrument.
+# Other weather columns contain mean relative humidity (%), total precipitation (mm),
+# mean wind speed (m/s), and mean daily solar energy (kWh/m2/day), by calendar month.
+CONTROLS = (
+    "lag_bin_le_m5",
+    "lag_bin_m5_0",
+    "lag_bin_0_5",
+    "lag_bin_5_10",
+    "lag_bin_10_15",
+    "lag_bin_20_25",
+    "lag_bin_25_30",
+    "followup_bin_le_m5",
+    "followup_bin_m5_0",
+    "followup_bin_0_5",
+    "followup_bin_5_10",
+    "followup_bin_10_15",
+    "followup_bin_20_25",
+    "followup_bin_25_30",
+    "followup_bin_gt30",
+    "lag_relative_humidity_pct",
+    "lag_precipitation_mm",
+    "lag_wind_speed_ms",
+    "lag_solar_radiation_kwh_m2_day",
+    "followup_relative_humidity_pct",
+    "followup_precipitation_mm",
+    "followup_wind_speed_ms",
+    "followup_solar_radiation_kwh_m2_day",
+)
 MONTHLY_OUTCOMES = (
     "electricity_bill_rmb", "bill_income_ratio_current_pct",
     "total_electricity_consumption_kwh", "grid_import_kwh",
@@ -290,23 +319,18 @@ def read_frame(path):
     return pd.read_csv(path, dtype={"household_id": str, "village_id": str})
 
 
-def read_control_x(path):
-    """Read the complete control vector, one input-column name per line."""
-    if not path.is_file():
-        raise FileNotFoundError(f"Control-vector file not found: {path}. Supply the complete W variable list.")
-    control_x = [
-        line.strip() for line in path.read_text(encoding="utf-8-sig").splitlines()
-        if line.strip() and not line.lstrip().startswith("#")
-    ]
-    if not control_x:
-        raise ValueError("control_x must explicitly name the analysis covariates.")
-    if len(control_x) != len(set(control_x)):
-        raise ValueError("control_x contains duplicate variable names.")
-    if not set(BASELINE_CONTROLS).issubset(control_x):
-        raise ValueError("control_x omits baseline lag or follow-up temperature bins.")
-    if set(control_x) & set(OUTCOMES + (ENDOGENOUS, INSTRUMENT)):
+def configured_controls():
+    """Return the control vector defined in CONTROLS."""
+    controls = list(CONTROLS)
+    if not controls:
+        raise ValueError("CONTROLS must explicitly name the analysis covariates.")
+    if len(controls) != len(set(controls)):
+        raise ValueError("CONTROLS contains duplicate variable names.")
+    if not set(BASELINE_CONTROLS).issubset(controls):
+        raise ValueError("CONTROLS omits baseline lag or follow-up temperature bins.")
+    if set(controls) & set(OUTCOMES + (ENDOGENOUS, INSTRUMENT)):
         raise ValueError("An outcome, adoption, or excluded instrument cannot be a control.")
-    return control_x
+    return controls
 
 
 def main():
@@ -314,17 +338,20 @@ def main():
     parser.add_argument("--input", type=Path, default=Path("D:/household_survey/2sls_monthly.parquet"))
     parser.add_argument("--monthly", type=Path, help="Build the 2SLS sample from this household-month panel.")
     parser.add_argument("--weather", type=Path, default=Path("D:/household_survey/village_monthly_weather.parquet"))
-    parser.add_argument("--controls", type=Path, default=Path("D:/household_survey/control_x.txt"),
-                        help="Complete W control vector, one input-column name per line.")
+    parser.add_argument("--show-controls", action="store_true",
+                        help="Print the built-in control variable names and exit without reading data.")
     parser.add_argument("--output", type=Path, default=Path("D:/solar_results/main_regressions/2sls"))
     args = parser.parse_args()
-    control_x = read_control_x(args.controls)
+    controls = configured_controls()
+    if args.show_controls:
+        print("\n".join(controls))
+        return
     if args.monthly:
-        frame = build_sample(read_frame(args.monthly), read_frame(args.weather), control_x)
+        frame = build_sample(read_frame(args.monthly), read_frame(args.weather), controls)
     else:
         frame = validate_risk_set(read_frame(args.input))
-    results, covariance, diagnostics = estimate(frame, control_x)
-    diagnostics["control_specification"] = "explicit_control_x"
+    results, covariance, diagnostics = estimate(frame, controls)
+    diagnostics["control_specification"] = "inline_controls"
     args.output.mkdir(parents=True, exist_ok=True)
     results.to_csv(args.output / "2sls_results.csv", index=False)
     covariance.to_csv(args.output / "2sls_covariance.csv", index_label="outcome")
